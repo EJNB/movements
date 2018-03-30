@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select class="form-control selectpicker" data-live-search="true" title="Seleccione la marca" onchange="getAllModelsByBrand(this.value)">
+        {% for brand in brands %}
+            <option value="{{ brand.id }}">{{ brand.name }}</option>
+        {% endfor %}
+    </select>
+</div>

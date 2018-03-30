@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"brand_index":{"tokens":[["text","\/brand\/"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET","POST"],"schemes":[]},"model_index":{"tokens":[["text","\/model\/"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET","POST"],"schemes":[]}},"prefix":"","host":"localhost","scheme":"http"});

@@ -1,0 +1,50 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Distribution
+ *
+ * @ORM\Table(name="distribution")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DistributionRepository")
+ */
+class Distribution
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="requestDate", type="datetime")
+     */
+    private $requestDate;
+
+//    /**
+//     * esto me dira si la distribucion q se hizo se llego a ejecutar
+//     * @var \Boolean
+//     *
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $state;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Equipment", mappedBy="distribution")
+     **/
+    private $equipments;
+//
+    /**
+     * @ORM\ManyToOne(targetEntity="Instalation", inversedBy="distributions")
+     * @ORM\JoinColumn(name="instalation_id", referencedColumnName="id")
+     **/
+    private $instalation;
+}

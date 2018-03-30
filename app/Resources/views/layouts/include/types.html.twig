@@ -1,0 +1,8 @@
+<!-- /.form group -->
+<div class="form-group">
+    <select class="form-control selectpicker" data-live-search="true" title="Seleccione el tipo" name="type_selected" onchange="getAllBrandsByType(this.value)">
+        {% for type in types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+        {% endfor %}
+    </select>
+</div>

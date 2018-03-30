@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Movement
+ *
+ * @ORM\Table(name="movement")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MovementRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"mi" = "MI", "me" = "ME"})
+ */
+abstract class Movement
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \String
+     * @ORM\Column(type="string")
+     */
+    private $movementId;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * Many Movements have One User.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="movements")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     */
+    private $documentFile;
+
+    /**
+     * One Movement has Many Equipments.
+     * @ORM\OneToMany(targetEntity="Equipment", mappedBy="movement")
+     */
+    private $equipments;
+
+}

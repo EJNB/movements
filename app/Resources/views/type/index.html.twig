@@ -1,0 +1,88 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+   {# <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>#}
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Tipos</h3>
+
+                        {#<div class="box-tools">#}
+                            {#<form action="#" method="GET">#}
+                                {#<div class="input-group" style="width: 100%;">#}
+                                        {#<input type="text" name="table_search" class="form-control pull-right" placeholder="Buscar">#}
+
+                                        {#<div class="input-group-btn">#}
+                                            {#<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>#}
+                                        {#</div>#}
+
+                                {#</div>#}
+                            {#</form>#}
+                        {#</div>#}
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th style="width: 40%">Tipo</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for type in types %}
+                                <tr>
+                                    <td>{{ type.name }}</td>
+                                    <td>
+                                        <a href="{{ path('type_edit',{ 'id' : type.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('type_delete',{ 'id':type.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {{ form_start(form) }}
+                            <tr>
+                                <td>
+                                    {{ form_row(form.name) }}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{ form_end(form) }}
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        <!-- ./col -->
+        </div>
+    </section>
+
+    {{ include('layouts/include/modals.html.twig') }}
+{% endblock %}

@@ -1,0 +1,72 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Equipment
+ *
+ * @ORM\Table(name="equipment")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EquipmentRepository")
+ */
+class Equipment
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $ns;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="string")
+     */
+    private $ni;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_at", type="datetime")
+     */
+    private $createAt;
+
+    /**
+     * Many Equipment have One mark.
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="equipments")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     */
+    private $model;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Distribution", inversedBy="equipments")
+     * @ORM\JoinColumn(name="distribution_id", referencedColumnName="id")
+     **/
+    private $distribution;
+
+    /**
+     * Many Equipments have One Movement.
+     * @ORM\ManyToOne(targetEntity="Movement", inversedBy="equipments")
+     * @ORM\JoinColumn(name="movement_id", referencedColumnName="id")
+     */
+    private $movement;
+}

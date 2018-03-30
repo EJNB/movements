@@ -1,0 +1,33 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="col-xs-3">
+                            <h3 class="box-title">Editar tipo <small>{{ type.name }}</small></h3>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        {{ form_start(edit_form) }}
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    {{ form_widget(edit_form) }}
+                                </div>
+                                <button type="submit" class="btn btn-warning">
+                                    <span class="glyphicon glyphicon-floppy-open"></span>
+                                    Guardar
+                                </button>
+                                <a class="btn btn-default" href="{{ path('type_index') }}">Regresar al listado</a>
+                            </div>
+                        {{ form_end(edit_form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

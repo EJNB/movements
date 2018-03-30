@@ -1,0 +1,142 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Equipos</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th>Id</th>
+                                <th>Description</th>
+                                <th>Ns</th>
+                                <th>Ni</th>
+                                <th>Createat</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for equipment in equipments %}
+                                <tr>
+                                    <td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
+                                    <td>{{ equipment.description }}</td>
+                                    <td>{{ equipment.ns }}</td>
+                                    <td>{{ equipment.ni }}</td>
+                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    {#<td>#}
+                                        {#<a href="{{ path('model_edit',{ 'id' : model.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">#}
+                                            {#<span class="glyphicon glyphicon-pencil"></span>#}
+                                        {#</a>#}
+                                        {#<a href="javascript:void(0)"#}
+                                           {#class="link-tooltip link-eliminar"#}
+                                           {#data-url="{{ path('model_delete',{ 'id':model.id }) }}"#}
+                                           {#data-toggle="modal"#}
+                                           {#data-target="#modal-delete"#}
+                                           {#data-placement="top"#}
+                                           {#title="Eliminar"#}
+                                        {#>#}
+                                            {#<span class="glyphicon glyphicon-trash"></span>#}
+                                        {#</a>#}
+                                    {#</td>#}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <a href="{{ path('equipment_new') }}" class="btn btn-primary">Agregar</a>
+                    </div>
+
+
+                    {#<div class="container-fluid">#}
+                        {#{{ form_start(form) }}#}
+                        {#<div class="row">#}
+                            {#<div class="col-md-3 col-sm-3 col-xm-3">#}
+                                {#<div class="form-group">#}
+                                    {#{{ form_widget(form.brand)}}#}
+                                {#</div>#}
+                            {#</div>#}
+
+                            {#<div class="col-md-2 col-sm-3 col-xs-3">#}
+                                {#<div class="form-group">#}
+                                    {#{{ form_widget(form.name)}}#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<div class="col-md-2">#}
+                                {#<div class="form-group">#}
+                                    {#<button class="btn btn-primary" type="submit">#}
+                                        {#<span class="glyphicon glyphicon-floppy-open"></span>#}
+                                        {#Guardar#}
+                                    {#</button>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#{{ form_end(form) }}#}
+                    {#</div>#}
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+
+    {{ include('layouts/include/modals.html.twig') }}
+{% endblock %}
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block body %}#}
+    {#<h1>Equipment list</h1>#}
+
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Description</th>#}
+                {#<th>Ns</th>#}
+                {#<th>Ni</th>#}
+                {#<th>Createat</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for equipment in equipment %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>#}
+                {#<td>{{ equipment.description }}</td>#}
+                {#<td>{{ equipment.ns }}</td>#}
+                {#<td>{{ equipment.ni }}</td>#}
+                {#<td>{% if equipment.createAt %}{{ equipment.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('equipment_new') }}">Create a new equipment</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#{% endblock %}#}

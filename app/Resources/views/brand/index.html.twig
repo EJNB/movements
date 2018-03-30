@@ -1,0 +1,81 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Marcas</h3>
+
+                        {#<div class="box-tools">#}
+                        {#<form action="#" method="GET">#}
+                        {#<div class="input-group" style="width: 100%;">#}
+                        {#<input type="text" name="table_search" class="form-control pull-right" placeholder="Buscar">#}
+
+                        {#<div class="input-group-btn">#}
+                        {#<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>#}
+                        {#</div>#}
+
+                        {#</div>#}
+                        {#</form>#}
+                        {#</div>#}
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th style="width: 30%">Tipo</th>
+                                <th style="width: 30%">Marca</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for brand in brands %}
+                                <tr>
+                                    <td>{{ brand.type }}</td>
+                                    <td>{{ brand.name }}</td>
+                                    <td>
+                                        <a href="{{ path('brand_edit',{ 'id' : brand.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('brand_delete',{ 'id':brand.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {{ form_start(form) }}
+                            <tr>
+                                <td>
+                                    {{ form_row(form.type)}}
+                                </td>
+                                <td>
+                                    {{ form_row(form.name)}}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{ form_end(form) }}
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+
+    {{ include('layouts/include/modals.html.twig') }}
+{% endblock %}
