@@ -53,13 +53,14 @@ function getAllBrandsByType(elem) {
 
 //get all models by brand
 function getAllModelsByBrand(elem) {
-    // $('div.sk-cube-grid').removeClass('hidden');
-    // $('div.block').addClass('modal');
-    // var url_brands_by_type = Routing.generate('brand_index');
-    // $.post( url_brands_by_type, { type : elem }, function (response) {
-    //     $('div.show_brands').html(response);
-    //     $('div.show_brands').find('select').selectpicker('refresh');
-    //     $('div.block').removeClass('modal');
-    //     $('div.sk-cube-grid').addClass('hidden');
-    // });
+    $('div.sk-cube-grid').removeClass('hidden');
+    $('div.block').addClass('modal');
+    var url_models_by_brand = Routing.generate('model_index');
+    $.post( url_models_by_brand, { brand : elem }, function (response) {
+        $('div.show_models').html(response);
+        $('div.show_models').find('select').selectpicker('refresh');
+        $('div.block').removeClass('modal');
+        $('div.sk-cube-grid').addClass('hidden');
+    });
 }
+//
