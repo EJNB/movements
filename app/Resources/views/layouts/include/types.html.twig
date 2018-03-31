@@ -1,8 +1,19 @@
 <!-- /.form group -->
 <div class="form-group">
-    <select class="form-control selectpicker" data-live-search="true" title="Seleccione el tipo" name="type_selected" onchange="getAllBrandsByType(this.value)">
-        {% for type in types %}
-            <option value="{{ type.id }}">{{ type.name }}</option>
-        {% endfor %}
-    </select>
+    <label class="col-sm-4 control-label">Tipos :</label>
+    <div class="col-sm-8 col-md-6">
+        <select
+            class="form-control selectpicker"
+            data-live-search="true"
+            title="Seleccione el tipo"
+            name="types[]"
+            data-header="Selecciona el tipo"
+            data-size="12"
+            onchange="getAllBrandsByType(this.value)"
+        >
+            {% for type in types %}
+                <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
 </div>

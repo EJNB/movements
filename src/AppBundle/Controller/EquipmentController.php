@@ -58,8 +58,8 @@ class EquipmentController extends Controller
         return $this->render('equipment/new.html.twig', array(
             'equipment' => $equipment,
             'form' => $form->createView(),
-            'types' => $types,
-            'brands' => $brands,
+//            'types' => $types,
+//            'brands' => $brands,
             'models' => $models,
         ));
     }

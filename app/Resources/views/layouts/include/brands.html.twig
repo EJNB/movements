@@ -1,7 +1,18 @@
 <div class="form-group">
-    <select class="form-control selectpicker" data-live-search="true" title="Seleccione la marca" onchange="getAllModelsByBrand(this.value)">
-        {% for brand in brands %}
-            <option value="{{ brand.id }}">{{ brand.name }}</option>
-        {% endfor %}
-    </select>
+    <label class="col-sm-1 control-label">Marcas :</label>
+    <div class="col-sm-8 col-md-6">
+        <select
+            class="form-control selectpicker"
+            data-live-search="true"
+            title="Seleccione la marca"
+            data-header="Selecciona la marca"
+            data-size="8"
+            onchange="getAllModelsByBrand(this.value)"
+            name="brands[]"
+        >
+            {% for brand in brands %}
+                <option value="{{ brand.id }}" data-subtext="{{ brand.type }}"> {{ brand.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
 </div>

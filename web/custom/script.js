@@ -14,28 +14,6 @@ $(document).ready(function () {
             .find('a.btn').attr('href',url);
         ;
     });
-
-    //envio por ajax cuando selecciono el tipo
-    $('select.types').on('changed.bs.select',function (event) {
-
-        $('div.sk-cube-grid').removeClass('hidden');
-        $('div.block').addClass('modal');
-
-        $.ajax({
-            url : Routing.generate('brand_index'),
-            method : 'POST',
-            data : { 'type' : $(this).val()},
-            success : function (response) {
-                $('div.show_brands').html(response);
-                $('div.show_brands').find('select').selectpicker('refresh');
-                $('div.block').removeClass('modal');
-                $('div.sk-cube-grid').addClass('hidden');
-            },
-            error : function () {
-                alert('error');
-            }
-        });//end ajax method
-    });//end type change
 });
 
 //get All Brand by types
@@ -63,4 +41,3 @@ function getAllModelsByBrand(elem) {
         $('div.sk-cube-grid').addClass('hidden');
     });
 }
-//

@@ -11,40 +11,84 @@
                     </div>
                     <div class="box-body">
                         <div class="container-fluid">
-                            {{ form_start(form,{'attr' : { 'class' : 'form-horizontal'} }) }}
-                                <!-- Description -->
-                                <div class="form-group">
-                                    <label>Date masks:</label>
-                                    {{ form_widget(form.description) }}
-                                </div>
-                                <!-- N. Inv -->
-                                <div class="form-group">
-                                    <label>Date masks:</label>
-                                    {{ form_widget(form.ni) }}
-                                </div>
-                                <!-- N. Ser -->
-                                <div class="form-group">
-                                    <label>Date masks :</label>
-                                    {{ form_widget(form.ns) }}
-                                </div>
+                            {{ form_start(form) }}
+                            {#<div class="col-md-12">#}
+                                <div class="form-horizontal">
 
-                                <div class="show_types">
-                                    {{ include('layouts/include/types.html.twig') }}
-                                </div>
+                                    <!--types-->
+                                    {#<div class="show_types">#}
+                                        {#{{ include('layouts/include/types.html.twig') }}#}
+                                    {#</div>#}
 
-                                <!--Marca-->
-                                <div class="show_brands">
-                                    {{ include('layouts/include/brands.html.twig') }}
-                                </div>
+                                    {#<!--Marca-->#}
+                                    {#<div class="show_brands">#}
+                                        {#{{ include('layouts/include/brands.html.twig') }}#}
+                                    {#</div>#}
 
-                                <!--Modelo -->
-                                <div class="show_models">
-                                    {{ include('layouts/include/models.html.twig') }}
-                                </div>
+                                    <!--Modelo -->
+                                    <div class="show_models">
+                                        {{ include('layouts/include/models.html.twig') }}
+                                    </div>
 
-                                <input type="submit" value="Create" />
+                                    <!-- Description -->
+                                    <div class="form-group">
+                                        {{ form_label(form.description,'Descripción :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                        <div class="col-sm-4">
+                                            {{ form_errors(form.description) }}
+                                            {{ form_widget(form.description) }}
+                                        </div>
+                                    </div>
+
+                                    {#<!-- N. Inv -->#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_label(form.ni,'Número de inv :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}#}
+                                        {#<div class="col-sm-3 col-md-3">#}
+                                            {#{{ form_errors(form.ni) }}#}
+                                            {#{{ form_widget(form.ni) }}#}
+                                        {#</div>#}
+                                    {#</div>#}
+
+                                    {#<!-- Serial Number -->#}
+                                    {#<div class="form-group">#}
+                                        {#{{ form_label(form.ni,'Número de serie :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}#}
+                                        {#<div class="col-sm-3 col-md-3">#}
+                                            {#{{ form_errors(form.ns) }}#}
+                                            {#{{ form_widget(form.ns) }}#}
+                                        {#</div>#}
+                                    {#</div>#}
+
+                                    <!--cantidad de medios a introducir-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Cantidad :</label>
+                                        <div class="col-sm-1">
+                                            <input class="form-control" required type="text">
+                                        </div>
+                                    </div>
+
+                                    <!--NI Aleatorios o Consecutivos-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">N. Inv o N. Serie :</label>
+                                        <div class="col-sm-4">
+                                            {#<div class="form-group">#}
+                                                <input required type="radio" value="1" name="select_ni_type"> Aleatorios
+                                                <input required type="radio" value="2" name="select_ni_type"> Consecutivos
+                                            {#</div>#}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3"></label>
+                                        <div class="col-sm-5">
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-floppy-open"></span> Guardar
+                                            </button>
+                                            <a href="{{ path('equipment_index') }}" class="btn btn-default">Regresar al listado</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            {#</div><!-- /.col-md-5 -->#}
                             {{ form_end(form) }}
-
                         </div><!-- /.container-fluid -->
                     </div> <!-- /.box-body -->
 
@@ -52,11 +96,4 @@
             </div><!-- /.col-md-12-->
         </div><!-- /.row -->
     </div><!-- /.content -->
-        <!--tipo-->
-
-    <ul>
-        <li>
-            <a href="{{ path('equipment_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
