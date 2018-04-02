@@ -80,6 +80,9 @@ function saveModel() {
                     type : 'error',
                     text: 'Este modelo ya exite'
                 });
+
+                $('div.block').removeClass('modal');
+                $('div.sk-cube-grid').addClass('hidden');
             }
         });
 

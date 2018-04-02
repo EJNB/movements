@@ -33,9 +33,6 @@
                                     <td>{{ equipment.ns }}</td>
                                     <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
                                     <td>
-                                        <a href="{{ path('equipment_show', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Detalles">
-                                            <span class="glyphicon glyphicon-option-horizontal"></span>
-                                        </a>
                                         <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>

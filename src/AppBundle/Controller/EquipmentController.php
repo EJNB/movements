@@ -6,6 +6,8 @@ use AppBundle\Entity\Equipment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * Equipment controller.
@@ -57,24 +59,23 @@ class EquipmentController extends Controller
                 $equip->setNi($request->request->get('ni')[$i]);
                 $equip->setNs($request->request->get('ns')[$i]);
                 $em->persist($equip);
-                $em->flush();
+
+                try{
+                    $em->flush();
+                    $this->addFlash(
+                        'notice',
+                        'Sus datos han sido guardados satisfactoriamente'
+                    );
+
+                }catch (UniqueConstraintViolationException $exception){
+                    $this->addFlash(
+                        'error',
+                        'El número de inventario o número de serie, ya existe.'
+                    );
+                }
             }
 
-            $this->addFlash(
-                'notice',
-                'Sus datos han sido guardados con exito'
-            );
-
             return $this->redirectToRoute('equipment_index');
-//            dump($request->request->get('ni')[2]);
-//            dump($request->request->get('ns')[2]);
-//            dump($request->request->get('cantidad'));
-//            foreach ($request->request->get('ni') as $equipmentTest){
-
-//            }
-//
-
-//            return $this->redirectToRoute('equipment_show', array('id' => $equipment->getId()));
         }
 
         return $this->render('equipment/new.html.twig', array(
@@ -83,22 +84,6 @@ class EquipmentController extends Controller
             'types' => $types,
             'brands' => $brands,
             'models' => $models,
-        ));
-    }
-
-    /**
-     * Finds and displays a equipment entity.
-     *
-     * @Route("/{id}", name="equipment_show")
-     * @Method("GET")
-     */
-    public function showAction(Equipment $equipment)
-    {
-        $deleteForm = $this->createDeleteForm($equipment);
-
-        return $this->render('equipment/show.html.twig', array(
-            'equipment' => $equipment,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -114,13 +99,23 @@ class EquipmentController extends Controller
         $editForm = $this->createForm('AppBundle\Form\EquipmentType', $equipment);
         $editForm->handleRequest($request);
         $models = $em->getRepository('AppBundle:Model')->findAll();
+        $types = $em->getRepository('AppBundle:Type')->findAll();
+        $brands = $em->getRepository('AppBundle:Brand')->findAll();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em->flush();
-            $this->addFlash(
-                'notice',
-                'Sus cambios han sido guardados satisfactoriamente'
-            );
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente.'
+                );
+
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El número de inventario o número de serie, ya existe.'
+                );
+            }
 
             return $this->redirectToRoute('equipment_index');
         }
@@ -128,6 +123,8 @@ class EquipmentController extends Controller
         return $this->render('equipment/edit.html.twig', array(
             'equipment' => $equipment,
             'edit_form' => $editForm->createView(),
+            'types' => $types,
+            'brands' => $brands,
             'models' => $models,
         ));
     }
@@ -135,36 +132,18 @@ class EquipmentController extends Controller
     /**
      * Deletes a equipment entity.
      *
-     * @Route("/{id}", name="equipment_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="equipment_delete")
      */
-    public function deleteAction(Request $request, Equipment $equipment)
+    public function deleteAction(Equipment $equipment)
     {
-        $form = $this->createDeleteForm($equipment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($equipment);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($equipment);
+        $em->flush();
+        $this->addFlash(
+            'notice',
+            'El equipo fue eliminado satisfactoriamente'
+        );
 
         return $this->redirectToRoute('equipment_index');
-    }
-
-    /**
-     * Creates a form to delete a equipment entity.
-     *
-     * @param Equipment $equipment The equipment entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Equipment $equipment)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('equipment_delete', array('id' => $equipment->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
