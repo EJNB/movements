@@ -64,7 +64,7 @@ class EquipmentController extends Controller
                 $equip = new Equipment();
                 $equip->setModel($em->getRepository('AppBundle:Model')->find(intval($request->request->get('model'))));
                 $equip->setDescription($equipment->getDescription());
-                $equip->setCreateAt(new \DateTime());
+                $equip->setCreateAt($equipment->getCreateAt());
                 $equip->setNi($request->request->get('ni')[$i]);
                 $equip->setNs($request->request->get('ns')[$i]);
                 $em->persist($equip);

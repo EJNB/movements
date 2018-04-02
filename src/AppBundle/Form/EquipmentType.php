@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,14 +21,22 @@ class EquipmentType extends AbstractType
         $builder
             ->add('description',TextType::class,array(
                 'attr' => array( 'class' => 'form-control')
-            ));
+            ))
+            ->add('createAt', DateTimeType::class,array(
+//                'label' => 'Introducido en',
+                'widget' => 'single_text',
+                'required' => true,
+                'input' => 'datetime',
+                'attr' => array('class' => 'form-control')
+            ))
+        ;
 //            ->add('ni',TextType::class,array(
 //                'attr' => array( 'class' => 'form-control')
 //            ))
 //            ->add('ns',IntegerType::class,array(
 //                'attr' => array( 'class' => 'form-control')
 //            ))
-//            ->add('createAt')
+
 //            ->add('model')
 //            ->add('distribution')
 //            ->add('movement')

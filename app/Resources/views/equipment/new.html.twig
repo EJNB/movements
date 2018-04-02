@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="page-header">Agragar equipo</h3>
+                        <h3 class="page-header">Agregar equipo</h3>
                     </div>
                     <div class="box-body">
                         <div class="container-fluid">
@@ -30,12 +30,21 @@
                                         {{ include('layouts/include/models.html.twig') }}
                                     </div>
 
-                                    <!-- Description -->
+                                   <!-- Description -->
                                     <div class="form-group">
                                         {{ form_label(form.description,'Descripción :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
                                         <div class="col-sm-4">
                                             {{ form_errors(form.description) }}
                                             {{ form_widget(form.description) }}
+                                        </div>
+                                    </div>
+
+                                    <!-- createAt -->
+                                    <div class="form-group">
+                                        {{ form_label(form.createAt,'Fecha :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                        <div class="col-sm-2">
+                                            {{ form_errors(form.createAt) }}
+                                            {{ form_widget(form.createAt) }}
                                         </div>
                                     </div>
 
@@ -79,5 +88,26 @@
                 </div><!-- /.box -->
             </div><!-- /.col-md-12-->
         </div><!-- /.row -->
+
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class='col-sm-6'>#}
+                    {#<div class="form-group">#}
+                        {#<div class='input-group date' id='datetimepicker1'>#}
+                            {#<input type='text' class="form-control" />#}
+                            {#<span class="input-group-addon">#}
+                        {#<span class="glyphicon glyphicon-calendar"></span>#}
+                    {#</span>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<script type="text/javascript">#}
+                    {#$(function () {#}
+                        {#$('#datetimepicker1').datetimepicker();#}
+                    {#});#}
+                {#</script>#}
+            {#</div>#}
+        {#</div>#}
+
     </div><!-- /.content -->
 {% endblock %}

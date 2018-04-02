@@ -19,9 +19,18 @@ $(document).ready(function () {
         $("select#types").selectpicker('val','');
         $("select#brands").selectpicker('val','');
         $("#model").val('');
-        // alert()
     });
-});
+
+    //configuracion del campo date de las incidencias
+    $('#appbundle_equipment_createAt').datetimepicker({
+        useCurrent: false,
+        format: 'YYYY-MM-DD',
+        locale: 'es',
+        showClear: true,
+        maxDate : new Date(),
+    });
+
+});//end $(document).ready
 
 //get All Brand by types
 function getAllBrandsByType(elem) {

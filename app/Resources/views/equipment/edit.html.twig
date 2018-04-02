@@ -57,6 +57,15 @@
                                     </div>
                                 </div>
 
+                                <!-- CreateAt -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.createAt,'Fecha :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.createAt) }}
+                                        {{ form_widget(edit_form.createAt) }}
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="control-label col-sm-3"></label>
                                     <div class="col-sm-5">
