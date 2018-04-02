@@ -10,11 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="distribution")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DistributionRepository")
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"cm" = "CM", "hotel" = "Hotel"})
  */
-abstract class Distribution
+class Distribution
 {
     /**
      * @var int
