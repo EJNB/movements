@@ -17,8 +17,8 @@ class BrandType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,array(
-                'attr' => array('class' => 'form-control'),
-                'label' => false
+                'attr' => array('class' => 'form-control','placeholder' => 'Introdusca la marca'),
+                'label' => false,
             ))
             ->add('type', EntityType::class, array(
                 'class' => 'AppBundle:Type',

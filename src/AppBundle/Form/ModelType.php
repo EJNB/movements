@@ -32,7 +32,7 @@ class ModelType extends AbstractType
             ->add('name',TextType::class,array(
                 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Introdusca la marca'
+                    'placeholder' => 'Introdusca el modelo'
                 ),
                 'label' => false
             ))

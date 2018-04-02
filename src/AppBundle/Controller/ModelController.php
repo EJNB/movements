@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * Model controller.
@@ -43,12 +45,20 @@ class ModelController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em->persist($model);
-                $em->flush();
 
-                $this->addFlash(
-                    'notice',
-                    'Sus datos han sido guardados satisfactoriamente'
-                );
+                try{
+                    $em->flush();
+                    $this->addFlash(
+                        'notice',
+                        'Sus datos han sido guardados satisfactoriamente'
+                    );
+
+                }catch (UniqueConstraintViolationException $exception){
+                    $this->addFlash(
+                        'error',
+                        'El modelo que intenta insertar, ya existe.'
+                    );
+                }
 
                 return $this->redirectToRoute('model_index');
             }
@@ -115,7 +125,20 @@ class ModelController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente.'
+                );
+
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El modelo que intenta actualizar, ya existe.'
+                );
+            }
 
             return $this->redirectToRoute('model_index');
         }
@@ -131,11 +154,23 @@ class ModelController extends Controller
      *
      * @Route("/{id}/delete", name="model_delete")
      */
-    public function deleteAction(Request $request, Model $model)
+    public function deleteAction(Model $model)
     {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($model);
-        $em->flush();
+
+        try{
+            $em->remove($model);
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'El modelo fue eliminado satisfactoriamente.'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'El modelo no puede ser eliminado. Tiene equipos asociados.'
+            );
+        }
 
         return $this->redirectToRoute('model_index');
     }

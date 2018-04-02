@@ -15,7 +15,7 @@
                         <table class="table table-hover table-condensed">
                             <tr>
                                 <th style="width: 25%">Marca</th>
-                                <th style="width: 20%">Modelo</th>
+                                <th style="width: 28%">Modelo</th>
                                 <th>Acciones</th>
                             </tr>
                             {% for model in models %}
@@ -50,13 +50,13 @@
                     <div class="container-fluid">
                         {{ form_start(form) }}
                             <div class="row">
-                                <div class="col-md-3 col-sm-3 col-xm-3">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         {{ form_widget(form.brand)}}
                                     </div>
                                 </div>
 
-                                <div class="col-md-2 col-sm-3 col-xs-3">
+                                <div class="col-sm-3 col-xs-3">
                                     <div class="form-group">
                                         {{ form_widget(form.name)}}
                                     </div>
