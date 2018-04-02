@@ -32,14 +32,14 @@ class Equipment
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $ns;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $ni;
 

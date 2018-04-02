@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Brand;
 use AppBundle\Form\BrandType;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -44,12 +46,20 @@ class BrandController extends Controller
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em->persist($brand);
-                $em->flush();
 
-                $this->addFlash(
-                    'notice',
-                    'Sus datos han sido guardados satisfactoriamente'
-                );
+                try{
+                    $em->flush();
+                    $this->addFlash(
+                        'notice',
+                        'Sus datos han sido guardados satisfactoriamente'
+                    );
+
+                }catch (UniqueConstraintViolationException $exception){
+                    $this->addFlash(
+                        'error',
+                        'La marca que intenta insertar, ya existe.'
+                    );
+                }
 
                 return $this->redirectToRoute('brand_index');
             }
@@ -73,7 +83,19 @@ class BrandController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente.'
+                );
+
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'La marca que intenta actualizar, ya existe.'
+                );
+            }
 
             return $this->redirectToRoute('brand_index');
         }
@@ -92,8 +114,19 @@ class BrandController extends Controller
     public function deleteAction(Brand $brand)
     {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($brand);
-        $em->flush();
+        try{
+            $em->remove($brand);
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'La marca fue eliminada satisfactoriamente'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'La marca no puede ser eliminada. Tiene modelos asociados'
+            );
+        }
 
         return $this->redirectToRoute('brand_index');
     }

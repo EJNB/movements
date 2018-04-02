@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Type;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -32,12 +34,20 @@ class TypeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($type);
-            $em->flush();
 
-            $this->addFlash(
-                'notice',
-                'Sus datos han sido guardados satisfactoriamente'
-            );
+            try{
+                $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente'
+                );
+
+            }catch (  UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El tipo que intenta guardar, ya existe.'
+                );
+            }
 
             return $this->redirectToRoute('type_index');
         }
@@ -60,12 +70,20 @@ class TypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash(
-                'notice',
-                'Sus cambios han sido guardados satisfactoriamente'
-            );
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente.'
+                );
+
+            }catch (  UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El tipo que intenta actualizar, ya existe.'
+                );
+            }
 
             return $this->redirectToRoute('type_index');
         }
@@ -83,16 +101,20 @@ class TypeController extends Controller
      */
     public function deleteAction(Type $type)
     {
-
         $em = $this->getDoctrine()->getManager();
-        $em->remove($type);
-        $em->flush();
-
-        $this->addFlash(
-            'notice',
-            'El tipo ha sido eliminado satisfactoriamente'
-        );
-
+        try{
+            $em->remove($type);
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'El tipo ha sido eliminado satisfactoriamente.'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'El tipo no puede ser eliminado. Tiene marcas asociadas.'
+            );
+        }
 
         return $this->redirectToRoute('type_index');
     }

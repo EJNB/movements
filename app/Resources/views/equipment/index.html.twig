@@ -14,78 +14,47 @@
                     <div class="box-body table-responsive">
                         <table class="table table-hover table-condensed">
                             <tr>
-                                <th>Id</th>
-                                <th>Description</th>
-                                <th>Ns</th>
-                                <th>Ni</th>
-                                <th>Createat</th>
+                                <th>Tipo</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                {#<th>Description</th>#}
+                                <th>N&uacute;mero de Inventario</th>
+                                <th>N&uacute;mero de serie</th>
+                                <th>Introducido en</th>
                                 <th>Acciones</th>
                             </tr>
                             {% for equipment in equipments %}
                                 <tr>
-                                    <td><a href="{{ path('equipment_show', { 'id': equipment.id }) }}">{{ equipment.id }}</a></td>
-                                    <td>{{ equipment.description }}</td>
-                                    <td>{{ equipment.ns }}</td>
+                                    <td>{{ equipment.model.brand.type }}</td>
+                                    <td>{{ equipment.model.brand }}</td>
+                                    <td>{{ equipment.model }}</td>
+                                    {#<td>{{ equipment.description }}</td>#}
                                     <td>{{ equipment.ni }}</td>
-                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{{ equipment.ns }}</td>
+                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
                                     <td>
-                                        <ul>
-                                            <li>
-                                                <a href="{{ path('equipment_show', { 'id': equipment.id }) }}">show</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}">edit</a>
-                                            </li>
-                                        </ul>
+                                        <a href="{{ path('equipment_show', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Detalles">
+                                            <span class="glyphicon glyphicon-option-horizontal"></span>
+                                        </a>
+                                        <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
                                     </td>
-                                    {#<td>#}
-                                        {#<a href="{{ path('model_edit',{ 'id' : model.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">#}
-                                            {#<span class="glyphicon glyphicon-pencil"></span>#}
-                                        {#</a>#}
-                                        {#<a href="javascript:void(0)"#}
-                                           {#class="link-tooltip link-eliminar"#}
-                                           {#data-url="{{ path('model_delete',{ 'id':model.id }) }}"#}
-                                           {#data-toggle="modal"#}
-                                           {#data-target="#modal-delete"#}
-                                           {#data-placement="top"#}
-                                           {#title="Eliminar"#}
-                                        {#>#}
-                                            {#<span class="glyphicon glyphicon-trash"></span>#}
-                                        {#</a>#}
-                                    {#</td>#}
                                 </tr>
                             {% endfor %}
                         </table>
-                    <a href="{{ path('equipment_new') }}" class="btn btn-primary">Agregar</a>
+                        <a href="{{ path('equipment_new') }}" class="btn btn-primary">Agregar</a>
                     </div>
-
-
-                    {#<div class="container-fluid">#}
-                        {#{{ form_start(form) }}#}
-                        {#<div class="row">#}
-                            {#<div class="col-md-3 col-sm-3 col-xm-3">#}
-                                {#<div class="form-group">#}
-                                    {#{{ form_widget(form.brand)}}#}
-                                {#</div>#}
-                            {#</div>#}
-
-                            {#<div class="col-md-2 col-sm-3 col-xs-3">#}
-                                {#<div class="form-group">#}
-                                    {#{{ form_widget(form.name)}}#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="col-md-2">#}
-                                {#<div class="form-group">#}
-                                    {#<button class="btn btn-primary" type="submit">#}
-                                        {#<span class="glyphicon glyphicon-floppy-open"></span>#}
-                                        {#Guardar#}
-                                    {#</button>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                        {#{{ form_end(form) }}#}
-                    {#</div>#}
-                    <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
             </div>

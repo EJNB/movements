@@ -39,41 +39,25 @@
                                         </div>
                                     </div>
 
-                                    {#<!-- N. Inv -->#}
-                                    {#<div class="form-group">#}
-                                        {#{{ form_label(form.ni,'Número de inv :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}#}
-                                        {#<div class="col-sm-3 col-md-3">#}
-                                            {#{{ form_errors(form.ni) }}#}
-                                            {#{{ form_widget(form.ni) }}#}
-                                        {#</div>#}
-                                    {#</div>#}
-
-                                    {#<!-- Serial Number -->#}
-                                    {#<div class="form-group">#}
-                                        {#{{ form_label(form.ni,'Número de serie :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}#}
-                                        {#<div class="col-sm-3 col-md-3">#}
-                                            {#{{ form_errors(form.ns) }}#}
-                                            {#{{ form_widget(form.ns) }}#}
-                                        {#</div>#}
-                                    {#</div>#}
-
                                     <!--cantidad de medios a introducir-->
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Cantidad :</label>
                                         <div class="col-sm-1">
-                                            <input class="form-control" required type="text">
+                                            <input class="form-control cantidad" required type="text" name="cantidad">
                                         </div>
                                     </div>
 
                                     <!--NI Aleatorios o Consecutivos-->
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">N. Inv o N. Serie :</label>
+                                        <label class="col-sm-3 control-label">N. Inv/N. Serie :</label>
                                         <div class="col-sm-4">
-                                            {#<div class="form-group">#}
-                                                <input required type="radio" value="1" name="select_ni_type"> Aleatorios
-                                                <input required type="radio" value="2" name="select_ni_type"> Consecutivos
-                                            {#</div>#}
+                                            <input required type="radio" value="1" name="select_ni_type" onclick="toogleInputs(this.value)"> Aleatorios
+                                            <input required type="radio" value="2" name="select_ni_type" onclick="toogleInputs(this.value)"> Consecutivos
                                         </div>
+                                    </div>
+
+                                    <!--Aqui se generaran los ni y los ns q le diga en la cantidad-->
+                                    <div class="show_inputs_ni_ns">
                                     </div>
 
                                     <div class="form-group">

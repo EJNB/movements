@@ -49,17 +49,39 @@ class EquipmentController extends Controller
         $models = $em->getRepository('AppBundle:Model')->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($equipment);
-            $em->flush();
+            for ($i=0;$i<$request->request->get('cantidad');$i++) {
+                $equip = new Equipment();
+                $equip->setModel($em->getRepository('AppBundle:Model')->find(intval($request->request->get('model'))));
+                $equip->setDescription($equipment->getDescription());
+                $equip->setCreateAt(new \DateTime());
+                $equip->setNi($request->request->get('ni')[$i]);
+                $equip->setNs($request->request->get('ns')[$i]);
+                $em->persist($equip);
+                $em->flush();
+            }
 
-            return $this->redirectToRoute('equipment_show', array('id' => $equipment->getId()));
+            $this->addFlash(
+                'notice',
+                'Sus datos han sido guardados con exito'
+            );
+
+            return $this->redirectToRoute('equipment_index');
+//            dump($request->request->get('ni')[2]);
+//            dump($request->request->get('ns')[2]);
+//            dump($request->request->get('cantidad'));
+//            foreach ($request->request->get('ni') as $equipmentTest){
+
+//            }
+//
+
+//            return $this->redirectToRoute('equipment_show', array('id' => $equipment->getId()));
         }
 
         return $this->render('equipment/new.html.twig', array(
             'equipment' => $equipment,
             'form' => $form->createView(),
-//            'types' => $types,
-//            'brands' => $brands,
+            'types' => $types,
+            'brands' => $brands,
             'models' => $models,
         ));
     }
@@ -88,20 +110,25 @@ class EquipmentController extends Controller
      */
     public function editAction(Request $request, Equipment $equipment)
     {
-        $deleteForm = $this->createDeleteForm($equipment);
+        $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\EquipmentType', $equipment);
         $editForm->handleRequest($request);
+        $models = $em->getRepository('AppBundle:Model')->findAll();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'Sus cambios han sido guardados satisfactoriamente'
+            );
 
-            return $this->redirectToRoute('equipment_edit', array('id' => $equipment->getId()));
+            return $this->redirectToRoute('equipment_index');
         }
 
         return $this->render('equipment/edit.html.twig', array(
             'equipment' => $equipment,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'models' => $models,
         ));
     }
 

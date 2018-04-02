@@ -6,6 +6,7 @@ use AppBundle\Entity\Model;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Model controller.
@@ -63,11 +64,27 @@ class ModelController extends Controller
     /**
      * Creates a new model entity.
      *
-     * @Route("/new", name="model_new")
+     * @Route("/new", options={"expose"=true}, name="model_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
+        if($request->isXmlHttpRequest()){
+//            return new Response($request->request->get('brand'));
+            $model = new Model();
+            $em = $this->getDoctrine()->getManager();
+            $model->setName($request->request->get('model'));
+            $brand = $em->getRepository('AppBundle:Brand')->find(intval($request->request->get('brand')));
+            $model->setBrand($brand);
+            $em->persist($model);
+            $em->flush();
+
+            //find all models and return
+            $models = $em->getRepository('AppBundle:Model')->findAll();
+            return $this->render('layouts/include/models.html.twig', array( 'models' => $models ));
+        }else{
+
+        }
         $model = new Model();
         $form = $this->createForm('AppBundle\Form\ModelType', $model);
         $form->handleRequest($request);

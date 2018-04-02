@@ -2,15 +2,14 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Modelo :</label>
         <div class="col-sm-3 col-md-3" style="padding-right: 2px">
-            <select class="form-control selectpicker" data-live-search="true" title="Seleccione el modelo" name="models[]">
+            <select class="form-control selectpicker" data-live-search="true" title="Seleccione el modelo" name="model" data-size="12">
                 {% for model in models %}
                     <option value="{{ model.id }}">{{ model.brand.type }} {{ model.brand }} {{ model.name }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="col-md-2">
-            {#<button class="bn"#}
-            <a href="javascript:void(0);" class="btn btn-success link-tooltip" data-placement="top" title="Add model">
+            <a href="{#javascript:void(0);#}" class="btn btn-success link-tooltip" data-placement="top" title="Add model" data-toggle="modal" data-target="#addEquipment">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>

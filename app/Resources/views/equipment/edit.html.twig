@@ -1,21 +1,97 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Equipment edit</h1>
+{% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="page-header">Editar equipo</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="container-fluid">
+                            {{ form_start(edit_form) }}
+                            {#<div class="col-md-12">#}
+                            <div class="form-horizontal">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Modelo :</label>
+                                    <div class="col-sm-3 " {#style="padding-right: 2px"#}>
+                                        <select class="form-control selectpicker" data-live-search="true" title="Seleccione el modelo" name="model" data-size="12">
+                                            {% for model in models %}
+                                                <option value="{{ model.id }}" {% if model.id==edit_form.vars['data'].model.id %}selected{% endif %}>{{ model.brand.type }} {{ model.brand }} {{ model.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="{#javascript:void(0);#}" class="btn btn-success link-tooltip" data-placement="top" title="Add model" data-toggle="modal" data-target="#addEquipment">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </a>
+                                    </div>
+                                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('equipment_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                <!--NI -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.ni,'Número de inventario :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.ni) }}
+                                        {{ form_widget(edit_form.ni) }}
+                                    </div>
+                                </div>
+
+                                <!--NS -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.ns,'Número de serie :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.ns) }}
+                                        {{ form_widget(edit_form.ns) }}
+                                    </div>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.description,'Descripción :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.description) }}
+                                        {{ form_widget(edit_form.description) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3"></label>
+                                    <div class="col-sm-5">
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-floppy-open"></span> Guardar
+                                        </button>
+                                        <a href="{{ path('equipment_index') }}" class="btn btn-default">Regresar al listado</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {#</div><!-- /.col-md-5 -->#}
+                            {{ form_end(edit_form) }}
+                        </div><!-- /.container-fluid -->
+                    </div> <!-- /.box-body -->
+
+                </div><!-- /.box -->
+            </div><!-- /.col-md-12-->
+        </div><!-- /.row -->
+    </div><!-- /.content -->
+    {#<h1>Equipment edit</h1>#}
+
+    {#{{ form_start(edit_form) }}#}
+        {#{{ form_widget(edit_form) }}#}
+        {#<input type="submit" value="Edit" />#}
+    {#{{ form_end(edit_form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('equipment_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}
