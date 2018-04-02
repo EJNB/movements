@@ -10,8 +10,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="distribution")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DistributionRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"cm" = "CM", "hotel" = "Hotel"})
  */
-class Distribution
+abstract class Distribution
 {
     /**
      * @var int
@@ -29,24 +32,17 @@ class Distribution
      */
     private $requestDate;
 
-//    /**
-//     * esto me dira si la distribucion q se hizo se llego a ejecutar
-//     * @var \Boolean
-//     *
-//     * @ORM\Column(type="boolean")
-//     */
-//    private $state;
-
     /**
      * @ORM\OneToMany(targetEntity="Equipment", mappedBy="distribution")
      **/
     private $equipments;
-//
+
     /**
      * @ORM\ManyToOne(targetEntity="Instalation", inversedBy="distributions")
      * @ORM\JoinColumn(name="instalation_id", referencedColumnName="id")
      **/
     private $instalation;
+
     /**
      * Constructor
      */
