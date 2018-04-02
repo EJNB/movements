@@ -9,48 +9,63 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Equipos</h3>
+
+                        <a href="{{ path('equipment_new') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar equipos </a>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 300px;">
+                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table class="table table-hover table-condensed">
-                            <tr>
-                                <th>Tipo</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                {#<th>Description</th>#}
-                                <th>N&uacute;mero de Inventario</th>
-                                <th>N&uacute;mero de serie</th>
-                                <th>Introducido en</th>
-                                <th>Acciones</th>
-                            </tr>
-                            {% for equipment in equipments %}
+                    <div class="box-body table-responsive no-padding">
+                        <div class="container-fluid">
+
+                            <table class="table table-hover table-condensed">
                                 <tr>
-                                    <td>{{ equipment.model.brand.type }}</td>
-                                    <td>{{ equipment.model.brand }}</td>
-                                    <td>{{ equipment.model }}</td>
-                                    {#<td>{{ equipment.description }}</td>#}
-                                    <td>{{ equipment.ni }}</td>
-                                    <td>{{ equipment.ns }}</td>
-                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
-                                    <td>
-                                        <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="link-tooltip link-eliminar"
-                                           data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"
-                                           data-toggle="modal"
-                                           data-target="#modal-delete"
-                                           data-placement="top"
-                                           title="Eliminar"
-                                        >
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
-                                    </td>
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Tipo', column: 't.name'} %}</th>
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Marca', column: 'b.name'} %}</th>
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>
+                                    {#<th>Description</th>#}
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>
+                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            {% endfor %}
-                        </table>
-                        <a href="{{ path('equipment_new') }}" class="btn btn-primary">Agregar</a>
+                                {% for equipment in pagination %}
+                                    <tr>
+                                        <td>{{ equipment.model.brand.type }}</td>
+                                        <td>{{ equipment.model.brand }}</td>
+                                        <td>{{ equipment.model }}</td>
+                                        {#<td>{{ equipment.description }}</td>#}
+                                        <td>{{ equipment.ni }}</td>
+                                        <td>{{ equipment.ns }}</td>
+                                        <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                        <td>
+                                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                               class="link-tooltip link-eliminar"
+                                               data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"
+                                               data-toggle="modal"
+                                               data-target="#modal-delete"
+                                               data-placement="top"
+                                               title="Eliminar"
+                                            >
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+
+                        </div>
                     </div>
                 </div>
                 <!-- /.box -->

@@ -22,14 +22,23 @@ class EquipmentController extends Controller
      * @Route("/", name="equipment_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $equipments = $em->getRepository('AppBundle:Equipment')->findAll();
+//        $equipments = $em->getRepository('AppBundle:Equipment')->findAll();
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $equipments, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
 
         return $this->render('equipment/index.html.twig', array(
-            'equipments' => $equipments,
+//            'equipments' => $equipments,
+            'pagination' => $pagination,
         ));
     }
 

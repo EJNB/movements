@@ -10,4 +10,29 @@ namespace AppBundle\Repository;
  */
 class EquipmentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllEquipmentOrderByType(/*$filter=""*/){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+        ;
+//        if($filter!="") {
+//            $qb
+//                ->where($qb->expr()->like('i.description', '?1'))
+//                ->orWhere($qb->expr()->like('i.incidenceDate', '?1'))
+//                ->orWhere($qb->expr()->like('i.code', '?1'))
+//                ->orWhere($qb->expr()->like('it.name', '?1'))
+//                ->setParameter(1, '%' . $filter . '%')
+//            ;
+//        }
+
+        $qb->andWhere('e.movement is null');
+//        $qb->orderBy('i.incidenceDate','ASC');
+        $result = $qb->getQuery()/*->getResult()*/;
+        return $result;
+    }
 }
