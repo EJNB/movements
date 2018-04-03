@@ -10,20 +10,19 @@
                     <div class="box-header">
                         <h3 class="box-title">Equipos</h3>
 
-                        <a href="{{ path('equipment_new') }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar equipos </a>
+                        <a href="{{ path('equipment_new') }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar equipos </a>
                         <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 300px;">
-                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Buscar">
-
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
+                            <form class="form-inline" action="{{ path('equipment_index') }}" method="get" style="margin-bottom: 2px">
+                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                <button type="submit" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
                         </div>
 
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body table-responsive no-padding">
+                    <div class="box-body table-responsive {#no-padding#}">
                         <div class="container-fluid">
 
                             <table class="table table-hover table-condensed">
@@ -45,8 +44,8 @@
                                         <td>{{ equipment.ns }}</td>
                                         <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
                                         <td>
-                                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-toggle="tooltip" data-placement="top" title="Editar">
-                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">
+                                                <span class="glyphicon glyphicon-edit"></span>
                                             </a>
                                             <a href="javascript:void(0)"
                                                class="link-tooltip link-eliminar"

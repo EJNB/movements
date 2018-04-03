@@ -27,7 +27,8 @@ class EquipmentController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 //        $equipments = $em->getRepository('AppBundle:Equipment')->findAll();
-        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
+        $filter = $request->query->get('filter');
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType($filter);
         $paginator  = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate(

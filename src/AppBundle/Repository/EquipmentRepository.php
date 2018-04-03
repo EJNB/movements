@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class EquipmentRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAllEquipmentOrderByType(/*$filter=""*/){
+    public function getAllEquipmentOrderByType($filter){
         $em = $this->getEntityManager();
 
         $qb = $em->createQueryBuilder();
@@ -20,15 +20,18 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ->innerJoin('m.brand','b')
             ->innerJoin('b.type','t')
         ;
-//        if($filter!="") {
-//            $qb
-//                ->where($qb->expr()->like('i.description', '?1'))
-//                ->orWhere($qb->expr()->like('i.incidenceDate', '?1'))
-//                ->orWhere($qb->expr()->like('i.code', '?1'))
-//                ->orWhere($qb->expr()->like('it.name', '?1'))
-//                ->setParameter(1, '%' . $filter . '%')
-//            ;
-//        }
+        if($filter!="") {
+            $qb
+                ->where($qb->expr()->like('e.createAt', '?1'))
+                ->orWhere($qb->expr()->like('e.description', '?1'))
+                ->orWhere($qb->expr()->like('e.ni', '?1'))
+                ->orWhere($qb->expr()->like('e.ns', '?1'))
+                ->orWhere($qb->expr()->like('m.name', '?1'))
+                ->orWhere($qb->expr()->like('b.name', '?1'))
+                ->orWhere($qb->expr()->like('t.name', '?1'))
+                ->setParameter(1, '%' . $filter . '%')
+            ;
+        }
 
         $qb->andWhere('e.movement is null');
 //        $qb->orderBy('i.incidenceDate','ASC');
