@@ -34,6 +34,8 @@ $(document).ready(function () {
 
 //get All Brand by types
 function getAllBrandsByType(elem) {
+    var loading_awesome = `<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>`;
+    $('select#brands').parent().html(loading_awesome);
     var url_brands_by_type = Routing.generate('brand_index');
     $.post( url_brands_by_type, { type : elem }, function (response) {
         $('div.show_brands').html(response);

@@ -12,6 +12,7 @@
                 {#onchange="getAllModelsByBrand(this.value)"#}
                 name="brands[]"
             >
+
                 {% for brand in brands %}
                     <option value="{{ brand.id }}" data-subtext="{{ brand.type }}"> {{ brand.name }}</option>
                 {% endfor %}
