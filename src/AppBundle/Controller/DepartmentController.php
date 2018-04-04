@@ -101,35 +101,24 @@ class DepartmentController extends Controller
      * Deletes a department entity.
      *
      * @Route("/{id}", name="department_delete")
-     * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Department $department)
+    public function deleteAction(Department $department)
     {
-        $form = $this->createDeleteForm($department);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        try{
             $em->remove($department);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                'El departamento fue eliminado satisfactoriamente'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'El departamnento, no puede ser eliminado. \nTiene personas asociadas.'
+            );
         }
 
         return $this->redirectToRoute('department_index');
-    }
-
-    /**
-     * Creates a form to delete a department entity.
-     *
-     * @param Department $department The department entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Department $department)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('department_delete', array('id' => $department->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
