@@ -1,21 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Person edit</h1>
+{% block content %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="col-xs-3">
+                            <h3 class="box-title page-header">Editar persona <small>{{ person.name }}</small></h3>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        {{ form_start(edit_form) }}
+                            <div class="col-xs-3">
 
-    <ul>
-        <li>
-            <a href="{{ path('person_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                <div class="form-group">
+                                    {{ form_widget(edit_form.department) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(edit_form.name) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(edit_form.cargo) }}
+                                </div>
+
+                                <button type="submit" class="btn btn-warning">
+                                    <span class="glyphicon glyphicon-floppy-open"></span>
+                                    Guardar
+                                </button>
+                                <a class="btn btn-default" href="{{ path('person_index') }}">Regresar al listado</a>
+                            </div>
+                        {{ form_end(edit_form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {#<h1>Person edit</h1>#}
+
+    {#{{ form_start(edit_form) }}#}
+        {#{{ form_widget(edit_form) }}#}
+        {#<input type="submit" value="Edit" />#}
+    {#{{ form_end(edit_form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('person_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

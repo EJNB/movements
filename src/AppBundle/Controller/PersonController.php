@@ -5,7 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * Person controller.
@@ -30,12 +33,25 @@ class PersonController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($person);
-            $em->flush();
+            try{
+                $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente'
+                );
+
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'La persona no pudo ser insertada, puesto que ya existe en el sistema.'
+                );
+            }
 
             return $this->redirectToRoute('person_index');
         }
 
-        $people = $em->getRepository('AppBundle:Person')->getAllPersonOrderedByDepartment();
+        $filter = $request->query->get('filter');
+        $people = $em->getRepository('AppBundle:Person')->getAllPersonOrderedByDepartment($filter);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $people,
@@ -50,48 +66,6 @@ class PersonController extends Controller
     }
 
     /**
-     * Creates a new person entity.
-     *
-     * @Route("/new", name="person_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $person = new Person();
-        $form = $this->createForm('AppBundle\Form\PersonType', $person);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($person);
-            $em->flush();
-
-            return $this->redirectToRoute('person_show', array('id' => $person->getId()));
-        }
-
-        return $this->render('person/new.html.twig', array(
-            'person' => $person,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a person entity.
-     *
-     * @Route("/{id}", name="person_show")
-     * @Method("GET")
-     */
-    public function showAction(Person $person)
-    {
-        $deleteForm = $this->createDeleteForm($person);
-
-        return $this->render('person/show.html.twig', array(
-            'person' => $person,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing person entity.
      *
      * @Route("/{id}/edit", name="person_edit")
@@ -99,27 +73,38 @@ class PersonController extends Controller
      */
     public function editAction(Request $request, Person $person)
     {
-        $deleteForm = $this->createDeleteForm($person);
         $editForm = $this->createForm('AppBundle\Form\PersonType', $person);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('person_edit', array('id' => $person->getId()));
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus cambios han sido guardados satisfactoriamente.'
+                );
+
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'Los datos de la persona no fueron actualizados, puesto que ya existe una persona en el sistema con los mismos datos.'
+                );
+            }
+
+            return $this->redirectToRoute('person_index');
         }
 
         return $this->render('person/edit.html.twig', array(
             'person' => $person,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a person entity.
      *
-     * @Route("/{id}", name="person_delete")
+     * @Route("/{id}/delete", name="person_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Person $person)
