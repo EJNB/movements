@@ -11,8 +11,8 @@
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Nomencladores</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ path('type_index') }}"><i class="fa fa-circle-o"></i> Tipos</a></li>
@@ -22,10 +22,22 @@
             </li>
 
             <!-- Distribuciones -->
-            <li><a href=""><i class="fa fa-book"></i> <span>Distribuciones</span></a></li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-book"></i> <span>Distribuciones</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{#{{ path('type_index') }}#}"><i class="fa fa-circle-o"></i> Todas</a></li>
+                    <li><a href="{{ path('distributioni_index') }}"><i class="fa fa-circle-o"></i> Internas</a></li>
+                    <li><a href="{{ path('distributione_index') }}"><i class="fa fa-circle-o"></i> Externas</a></li>
+                </ul>
+            </li>
 
             <!-- Distribuciones -->
-            <li><a href=""><i class="fa fa-sitemap"></i> <span>Departamentos</span></a></li>
+            <li><a href="{{ path('department_index') }}"><i class="fa fa-sitemap"></i> <span>Departamentos</span></a></li>
 
             <!-- Movimientos -->
             <li><a href=""><i class="fa fa-exchange"></i> <span>Movimientos</span></a></li>
@@ -40,7 +52,7 @@
                 </a>
             </li>
             <!-- Personas -->
-            <li><a href=""><i class="fa fa-users"></i> <span>Personas</span></a></li>
+            <li><a href="{{ path('person_index') }}"><i class="fa fa-users"></i> <span>Personas</span></a></li>
 
             <!-- Usuarios -->
             <li><a href=""><i class="fa fa-user-circle"></i> <span>Usuarios</span></a></li>

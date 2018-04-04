@@ -27,6 +27,13 @@ class Hotel extends Instalation
     private $movements;
 
     /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionE", mappedBy="hotel")
+     */
+    private $distributionse;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -35,5 +42,45 @@ class Hotel extends Instalation
     {
         return $this->id;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add movement
+     *
+     * @param \AppBundle\Entity\ME $movement
+     *
+     * @return Hotel
+     */
+    public function addMovement(\AppBundle\Entity\ME $movement)
+    {
+        $this->movements[] = $movement;
+
+        return $this;
+    }
+
+    /**
+     * Remove movement
+     *
+     * @param \AppBundle\Entity\ME $movement
+     */
+    public function removeMovement(\AppBundle\Entity\ME $movement)
+    {
+        $this->movements->removeElement($movement);
+    }
+
+    /**
+     * Get movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovements()
+    {
+        return $this->movements;
+    }
+}

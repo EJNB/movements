@@ -26,7 +26,6 @@ class EquipmentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $equipments = $em->getRepository('AppBundle:Equipment')->findAll();
         $filter = $request->query->get('filter');
         $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType($filter);
         $paginator  = $this->get('knp_paginator');
@@ -34,11 +33,10 @@ class EquipmentController extends Controller
         $pagination = $paginator->paginate(
             $equipments, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            50/*limit per page*/
         );
 
         return $this->render('equipment/index.html.twig', array(
-//            'equipments' => $equipments,
             'pagination' => $pagination,
         ));
     }

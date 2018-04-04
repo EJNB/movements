@@ -38,17 +38,6 @@ abstract class Instalation
 //     */
 //    private $movements;
 //
-    /**
-     * @ORM\OneToMany(targetEntity="Distribution", mappedBy="instalation")
-     **/
-    private $distributions;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->distributions = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -84,37 +73,8 @@ abstract class Instalation
         return $this->name;
     }
 
-    /**
-     * Add distribution
-     *
-     * @param \AppBundle\Entity\Distribution $distribution
-     *
-     * @return Instalation
-     */
-    public function addDistribution(\AppBundle\Entity\Distribution $distribution)
+    public function __toString()
     {
-        $this->distributions[] = $distribution;
-
-        return $this;
-    }
-
-    /**
-     * Remove distribution
-     *
-     * @param \AppBundle\Entity\Distribution $distribution
-     */
-    public function removeDistribution(\AppBundle\Entity\Distribution $distribution)
-    {
-        $this->distributions->removeElement($distribution);
-    }
-
-    /**
-     * Get distributions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDistributions()
-    {
-        return $this->distributions;
+        return $this->getName();
     }
 }

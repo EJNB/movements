@@ -40,6 +40,7 @@ class Department
      * @ORM\JoinColumn(name="cm_id", referencedColumnName="id")
      */
     private $cm;
+
     /**
      * Constructor
      */
@@ -138,5 +139,10 @@ class Department
     public function getCm()
     {
         return $this->cm;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

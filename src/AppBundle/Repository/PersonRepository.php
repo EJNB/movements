@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class PersonRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllPersonOrderedByDepartment(){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('p')
+            ->from('AppBundle:Person','p')
+            ->innerJoin('p.department','d')
+            ->orderBy('d.name','ASC')
+        ;
+
+        return $qb->getQuery();
+    }
 }

@@ -10,8 +10,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="distribution")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DistributionRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"distribution_i" = "DistributionI", "distribution_e" = "DistributionE"})
  */
-class Distribution
+abstract class Distribution
 {
     /**
      * @var int
@@ -33,12 +36,6 @@ class Distribution
      * @ORM\OneToMany(targetEntity="Equipment", mappedBy="distribution")
      **/
     private $equipments;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Instalation", inversedBy="distributions")
-     * @ORM\JoinColumn(name="instalation_id", referencedColumnName="id")
-     **/
-    private $instalation;
 
     /**
      * Constructor
@@ -114,29 +111,5 @@ class Distribution
     public function getEquipments()
     {
         return $this->equipments;
-    }
-
-    /**
-     * Set instalation
-     *
-     * @param \AppBundle\Entity\Instalation $instalation
-     *
-     * @return Distribution
-     */
-    public function setInstalation(\AppBundle\Entity\Instalation $instalation = null)
-    {
-        $this->instalation = $instalation;
-
-        return $this;
-    }
-
-    /**
-     * Get instalation
-     *
-     * @return \AppBundle\Entity\Instalation
-     */
-    public function getInstalation()
-    {
-        return $this->instalation;
     }
 }

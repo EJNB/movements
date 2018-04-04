@@ -1,27 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Distribution</h1>
+    <h1>Person</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ distribution.id }}</td>
+                <td>{{ person.id }}</td>
             </tr>
             <tr>
-                <th>Requestdate</th>
-                <td>{% if distribution.requestDate %}{{ distribution.requestDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Name</th>
+                <td>{{ person.name }}</td>
+            </tr>
+            <tr>
+                <th>Cargo</th>
+                <td>{{ person.cargo }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('distribution_index') }}">Back to the list</a>
+            <a href="{{ path('person_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('distribution_edit', { 'id': distribution.id }) }}">Edit</a>
+            <a href="{{ path('person_edit', { 'id': person.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

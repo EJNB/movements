@@ -23,46 +23,43 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive {#no-padding#}">
-                        <div class="container-fluid">
 
-                            <table class="table table-hover table-condensed">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Tipo', column: 't.name'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Marca', column: 'b.name'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for equipment in pagination %}
                                 <tr>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Tipo', column: 't.name'} %}</th>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Marca', column: 'b.name'} %}</th>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>
-                                    <th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>
-                                    <th>Acciones</th>
+                                    <td>{{ equipment.model.brand.type }}</td>
+                                    <td>{{ equipment.model.brand }}</td>
+                                    <td>{{ equipment.model }}</td>
+                                    <td>{{ equipment.ni }}</td>
+                                    <td>{{ equipment.ns }}</td>
+                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td>
+                                        <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
                                 </tr>
-                                {% for equipment in pagination %}
-                                    <tr>
-                                        <td>{{ equipment.model.brand.type }}</td>
-                                        <td>{{ equipment.model.brand }}</td>
-                                        <td>{{ equipment.model }}</td>
-                                        <td>{{ equipment.ni }}</td>
-                                        <td>{{ equipment.ns }}</td>
-                                        <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
-                                        <td>
-                                            <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">
-                                                <span class="glyphicon glyphicon-edit"></span>
-                                            </a>
-                                            <a href="javascript:void(0)"
-                                               class="link-tooltip link-eliminar"
-                                               data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"
-                                               data-toggle="modal"
-                                               data-target="#modal-delete"
-                                               data-placement="top"
-                                               title="Eliminar"
-                                            >
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-
-                        </div>
+                            {% endfor %}
+                        </table>
                     </div>
                 </div>
                 <!-- /.box -->

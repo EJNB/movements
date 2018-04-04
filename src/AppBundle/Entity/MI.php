@@ -30,9 +30,9 @@ class MI extends Movement
 
     /**
      * @ORM\ManyToOne(targetEntity="Person", inversedBy="movements")
-     * @ORM\JoinColumn(name="mi_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      **/
-    private $mi;
+    private $person;
 
     /**
      * Get id

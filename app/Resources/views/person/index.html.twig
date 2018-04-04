@@ -1,0 +1,80 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Personas</h3>
+
+                        <div class="box-tools">
+                            <a href="" class="btn btn-warning btn-sm link-tooltip" data-placement="bottom" title="Actualizar desde el sistema de nomina">
+                                <span class="glyphicon glyphicon-refresh"></span> Actualizar listado
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th style="width: 26%">{% include 'layouts/include/order.html.twig' with {name:' Departamento', column: 'd.name'} %}</th>
+                                <th style="width: 25%">{% include 'layouts/include/order.html.twig' with {name:' Nombre y apellido', column: 'p.name'} %}</th>
+                                <th style="width: 25%">{% include 'layouts/include/order.html.twig' with {name:' Cargo', column: 'p.cargo'} %}</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for person in pagination %}
+                                <tr>
+                                    <td>{% if person.department %}{{ person.department }}{% endif %}</td>
+                                    <td>{{ person.name }}</td>
+                                    <td>{{ person.cargo }}</td>
+                                    <td>
+                                        <a href="{{ path('person_edit',{ 'id' : person.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('person_delete',{ 'id':person.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div><!-- /.box-body -->
+
+                    <div class="container-fluid">
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                {{ form_row(form.department) }}
+                            </div>
+                            <div class="col-sm-3">
+                                {{ form_row(form.name) }}
+                            </div>
+                            <div class="col-sm-3">
+                                {{ form_row(form.cargo) }}
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+{% endblock %}

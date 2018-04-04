@@ -38,8 +38,43 @@ abstract class Instalation
 //     */
 //    private $movements;
 //
+
     /**
-     * @ORM\OneToMany(targetEntity="Distribution", mappedBy="instalation")
-     **/
-    private $distributions;
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Instalation
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

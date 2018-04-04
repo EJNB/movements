@@ -6,21 +6,21 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DistributionType extends AbstractType
+class DistributionIType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('requestDate')->add('instalation');
+        $builder->add('person');
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Distribution'
+            'data_class' => 'AppBundle\Entity\DistributionI'
         ));
     }
 
@@ -29,7 +29,7 @@ class DistributionType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_distribution';
+        return 'appbundle_distributioni';
     }
 
 

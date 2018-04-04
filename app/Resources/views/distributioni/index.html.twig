@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Distributionis list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for distributionI in distributionIs %}
+            <tr>
+                <td><a href="{{ path('distributioni_show', { 'id': distributionI.id }) }}">{{ distributionI.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('distributioni_show', { 'id': distributionI.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('distributioni_edit', { 'id': distributionI.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('distributioni_new') }}">Create a new distributionI</a>
+        </li>
+    </ul>
+{% endblock %}

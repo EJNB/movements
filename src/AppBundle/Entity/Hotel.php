@@ -13,28 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Hotel extends Instalation
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @ORM\OneToMany(targetEntity="ME", mappedBy="hotel")
      **/
     private $movements;
 
     /**
-     * Get id
-     *
-     * @return int
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionE", mappedBy="hotel")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $distributionse;
+
     /**
      * Constructor
      */
@@ -75,5 +63,39 @@ class Hotel extends Instalation
     public function getMovements()
     {
         return $this->movements;
+    }
+
+    /**
+     * Add distributionse
+     *
+     * @param \AppBundle\Entity\DistributionE $distributionse
+     *
+     * @return Hotel
+     */
+    public function addDistributionse(\AppBundle\Entity\DistributionE $distributionse)
+    {
+        $this->distributionse[] = $distributionse;
+
+        return $this;
+    }
+
+    /**
+     * Remove distributionse
+     *
+     * @param \AppBundle\Entity\DistributionE $distributionse
+     */
+    public function removeDistributionse(\AppBundle\Entity\DistributionE $distributionse)
+    {
+        $this->distributionse->removeElement($distributionse);
+    }
+
+    /**
+     * Get distributionse
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDistributionse()
+    {
+        return $this->distributionse;
     }
 }

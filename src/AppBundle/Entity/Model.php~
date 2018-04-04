@@ -24,7 +24,7 @@ class Model
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 

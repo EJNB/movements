@@ -44,6 +44,12 @@ class Person
     private $department;
 
     /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+     */
+    private $distributionsi;
+
+    /**
      * One Person has Many MI.
      * @ORM\OneToMany(targetEntity="MI", mappedBy="person")
      */
@@ -170,5 +176,39 @@ class Person
     public function getMovements()
     {
         return $this->movements;
+    }
+
+    /**
+     * Add distributionsi
+     *
+     * @param \AppBundle\Entity\DistributionI $distributionsi
+     *
+     * @return Person
+     */
+    public function addDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    {
+        $this->distributionsi[] = $distributionsi;
+
+        return $this;
+    }
+
+    /**
+     * Remove distributionsi
+     *
+     * @param \AppBundle\Entity\DistributionI $distributionsi
+     */
+    public function removeDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    {
+        $this->distributionsi->removeElement($distributionsi);
+    }
+
+    /**
+     * Get distributionsi
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDistributionsi()
+    {
+        return $this->distributionsi;
     }
 }

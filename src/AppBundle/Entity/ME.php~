@@ -160,5 +160,28 @@ class ME extends Movement
     {
         return $this->license;
     }
-}
 
+    /**
+     * Set hotel
+     *
+     * @param \AppBundle\Entity\Hotel $hotel
+     *
+     * @return ME
+     */
+    public function setHotel(\AppBundle\Entity\Hotel $hotel = null)
+    {
+        $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    /**
+     * Get hotel
+     *
+     * @return \AppBundle\Entity\Hotel
+     */
+    public function getHotel()
+    {
+        return $this->hotel;
+    }
+}

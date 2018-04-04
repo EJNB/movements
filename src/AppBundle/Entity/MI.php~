@@ -67,5 +67,28 @@ class MI extends Movement
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set mi
+     *
+     * @param \AppBundle\Entity\Person $mi
+     *
+     * @return MI
+     */
+    public function setMi(\AppBundle\Entity\Person $mi = null)
+    {
+        $this->mi = $mi;
+
+        return $this;
+    }
+
+    /**
+     * Get mi
+     *
+     * @return \AppBundle\Entity\Person
+     */
+    public function getMi()
+    {
+        return $this->mi;
+    }
+}
