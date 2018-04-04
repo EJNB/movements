@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class HotelRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllHotelsOrderedByName(){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('h')
+            ->from('AppBundle:Hotel','h')
+            ->orderBy('h.name','ASC');
+        return $qb->getQuery()->getResult();
+    }
 }

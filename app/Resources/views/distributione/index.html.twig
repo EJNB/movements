@@ -1,37 +1,102 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Distributiones list</h1>
+{% block content %}
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Tipos</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th {#style="width: 40%"#}>Fecha</th>
+                                <th {#style="width: 40%"#}>Instalaci&oacute;n</th>
+                                <th {#style="width: 40%"#}>Equipos</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for distribution in distributions %}
+                                <tr>
+                                    <td>{{ distribution.requestDate }}</td>
+                                    <td>
+                                        {#<a href="{{ path('type_edit',{ 'id' : type.id }) }}" class="link-tooltip" data-placement="top" title="Editar">#}
+                                            {#<span class="glyphicon glyphicon-edit"></span>#}
+                                        {#</a>#}
+                                        {#<a href="javascript:void(0)"#}
+                                           {#class="link-tooltip link-eliminar"#}
+                                           {#data-url="{{ path('type_delete',{ 'id':type.id }) }}"#}
+                                           {#data-toggle="modal"#}
+                                           {#data-target="#modal-delete"#}
+                                           {#data-placement="top"#}
+                                           {#title="Eliminar"#}
+                                        {#>#}
+                                            {#<span class="glyphicon glyphicon-trash"></span>#}
+                                        {#</a>#}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div class="container-fluid">
+                        {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    {{ form_row(form.requestDate) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_widget(form.hotel) }}
+                                </div>
+                            </div>
+                        {#<tr>#}
+                        {#<td>#}
+                        {#{{ form_row(form.name) }}#}
+                        {#</td>#}
+                        {#<td>#}
+                        {#<div class="form-group">#}
+                        {#<button class="btn btn-primary" type="submit">Guardar</button>#}
+                        {#</div>#}
+                        {#</td>#}
+                        {#</tr>#}
+                        {{ form_end(form) }}
+                    </div>
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div>
+    </section>
+    {#<h1>Distributiones list</h1>#}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for distributionE in distributionEs %}
-            <tr>
-                <td><a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">{{ distributionE.id }}</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('distributione_edit', { 'id': distributionE.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for distributionE in distributionEs %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">{{ distributionE.id }}</a></td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('distributione_edit', { 'id': distributionE.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
 
-    <ul>
-        <li>
-            <a href="{{ path('distributione_new') }}">Create a new distributionE</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('distributione_new') }}">Create a new distributionE</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

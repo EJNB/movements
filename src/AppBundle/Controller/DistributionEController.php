@@ -20,14 +20,29 @@ class DistributionEController extends Controller
      * @Route("/", name="distributione_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $distributionEs = $em->getRepository('AppBundle:DistributionE')->findAll();
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
+
+        $distributionE = new Distributione();
+        $form = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($distributionE);
+            $em->flush();
+
+            return $this->redirectToRoute('distributione_show', array('id' => $distributionE->getId()));
+        }
 
         return $this->render('distributione/index.html.twig', array(
-            'distributionEs' => $distributionEs,
+            'distributions' => $distributionEs,
+            'form' => $form->createView(),
+            'equipments' => $equipments,
         ));
     }
 

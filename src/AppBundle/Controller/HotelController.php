@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+
 /**
  * Hotel controller.
  *
@@ -18,27 +21,13 @@ class HotelController extends Controller
      * Lists all hotel entities.
      *
      * @Route("/", name="hotel_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $hotels = $em->getRepository('AppBundle:Hotel')->findAll();
-
-        return $this->render('hotel/index.html.twig', array(
-            'hotels' => $hotels,
-        ));
-    }
-
-    /**
-     * Creates a new hotel entity.
-     *
-     * @Route("/new", name="hotel_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
+        $hotels = $em->getRepository('AppBundle:Hotel')->getAllHotelsOrderedByName();
         $hotel = new Hotel();
         $form = $this->createForm('AppBundle\Form\HotelType', $hotel);
         $form->handleRequest($request);
@@ -46,30 +35,26 @@ class HotelController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
-            $em->flush();
+            try{
+                $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente'
+                );
 
-            return $this->redirectToRoute('hotel_show', array('id' => $hotel->getId()));
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El hotel que intenta insertar ya exite en el sistema.'
+                );
+            }
+
+            return $this->redirectToRoute('hotel_index');
         }
 
-        return $this->render('hotel/new.html.twig', array(
-            'hotel' => $hotel,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a hotel entity.
-     *
-     * @Route("/{id}", name="hotel_show")
-     * @Method("GET")
-     */
-    public function showAction(Hotel $hotel)
-    {
-        $deleteForm = $this->createDeleteForm($hotel);
-
-        return $this->render('hotel/show.html.twig', array(
-            'hotel' => $hotel,
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('hotel/index.html.twig', array(
+            'hotels' => $hotels,
+            'form' => $form->createView()
         ));
     }
 
@@ -81,20 +66,30 @@ class HotelController extends Controller
      */
     public function editAction(Request $request, Hotel $hotel)
     {
-        $deleteForm = $this->createDeleteForm($hotel);
         $editForm = $this->createForm('AppBundle\Form\HotelType', $hotel);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            try{
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente.'
+                );
 
-            return $this->redirectToRoute('hotel_edit', array('id' => $hotel->getId()));
+            }catch (  UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El hotel que intenta actualizar, ya existe.'
+                );
+            }
+
+            return $this->redirectToRoute('hotel_index');
         }
 
         return $this->render('hotel/edit.html.twig', array(
             'hotel' => $hotel,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -102,35 +97,25 @@ class HotelController extends Controller
      * Deletes a hotel entity.
      *
      * @Route("/{id}", name="hotel_delete")
-     * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Hotel $hotel)
+    public function deleteAction( Hotel $hotel)
     {
-        $form = $this->createDeleteForm($hotel);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        try{
             $em->remove($hotel);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                'El tipo ha sido eliminado satisfactoriamente.'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'El tipo no puede ser eliminado. Tiene marcas asociadas.'
+            );
         }
 
-        return $this->redirectToRoute('hotel_index');
-    }
 
-    /**
-     * Creates a form to delete a hotel entity.
-     *
-     * @param Hotel $hotel The hotel entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Hotel $hotel)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('hotel_delete', array('id' => $hotel->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        return $this->redirectToRoute('hotel_index');
     }
 }

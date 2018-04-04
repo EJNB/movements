@@ -27,7 +27,7 @@ class DistributionIController extends Controller
         $distributionIs = $em->getRepository('AppBundle:DistributionI')->findAll();
 
         return $this->render('distributioni/index.html.twig', array(
-            'distributionIs' => $distributionIs,
+            'distributions' => $distributionIs,
         ));
     }
 

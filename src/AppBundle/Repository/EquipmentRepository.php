@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class EquipmentRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAllEquipmentOrderByType($filter){
+    public function getAllEquipmentOrderByType($filter=null){
         $em = $this->getEntityManager();
 
         $qb = $em->createQueryBuilder();
@@ -34,7 +34,7 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
         }
 
         $qb->andWhere('e.movement is null');
-//        $qb->orderBy('i.incidenceDate','ASC');
+        $qb->andWhere('e.distribution is null');
         $result = $qb->getQuery()/*->getResult()*/;
         return $result;
     }
