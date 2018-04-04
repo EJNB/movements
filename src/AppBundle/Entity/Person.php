@@ -211,4 +211,9 @@ class Person
     {
         return $this->distributionsi;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

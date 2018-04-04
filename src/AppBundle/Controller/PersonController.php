@@ -105,35 +105,23 @@ class PersonController extends Controller
      * Deletes a person entity.
      *
      * @Route("/{id}/delete", name="person_delete")
-     * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Person $person)
+    public function deleteAction(Person $person)
     {
-        $form = $this->createDeleteForm($person);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        try{
             $em->remove($person);
             $em->flush();
+            $this->addFlash(
+                'notice',
+                'La persona fue eliminada satisfactoriamente'
+            );
+        }catch (ForeignKeyConstraintViolationException $exception){
+            $this->addFlash(
+                'error',
+                'La persona no puede ser eliminada, tiene distribuciones asociadas.'
+            );
         }
-
         return $this->redirectToRoute('person_index');
-    }
-
-    /**
-     * Creates a form to delete a person entity.
-     *
-     * @param Person $person The person entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Person $person)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('person_delete', array('id' => $person->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

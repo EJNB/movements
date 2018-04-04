@@ -13,7 +13,9 @@ class DistributionIType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('person');
+        $builder
+            ->add('requestDate')
+            ->add('person');
     }/**
      * {@inheritdoc}
      */

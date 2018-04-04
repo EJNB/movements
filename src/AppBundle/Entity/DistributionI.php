@@ -13,30 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class DistributionI extends Distribution
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Person", inversedBy="distributionsi")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     private $person;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set person

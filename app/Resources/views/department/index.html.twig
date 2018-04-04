@@ -1,39 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Departments list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for department in departments %}
-            <tr>
-                <td><a href="{{ path('department_show', { 'id': department.id }) }}">{{ department.id }}</a></td>
-                <td>{{ department.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('department_show', { 'id': department.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('department_edit', { 'id': department.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('department_new') }}">Create a new department</a>
-        </li>
-    </ul>
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Departamentos</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th style="width: 40%">Departamento</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for department in departments %}
+                                <tr>
+                                    <td>{{ department.name }}</td>
+                                    <td>
+                                        <a href="{{ path('department_edit',{ 'id' : department.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('department_delete',{ 'id':department.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {{ form_start(form) }}
+                            <tr>
+                                <td>
+                                    {{ form_row(form.name) }}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{ form_end(form) }}
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
 {% endblock %}
