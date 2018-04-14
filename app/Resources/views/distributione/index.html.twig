@@ -7,96 +7,65 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Tipos</h3>
+                        <a href='{{ path('distributione_new') }}' class="btn btn-success btn-xs">Nueva distribucion</a>
+                        <h2 class="box-title no-padding" style="margin-left: 25%; ">Distribuciones externas</h2>
+                        <div class="box-tools">
+                            <form class="form-inline" action="{{ path('distributione_index') }}" method="get" style="margin-bottom: 2px">
+                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                <button type="submit" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body table-responsive">
+                    <div class="box-body table-responsive" style="padding-top: 0">
+
                         <table class="table table-hover table-condensed">
                             <tr>
-                                <th {#style="width: 40%"#}>Fecha</th>
-                                <th {#style="width: 40%"#}>Instalaci&oacute;n</th>
-                                <th {#style="width: 40%"#}>Equipos</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Instalación', column: 'h.name'} %}</th>
+                                <th>Equipos</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'd.requestDate'} %}</th>
                                 <th>Acciones</th>
                             </tr>
-                            {% for distribution in distributions %}
+                            {% for distribution in pagination %}
                                 <tr>
-                                    <td>{{ distribution.requestDate }}</td>
+                                    <td>{{ distribution.hotel }}</td>
                                     <td>
-                                        {#<a href="{{ path('type_edit',{ 'id' : type.id }) }}" class="link-tooltip" data-placement="top" title="Editar">#}
-                                            {#<span class="glyphicon glyphicon-edit"></span>#}
-                                        {#</a>#}
-                                        {#<a href="javascript:void(0)"#}
-                                           {#class="link-tooltip link-eliminar"#}
-                                           {#data-url="{{ path('type_delete',{ 'id':type.id }) }}"#}
-                                           {#data-toggle="modal"#}
-                                           {#data-target="#modal-delete"#}
-                                           {#data-placement="top"#}
-                                           {#title="Eliminar"#}
-                                        {#>#}
-                                            {#<span class="glyphicon glyphicon-trash"></span>#}
-                                        {#</a>#}
+                                        {% for equipment in distribution.equipments %}
+                                            {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>{{ equipment.ni }} {{ equipment.ns }}</b> <br>
+                                        {% endfor %}
+
+                                    </td>
+                                    <td>{{ distribution.requestDate | date('Y-m-d')}}</td>
+                                    <td>
+                                        <a href="{{ path('distributione_show',{ 'id' : distribution.id }) }}" target="_blank" class="link-tooltip" data-placement="top" title="Detalles">
+                                            <span class="glyphicon glyphicon-option-horizontal"></span>
+                                        </a>
+                                        <a href="{{ path('distributione_edit',{ 'id' : distribution.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="{#{{ path('type_edit',{ 'id' : type.id }) }}#}" class="link-tooltip" data-placement="top" title="Imprimir">
+                                            <span class="glyphicon glyphicon-print"></span>
+                                        </a>
+                                        <a href=""
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{#{{ path('type_delete',{ 'id':type.id }) }}#}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </table>
+
                     </div><!-- /.box-body -->
-                    <div class="container-fluid">
-                        {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    {{ form_row(form.requestDate) }}
-                                </div>
-                                <div class="col-md-3">
-                                    {{ form_widget(form.hotel) }}
-                                </div>
-                            </div>
-                        {#<tr>#}
-                        {#<td>#}
-                        {#{{ form_row(form.name) }}#}
-                        {#</td>#}
-                        {#<td>#}
-                        {#<div class="form-group">#}
-                        {#<button class="btn btn-primary" type="submit">Guardar</button>#}
-                        {#</div>#}
-                        {#</td>#}
-                        {#</tr>#}
-                        {{ form_end(form) }}
-                    </div>
                 </div><!-- /.box -->
             </div><!-- ./col -->
         </div>
     </section>
-    {#<h1>Distributiones list</h1>#}
-
-    {#<table>#}
-        {#<thead>#}
-            {#<tr>#}
-                {#<th>Id</th>#}
-                {#<th>Actions</th>#}
-            {#</tr>#}
-        {#</thead>#}
-        {#<tbody>#}
-        {#{% for distributionE in distributionEs %}#}
-            {#<tr>#}
-                {#<td><a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">{{ distributionE.id }}</a></td>#}
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('distributione_show', { 'id': distributionE.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('distributione_edit', { 'id': distributionE.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
-        {#</tbody>#}
-    {#</table>#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('distributione_new') }}">Create a new distributionE</a>#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}

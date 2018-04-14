@@ -1,16 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Distributione creation</h1>
+{% block content %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header" style="padding-top: 0; padding-bottom: 0">
+                        <h3 class="page-header">Nueva distribuci&oacute;n </h3>
+                    </div>
+                    <div class="box-body" style="padding-top: 0">
+                        {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form_row(form.hotel) }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ include('equipment/equipments.html.twig') }}
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                        Guardar
+                                    </button>
+                                    <a class="btn btn-default" href="{{ path('distributione_index') }}">
+                                        <span class="glyphicon glyphicon-list"></span>
+                                        Regresar al listado
+                                    </a>
+                                </div>
+                            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('distributione_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                        {{ form_end(form) }}
+                    </div> <!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col-md-12-->
+        </div><!-- /.row -->
+
+    </div><!-- /.content -c->
 {% endblock %}

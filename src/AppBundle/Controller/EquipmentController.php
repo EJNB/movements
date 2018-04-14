@@ -67,20 +67,20 @@ class EquipmentController extends Controller
                 $equip->setNi($request->request->get('ni')[$i]);
                 $equip->setNs($request->request->get('ns')[$i]);
                 $em->persist($equip);
+            }
 
-                try{
-                    $em->flush();
-                    $this->addFlash(
-                        'notice',
-                        'Sus datos han sido guardados satisfactoriamente'
-                    );
+            try{
+                $em->flush();
+                $this->addFlash(
+                    'notice',
+                    'Sus datos han sido guardados satisfactoriamente'
+                );
 
-                }catch (UniqueConstraintViolationException $exception){
-                    $this->addFlash(
-                        'error',
-                        'El número de inventario o número de serie, ya existe.'
-                    );
-                }
+            }catch (UniqueConstraintViolationException $exception){
+                $this->addFlash(
+                    'error',
+                    'El número de inventario o número de serie, ya existe.'
+                );
             }
 
             return $this->redirectToRoute('equipment_index');

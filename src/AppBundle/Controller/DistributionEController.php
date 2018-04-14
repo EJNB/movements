@@ -24,24 +24,20 @@ class DistributionEController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $distributionEs = $em->getRepository('AppBundle:DistributionE')->findAll();
+        $filter = $request->query->get('filter');
+        $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE($filter);
         $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
 
-        $distributionE = new Distributione();
-        $form = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
-        $form->handleRequest($request);
+        $paginator  = $this->get('knp_paginator');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($distributionE);
-            $em->flush();
-
-            return $this->redirectToRoute('distributione_show', array('id' => $distributionE->getId()));
-        }
+        $pagination = $paginator->paginate(
+            $distributionEs, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            15/*limit per page*/
+        );
 
         return $this->render('distributione/index.html.twig', array(
-            'distributions' => $distributionEs,
-            'form' => $form->createView(),
+            'pagination' => $pagination,
             'equipments' => $equipments,
         ));
     }
@@ -54,20 +50,32 @@ class DistributionEController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $distributionE = new Distributione();
         $form = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            foreach ($request->request->get('equipments') as $equipment){
+                $equipment = $em->getRepository('AppBundle:Equipment')->find($equipment);
+                $distributionE->addEquipment($equipment);
+            }
+            $distributionE->setRequestDate(new \DateTime('now'));
             $em->persist($distributionE);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Sus datos han sido guardados satisfactoriamente'
+            );
 
             return $this->redirectToRoute('distributione_show', array('id' => $distributionE->getId()));
         }
 
         return $this->render('distributione/new.html.twig', array(
             'distributionE' => $distributionE,
+            'equipments' => $equipments->getResult(),
             'form' => $form->createView(),
         ));
     }
@@ -80,11 +88,11 @@ class DistributionEController extends Controller
      */
     public function showAction(DistributionE $distributionE)
     {
-        $deleteForm = $this->createDeleteForm($distributionE);
-
+        $em = $this->getDoctrine()->getManager();
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType('')->getResult();
         return $this->render('distributione/show.html.twig', array(
             'distributionE' => $distributionE,
-            'delete_form' => $deleteForm->createView(),
+            'equipments' => $equipments,
         ));
     }
 
@@ -96,27 +104,25 @@ class DistributionEController extends Controller
      */
     public function editAction(Request $request, DistributionE $distributionE)
     {
-        $deleteForm = $this->createDeleteForm($distributionE);
         $editForm = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('distributione_edit', array('id' => $distributionE->getId()));
+            return $this->redirectToRoute('distributione_index');
         }
 
         return $this->render('distributione/edit.html.twig', array(
             'distributionE' => $distributionE,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a distributionE entity.
      *
-     * @Route("/{id}", name="distributione_delete")
+     * @Route("/{id}/delete", name="distributione_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, DistributionE $distributionE)
@@ -131,21 +137,5 @@ class DistributionEController extends Controller
         }
 
         return $this->redirectToRoute('distributione_index');
-    }
-
-    /**
-     * Creates a form to delete a distributionE entity.
-     *
-     * @param DistributionE $distributionE The distributionE entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(DistributionE $distributionE)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('distributione_delete', array('id' => $distributionE->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

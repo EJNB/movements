@@ -1,28 +1,90 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Distributione</h1>
+{% block content %}
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h2 class="box-title no-padding">Distribuci&oacute;n para {{ distributionE.hotel }}</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive" style="padding-top: 0">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ distributionE.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+                        <table class="table table-hover table-condensed">
+                            <tbody>
+                                <tr>
+                                    <th>Acciones</th>
+                                    <td>
+                                        <a href="" class="link-tooltip" data-placement="top" title="Imprimir"><span class="glyphicon glyphicon-print"></span> </a>
+                                        <a href="{{ path('distributione_edit', {'id' : distributionE.id }) }}" class="link-tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-edit"></span> </a>
+                                        <a
+                                            href="" class="link-tooltip link-eliminar"
+                                            data-placement="top"
+                                            title="Eliminar"
+                                            data-toggle="modal"
+                                            data-target="#modal-delete" data-url="{{ path('distributione_delete',{ 'id':distributionE.id }) }}"
 
-    <ul>
-        <li>
-            <a href="{{ path('distributione_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('distributione_edit', { 'id': distributionE.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a href="{{ path('distributione_index') }}" class="link-tooltip" data-placement="top" title="Regresar al listado"><span class="glyphicon glyphicon-list"></span> </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Hotel</th>
+                                    <td>{{ distributionE.hotel }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Equipos</th>
+                                    <td>
+                                        {% for equipment in distributionE.equipments %}
+                                            {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>{{ equipment.ni }} / {{ equipment.ns }}</b><br>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /. box-body-->
+                </div><!-- /.box-body-->
+            </div><!--/.col-xs-12-->
+        </div><!-- /. row-->
+
+        {#<!--Equipos disponibles en almacen-->#}
+        {#<div class="row">#}
+            {#<div class="col-xs-12">#}
+                {#<div class="box box-info">#}
+                    {#<div class="box-header">#}
+                        {#<h2 class="box-title no-padding">Equipos disponibles en almacen</h2>#}
+                    {#</div>#}
+                    {#<!-- /.box-header -->#}
+                    {#<div class="box-body table-responsive" style="padding-top: 0">#}
+
+                        {#<table class="table table-hover table-condensed table-hover">#}
+
+                            {#<tbody>#}
+                                {#<tr>#}
+                                    {#<td>#}
+                                        {#<a href="" class="link-tooltip" data-placement="top" title="Imprimir"><span class="glyphicon glyphicon-print"></span> </a>#}
+                                     {#</td>#}
+                                {#</tr>#}
+
+                                {#{% for equipment in equipments %}#}
+                                    {#<tr>#}
+                                        {#<td>#}
+                                            {#{{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>{{ equipment.ni }} / {{ equipment.ns }}</b>#}
+                                        {#</td>#}
+                                    {#</tr>#}
+                                {#{% endfor %}#}
+                            {#</tbody>#}
+
+                        {#</table>#}
+                    {#</div><!-- /. box-body-->#}
+                {#</div><!-- /.box-body-->#}
+            {#</div><!--/.col-xs-12-->#}
+        {#</div><!-- /. row-->#}
+    </section>
+
+    {{ include('layouts/include/modals.html.twig') }}
 {% endblock %}

@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DistributionE extends Distribution
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * Many Features have One Product.
@@ -27,17 +19,6 @@ class DistributionE extends Distribution
      * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      */
     private $hotel;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set hotel

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Personname</th>
+                <th>Personci</th>
+                <th>Numberplate</th>
+                <th>License</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mE in mEs %}
+            <tr>
+                <td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>
+                <td>{{ mE.personName }}</td>
+                <td>{{ mE.personCi }}</td>
+                <td>{{ mE.numberPlate }}</td>
+                <td>{{ mE.license }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('me_new') }}">Create a new mE</a>
+        </li>
+    </ul>
+{% endblock %}

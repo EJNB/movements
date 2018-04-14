@@ -34,8 +34,9 @@ class HotelController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($hotel);
+
             try{
+                $em->persist($hotel);
                 $em->flush();
                 $this->addFlash(
                     'notice',

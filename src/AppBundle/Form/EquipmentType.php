@@ -20,7 +20,8 @@ class EquipmentType extends AbstractType
     {
         $builder
             ->add('description',TextType::class,array(
-                'attr' => array( 'class' => 'form-control')
+                'attr' => array( 'class' => 'form-control'),
+                'required' => false
             ))
             ->add('createAt', DateTimeType::class,array(
 //                'label' => 'Introducido en',

@@ -1,0 +1,7 @@
+{% if equipments is defined %}
+    <select name="equipments[]" class="selectpicker form-control" multiple data-live-search="true" data-size="10">
+        {% for equipment in equipments %}
+            <option value="{{ equipment.id }}" data-subtext="{{ equipment.ni }}/{{ equipment.ns }}">{{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }}</option>
+        {% endfor %}
+    </select>
+{% endif %}

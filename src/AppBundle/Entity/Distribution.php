@@ -89,8 +89,7 @@ abstract class Distribution
     public function addEquipment(\AppBundle\Entity\Equipment $equipment)
     {
         $this->equipments[] = $equipment;
-
-        return $this;
+        $equipment->setDistribution($this);
     }
 
     /**

@@ -18,11 +18,17 @@ class DistributionEType extends AbstractType
         $builder
             ->add('hotel',EntityType::class,array(
                 'class' => 'AppBundle\Entity\Hotel',
-                'label' => false
+                'label' => false,
+                'attr' => array(
+                    'class' => 'selectpicker form-control',
+                    'data-live-search' => true,
+                    'data-size' => 10
+                ),
+                'placeholder' => 'Seleccione la entidad'
             ))
-            ->add('requestDate',DateTimeType::class,array(
-                'label' => false
-            ))
+//            ->add('requestDate',DateTimeType::class,array(
+//                'label' => false
+//            ))
         ;
     }/**
      * {@inheritdoc}
