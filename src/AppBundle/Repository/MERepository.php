@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class MERepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllMovementsOrderByDate(){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('m')
+            ->from('AppBundle:ME','m')
+            ->innerJoin('m.hotel','h')
+        ;
+        return $qb->getQuery();
+    }
 }

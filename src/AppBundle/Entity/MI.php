@@ -29,8 +29,8 @@ class MI extends Movement
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="movements")
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PersonI", inversedBy="movements")
+     * @ORM\JoinColumn(name="personi_id", referencedColumnName="id")
      **/
     private $person;
 

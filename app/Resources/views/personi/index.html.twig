@@ -11,7 +11,7 @@
                         <h3 class="box-title">Personas</h3>&nbsp;
 
                         <div class="box-tools" style="width: 40%">
-                            <form class="form-inline" action="{{ path('person_index') }}" method="get" style="display: inline; margin-right: 10px">
+                            <form class="form-inline" action="{{ path('personi_index') }}" method="get" style="display: inline; margin-right: 10px">
                                 <input type="text" class="form-control" placeholder="Buscar" name="filter">
                                 <button type="submit" class="btn btn-success link-tooltip" data-placement="bottom" title="Buscar">
                                     <span class="glyphicon glyphicon-search"></span>
@@ -38,12 +38,12 @@
                                     <td>{{ person.name }}</td>
                                     <td>{{ person.cargo }}</td>
                                     <td>
-                                        <a href="{{ path('person_edit',{ 'id' : person.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                                        <a href="{{ path('personi_edit',{ 'id' : person.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>
                                         <a href="javascript:void(0)"
                                            class="link-tooltip link-eliminar"
-                                           data-url="{{ path('person_delete',{ 'id':person.id }) }}"
+                                           data-url="{{ path('personi_delete',{ 'id':person.id }) }}"
                                            data-toggle="modal"
                                            data-target="#modal-delete"
                                            data-placement="top"
@@ -85,3 +85,41 @@
         </div>
     </section>
 {% endblock %}
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block body %}#}
+    {#<h1>Personis list</h1>#}
+
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for personI in personIs %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('personi_show', { 'id': personI.id }) }}">{{ personI.id }}</a></td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('personi_show', { 'id': personI.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('personi_edit', { 'id': personI.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('personi_new') }}">Create a new personI</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#{% endblock %}#}

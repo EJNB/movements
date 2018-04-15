@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PersonType extends AbstractType
+class PersonIType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -41,13 +41,14 @@ class PersonType extends AbstractType
                 'choices_as_values' => true,
                 'placeholder' => 'Seleccione el departamento'
             ));
+        ;
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Person'
+            'data_class' => 'AppBundle\Entity\PersonI'
         ));
     }
 
@@ -56,7 +57,7 @@ class PersonType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_person';
+        return 'appbundle_personi';
     }
 
 

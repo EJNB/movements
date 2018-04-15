@@ -30,7 +30,7 @@ class Department
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Person", mappedBy="department")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PersonI", mappedBy="department")
      **/
     private $persons;
 

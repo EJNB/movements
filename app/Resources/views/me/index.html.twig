@@ -1,45 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Mes list</h1>
+{% block content %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Personname</th>
-                <th>Personci</th>
-                <th>Numberplate</th>
-                <th>License</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for mE in mEs %}
-            <tr>
-                <td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>
-                <td>{{ mE.personName }}</td>
-                <td>{{ mE.personCi }}</td>
-                <td>{{ mE.numberPlate }}</td>
-                <td>{{ mE.license }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('me_new') }}">Create a new mE</a>
-        </li>
-    </ul>
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Movimientos externos</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th>Id</th>
+                                <th>Personname</th>
+                                <th>Personci</th>
+                                <th>Numberplate</th>
+                                <th>License</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for mE in pagination %}
+                                <tr>
+                                    <td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>
+                                    <td>{{ mE.personName }}</td>
+                                    <td>{{ mE.personCi }}</td>
+                                    <td>{{ mE.numberPlate }}</td>
+                                    <td>{{ mE.license }}</td>
+                                    <td>
+                                        <a href="{{ path('me_show', { 'id': mE.id }) }}"class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('me_delete',{ 'id':brand.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
 {% endblock %}
