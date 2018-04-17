@@ -29,8 +29,8 @@ class MI extends Movement
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PersonI", inversedBy="movements")
-     * @ORM\JoinColumn(name="personi_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Person", inversedBy="movements")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      **/
     private $person;
 
@@ -90,5 +90,29 @@ class MI extends Movement
     public function getMi()
     {
         return $this->mi;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \AppBundle\Entity\PersonI $person
+     *
+     * @return MI
+     */
+    public function setPerson(\AppBundle\Entity\PersonI $person = null)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \AppBundle\Entity\PersonI
+     */
+    public function getPerson()
+    {
+        return $this->person;
     }
 }

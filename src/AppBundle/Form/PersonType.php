@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PersonIType extends AbstractType
+class PersonType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -48,7 +48,7 @@ class PersonIType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\PersonI'
+            'data_class' => 'AppBundle\Entity\Person'
         ));
     }
 

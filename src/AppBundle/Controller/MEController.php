@@ -20,20 +20,14 @@ class MEController extends Controller
      * @Route("/", name="me_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $mov_externos = $em->getRepository('AppBundle:ME')->getAllMovementsOrderByDate();
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $mov_externos, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            50/*limit per page*/
-        );
+        $mEs = $em->getRepository('AppBundle:ME')->findAll();
 
         return $this->render('me/index.html.twig', array(
-            'pagination' => $pagination,
+            'mEs' => $mEs,
         ));
     }
 

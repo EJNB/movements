@@ -1,43 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Me</h1>
+    <h1>Persone</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ mE.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ mE.name }}</td>
-            </tr>
-            <tr>
-                <th>Ocupation</th>
-                <td>{{ mE.ocupation }}</td>
+                <td>{{ personE.id }}</td>
             </tr>
             <tr>
                 <th>Ci</th>
-                <td>{{ mE.cI }}</td>
+                <td>{{ personE.cI }}</td>
             </tr>
             <tr>
                 <th>License</th>
-                <td>{{ mE.license }}</td>
+                <td>{{ personE.license }}</td>
             </tr>
             <tr>
                 <th>Numberplate</th>
-                <td>{{ mE.numberPlate }}</td>
+                <td>{{ personE.numberPlate }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('me_index') }}">Back to the list</a>
+            <a href="{{ path('persone_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('me_edit', { 'id': mE.id }) }}">Edit</a>
+            <a href="{{ path('persone_edit', { 'id': personE.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

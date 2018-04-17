@@ -13,12 +13,7 @@ class METype extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('personName')
-            ->add('personCi')
-            ->add('numberPlate')
-            ->add('license')
-            ->add('hotel');
+        $builder->add('name')->add('ocupation')->add('cI')->add('license')->add('numberPlate')->add('hotel');
     }/**
      * {@inheritdoc}
      */

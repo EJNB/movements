@@ -1,0 +1,5 @@
+<select class="selectpicker form-control" data-size="10" data-live-search="true" title="Seleccione la persona">
+    {% for person in persons %}
+        <option data-subtex="{{ person.hotel }}" value="{{ person.id }}">{{ person.name }}</option>
+    {% endfor %}
+</select>

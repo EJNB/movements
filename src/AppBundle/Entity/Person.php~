@@ -38,7 +38,7 @@ class Person
 
     /**
      * Many Persons have One Department.
-     * @ORM\ManyToOne(targetEntity="Department", inversedBy="persons")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="persons")
      * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
     private $department;
@@ -54,13 +54,6 @@ class Person
      * @ORM\OneToMany(targetEntity="MI", mappedBy="person")
      */
     private $movements;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -120,61 +113,8 @@ class Person
         return $this->cargo;
     }
 
-    /**
-     * Set department
-     *
-     * @param \AppBundle\Entity\Department $department
-     *
-     * @return Person
-     */
-    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    public function __toString()
     {
-        $this->department = $department;
-
-        return $this;
-    }
-
-    /**
-     * Get department
-     *
-     * @return \AppBundle\Entity\Department
-     */
-    public function getDepartment()
-    {
-        return $this->department;
-    }
-
-    /**
-     * Add movement
-     *
-     * @param \AppBundle\Entity\MI $movement
-     *
-     * @return Person
-     */
-    public function addMovement(\AppBundle\Entity\MI $movement)
-    {
-        $this->movements[] = $movement;
-
-        return $this;
-    }
-
-    /**
-     * Remove movement
-     *
-     * @param \AppBundle\Entity\MI $movement
-     */
-    public function removeMovement(\AppBundle\Entity\MI $movement)
-    {
-        $this->movements->removeElement($movement);
-    }
-
-    /**
-     * Get movements
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMovements()
-    {
-        return $this->movements;
+        return $this->getName();
     }
 }

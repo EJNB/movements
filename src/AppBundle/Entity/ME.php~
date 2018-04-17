@@ -13,153 +13,45 @@ use Doctrine\ORM\Mapping as ORM;
 class ME extends Movement
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="person_name", type="string", length=100)
-     */
-    private $personName;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="person_ci", type="bigint", unique=true, length=11)
-     */
-    private $personCi;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="numberPlate", type="string", length=8)
-     */
-    private $numberPlate;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="license", type="string")
-     */
-    private $license;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="movements")
      * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      **/
     private $hotel;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return int
+     * @ORM\Column(type="string", length=50)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $name;
 
     /**
-     * Set personName
+     * @var string
      *
-     * @param string $personName
-     *
-     * @return ME
+     * @ORM\Column(type="string", length=30)
      */
-    public function setPersonName($personName)
-    {
-        $this->personName = $personName;
-
-        return $this;
-    }
+    private $ocupation;
 
     /**
-     * Get personName
+     * @var int
      *
-     * @return string
+     * @ORM\Column(name="CI", type="bigint")
      */
-    public function getPersonName()
-    {
-        return $this->personName;
-    }
+    private $cI;
 
     /**
-     * Set personCi
+     * @var string
      *
-     * @param integer $personCi
-     *
-     * @return ME
+     * @ORM\Column(type="bigint", length=11, nullable=true)
      */
-    public function setPersonCi($personCi)
-    {
-        $this->personCi = $personCi;
-
-        return $this;
-    }
+    private $license;
 
     /**
-     * Get personCi
+     * @var string
      *
-     * @return int
+     * @ORM\Column(name="number_plate", type="string", length=7, nullable=true)
      */
-    public function getPersonCi()
-    {
-        return $this->personCi;
-    }
-
-    /**
-     * Set numberPlate
-     *
-     * @param string $numberPlate
-     *
-     * @return ME
-     */
-    public function setNumberPlate($numberPlate)
-    {
-        $this->numberPlate = $numberPlate;
-
-        return $this;
-    }
-
-    /**
-     * Get numberPlate
-     *
-     * @return string
-     */
-    public function getNumberPlate()
-    {
-        return $this->numberPlate;
-    }
-
-    /**
-     * Set license
-     *
-     * @param integer $license
-     *
-     * @return ME
-     */
-    public function setLicense($license)
-    {
-        $this->license = $license;
-
-        return $this;
-    }
-
-    /**
-     * Get license
-     *
-     * @return int
-     */
-    public function getLicense()
-    {
-        return $this->license;
-    }
+    private $numberPlate;
 
     /**
      * Set hotel

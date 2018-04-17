@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Mes list</h1>
+    <h1>Persones list</h1>
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Ocupation</th>
                 <th>Ci</th>
                 <th>License</th>
                 <th>Numberplate</th>
@@ -16,21 +14,19 @@
             </tr>
         </thead>
         <tbody>
-        {% for mE in mEs %}
+        {% for personE in personEs %}
             <tr>
-                <td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>
-                <td>{{ mE.name }}</td>
-                <td>{{ mE.ocupation }}</td>
-                <td>{{ mE.cI }}</td>
-                <td>{{ mE.license }}</td>
-                <td>{{ mE.numberPlate }}</td>
+                <td><a href="{{ path('persone_show', { 'id': personE.id }) }}">{{ personE.id }}</a></td>
+                <td>{{ personE.cI }}</td>
+                <td>{{ personE.license }}</td>
+                <td>{{ personE.numberPlate }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>
+                            <a href="{{ path('persone_show', { 'id': personE.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>
+                            <a href="{{ path('persone_edit', { 'id': personE.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('me_new') }}">Create a new mE</a>
+            <a href="{{ path('persone_new') }}">Create a new personE</a>
         </li>
     </ul>
 {% endblock %}

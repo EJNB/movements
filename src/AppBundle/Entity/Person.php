@@ -10,11 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="person")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonRepository")
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"person_i" = "PersonI", "person_e" = "PersonE"})
  */
-abstract class Person
+class Person
 {
     /**
      * @var int
@@ -28,7 +25,7 @@ abstract class Person
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=100)
      */
     private $name;
 
@@ -38,6 +35,25 @@ abstract class Person
      * @ORM\Column(type="string", length=50)
      */
     private $cargo;
+
+    /**
+     * Many Persons have One Department.
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="persons")
+     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
+     */
+    private $department;
+
+    /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+     */
+    private $distributionsi;
+
+    /**
+     * One Person has Many MI.
+     * @ORM\OneToMany(targetEntity="MI", mappedBy="person")
+     */
+    private $movements;
 
     /**
      * Get id
@@ -100,5 +116,105 @@ abstract class Person
     public function __toString()
     {
         return $this->getName();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->distributionsi = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set department
+     *
+     * @param \AppBundle\Entity\Department $department
+     *
+     * @return Person
+     */
+    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return \AppBundle\Entity\Department
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * Add distributionsi
+     *
+     * @param \AppBundle\Entity\DistributionI $distributionsi
+     *
+     * @return Person
+     */
+    public function addDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    {
+        $this->distributionsi[] = $distributionsi;
+
+        return $this;
+    }
+
+    /**
+     * Remove distributionsi
+     *
+     * @param \AppBundle\Entity\DistributionI $distributionsi
+     */
+    public function removeDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    {
+        $this->distributionsi->removeElement($distributionsi);
+    }
+
+    /**
+     * Get distributionsi
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDistributionsi()
+    {
+        return $this->distributionsi;
+    }
+
+    /**
+     * Add movement
+     *
+     * @param \AppBundle\Entity\MI $movement
+     *
+     * @return Person
+     */
+    public function addMovement(\AppBundle\Entity\MI $movement)
+    {
+        $this->movements[] = $movement;
+
+        return $this;
+    }
+
+    /**
+     * Remove movement
+     *
+     * @param \AppBundle\Entity\MI $movement
+     */
+    public function removeMovement(\AppBundle\Entity\MI $movement)
+    {
+        $this->movements->removeElement($movement);
+    }
+
+    /**
+     * Get movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovements()
+    {
+        return $this->movements;
     }
 }

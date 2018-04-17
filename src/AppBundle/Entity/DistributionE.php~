@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DistributionE extends Distribution
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * Many Features have One Product.
@@ -28,15 +20,27 @@ class DistributionE extends Distribution
      */
     private $hotel;
 
+    /**
+     * Set hotel
+     *
+     * @param \AppBundle\Entity\Hotel $hotel
+     *
+     * @return DistributionE
+     */
+    public function setHotel(\AppBundle\Entity\Hotel $hotel = null)
+    {
+        $this->hotel = $hotel;
+
+        return $this;
+    }
 
     /**
-     * Get id
+     * Get hotel
      *
-     * @return int
+     * @return \AppBundle\Entity\Hotel
      */
-    public function getId()
+    public function getHotel()
     {
-        return $this->id;
+        return $this->hotel;
     }
 }
-

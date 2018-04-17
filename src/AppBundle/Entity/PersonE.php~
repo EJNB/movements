@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PersonE
@@ -32,6 +33,21 @@ class PersonE extends Person
      * @ORM\Column(name="number_plate", type="string", length=7)
      */
     private $numberPlate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ME", mappedBy="personE")
+     **/
+    private $movements;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Hotel", inversedBy="persons")
+     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
+     **/
+    private $hotel;
+
+    public function __construct() {
+        $this->movements = new ArrayCollection();
+    }
 
     /**
      * Set cI
@@ -80,5 +96,86 @@ class PersonE extends Person
     {
         return $this->ocupation;
     }
-}
 
+    /**
+     * Set license
+     *
+     * @param integer $license
+     *
+     * @return PersonE
+     */
+    public function setLicense($license)
+    {
+        $this->license = $license;
+
+        return $this;
+    }
+
+    /**
+     * Get license
+     *
+     * @return integer
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    /**
+     * Set numberPlate
+     *
+     * @param string $numberPlate
+     *
+     * @return PersonE
+     */
+    public function setNumberPlate($numberPlate)
+    {
+        $this->numberPlate = $numberPlate;
+
+        return $this;
+    }
+
+    /**
+     * Get numberPlate
+     *
+     * @return string
+     */
+    public function getNumberPlate()
+    {
+        return $this->numberPlate;
+    }
+
+    /**
+     * Add movement
+     *
+     * @param \AppBundle\Entity\PersonE $movement
+     *
+     * @return PersonE
+     */
+    public function addMovement(\AppBundle\Entity\PersonE $movement)
+    {
+        $this->movements[] = $movement;
+
+        return $this;
+    }
+
+    /**
+     * Remove movement
+     *
+     * @param \AppBundle\Entity\PersonE $movement
+     */
+    public function removeMovement(\AppBundle\Entity\PersonE $movement)
+    {
+        $this->movements->removeElement($movement);
+    }
+
+    /**
+     * Get movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovements()
+    {
+        return $this->movements;
+    }
+}

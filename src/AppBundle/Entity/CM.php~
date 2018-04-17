@@ -13,28 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class CM extends Instalation
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @ORM\OneToMany(targetEntity="Department", mappedBy="cm")
      **/
     private $departments;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * Constructor
      */

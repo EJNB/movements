@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\PersonI;
+use AppBundle\Entity\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,21 +13,21 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 /**
  * Personi controller.
  *
- * @Route("personi")
+ * @Route("person")
  */
-class PersonIController extends Controller
+class PersonController extends Controller
 {
     /**
      * Lists all personI entities.
      *
-     * @Route("/", name="personi_index")
+     * @Route("/", name="person_index")
      * @Method({"GET","POST"})
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $person = new PersonI();
-        $form = $this->createForm('AppBundle\Form\PersonIType', $person);
+        $person = new Person();
+        $form = $this->createForm('AppBundle\Form\PersonType', $person);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,11 +47,11 @@ class PersonIController extends Controller
                 );
             }
 
-            return $this->redirectToRoute('personi_index');
+            return $this->redirectToRoute('person_index');
         }
 
         $filter = $request->query->get('filter');
-        $people = $em->getRepository('AppBundle:PersonI')->getAllPersonOrderedByDepartment($filter);
+        $people = $em->getRepository('AppBundle:Person')->getAllPersonOrderedByDepartment($filter);
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $people,
@@ -59,7 +59,7 @@ class PersonIController extends Controller
             10/*limit per page*/
         );
 
-        return $this->render('personi/index.html.twig', array(
+        return $this->render('person/index.html.twig', array(
             'pagination' => $pagination,
             'form' => $form->createView(),
         ));
@@ -68,12 +68,12 @@ class PersonIController extends Controller
     /**
      * Displays a form to edit an existing personI entity.
      *
-     * @Route("/{id}/edit", name="personi_edit")
+     * @Route("/{id}/edit", name="person_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, PersonI $personI)
+    public function editAction(Request $request, Person $personI)
     {
-        $editForm = $this->createForm('AppBundle\Form\PersonIType', $personI);
+        $editForm = $this->createForm('AppBundle\Form\PersonType', $personI);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -91,10 +91,10 @@ class PersonIController extends Controller
                 );
             }
 
-            return $this->redirectToRoute('personi_index');
+            return $this->redirectToRoute('person_index');
         }
 
-        return $this->render('personi/edit.html.twig', array(
+        return $this->render('person/edit.html.twig', array(
             'person' => $personI,
             'edit_form' => $editForm->createView(),
         ));
@@ -103,9 +103,9 @@ class PersonIController extends Controller
     /**
      * Deletes a person entity.
      *
-     * @Route("/{id}/delete", name="personi_delete")
+     * @Route("/{id}/delete", name="person_delete")
      */
-    public function deleteAction(PersonI $personI)
+    public function deleteAction(Person $personI)
     {
         $em = $this->getDoctrine()->getManager();
         try{
@@ -121,6 +121,6 @@ class PersonIController extends Controller
                 'La persona no puede ser eliminada, tiene distribuciones asociadas.'
             );
         }
-        return $this->redirectToRoute('personi_index');
+        return $this->redirectToRoute('person_index');
     }
 }

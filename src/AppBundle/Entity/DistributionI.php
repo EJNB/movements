@@ -14,8 +14,8 @@ class DistributionI extends Distribution
 {
     /**
      * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PersonI", inversedBy="distributionsi")
-     * @ORM\JoinColumn(name="personi_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Person", inversedBy="distributionsi")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     private $person;
 

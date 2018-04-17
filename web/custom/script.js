@@ -30,6 +30,16 @@ $(document).ready(function () {
         maxDate : new Date(),
     });
 
+    //configuracion del campo date de las incidencias
+    $('#appbundle_me_date').datetimepicker({
+        defaultDate : new Date(),
+        useCurrent: false,
+        format: 'YYYY-MM-DD',
+        locale: 'es',
+        showClear: true,
+        maxDate : new Date(),
+    });
+
 });//end $(document).ready
 
 //get All Brand by types
@@ -168,3 +178,29 @@ function toogleInputNiConsecutive(elem) {
         }
     }
 }
+
+//fnc para guardar los datos  de la persona new
+function savePersonAjax() {
+
+}
+
+//fnc para una vez q seleccione la instalacion, seleccionar las personas correspondientes a la misma
+// y seleccionar los equipos q tengan en alguna disribucion
+function showPersonsByHotelAjax(elem) {
+    $('div.sk-cube-grid').removeClass('hidden');
+    $('div.block').addClass('modal');
+    var url = Routing.generate('me_new');
+    $.post( url, { hotel : elem }, function (response) {
+        $('div.show-persons').html(response).find('select').selectpicker('refresh');
+        $('div.block').removeClass('modal');
+        $('div.sk-cube-grid').addClass('hidden');
+    })/*.then(selectEquipmentsByHotelAjax())*/;
+    // $('div.show-persons select').promise().done(function () {
+    //     alert()
+    // })
+}
+// $.when(showPersonsByHotelAjax()).done(function selectEquipmentsByHotelAjax(elem) {
+//     alert()
+// });
+
+
