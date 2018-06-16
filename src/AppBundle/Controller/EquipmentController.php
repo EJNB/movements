@@ -81,6 +81,7 @@ class EquipmentController extends Controller
                     'error',
                     'El número de inventario o número de serie, ya existe.'
                 );
+                return $this->redirectToRoute('equipment_new',array('equipment' => $equipment));
             }
 
             return $this->redirectToRoute('equipment_index');

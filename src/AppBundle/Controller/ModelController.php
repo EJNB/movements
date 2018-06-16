@@ -53,11 +53,13 @@ class ModelController extends Controller
                         'Sus datos han sido guardados satisfactoriamente'
                     );
 
-                }catch (UniqueConstraintViolationException $exception){
-                    $this->addFlash(
-                        'error',
-                        'El modelo que intenta insertar, ya existe.'
-                    );
+                }catch ( UniqueConstraintViolationException $exception){
+                    if($exception){
+                        $this->addFlash(
+                            'error',
+                            'El modelo que intenta insertar, ya existe.'
+                        );
+                    }
                 }
 
                 return $this->redirectToRoute('model_index');

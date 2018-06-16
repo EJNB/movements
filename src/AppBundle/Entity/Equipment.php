@@ -247,4 +247,14 @@ class Equipment
     {
         return $this->movement;
     }
+
+    public function __toString()
+    {
+        return
+            $this->getModel()->getBrand()->getType().' '.
+            $this->getModel()->getBrand().' '.
+            $this->getModel().' '.
+            $this->getNi().' '.
+            $this->getNs();
+    }
 }

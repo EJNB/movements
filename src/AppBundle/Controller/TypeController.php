@@ -42,11 +42,13 @@ class TypeController extends Controller
                     'Sus datos han sido guardados satisfactoriamente'
                 );
 
-            }catch (  UniqueConstraintViolationException $exception){
-                $this->addFlash(
-                    'error',
-                    'El tipo que intenta guardar, ya existe.'
-                );
+            }catch ( UniqueConstraintViolationException $exception){
+                if ($exception){
+                    $this->addFlash(
+                        'error',
+                        'El tipo que intenta guardar, ya existe.'
+                    );
+                }
             }
 
             return $this->redirectToRoute('type_index');

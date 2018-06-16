@@ -20,14 +20,21 @@ class MEController extends Controller
      * @Route("/", name="me_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $filter = $request->query->get('filter');
+        $external_movements = $em->getRepository('AppBundle:ME')->getAllMovementsOrderByDate($filter);
+        $paginator  = $this->get('knp_paginator');
 
-        $mEs = $em->getRepository('AppBundle:ME')->findAll();
+        $pagination = $paginator->paginate(
+            $external_movements, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            50/*limit per page*/
+        );
 
         return $this->render('me/index.html.twig', array(
-            'mEs' => $mEs,
+            'pagination' => $pagination,
         ));
     }
 
@@ -39,12 +46,13 @@ class MEController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType('');
         $mE = new Me();
         $form = $this->createForm('AppBundle\Form\METype', $mE);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($mE);
             $em->flush();
 
@@ -54,6 +62,7 @@ class MEController extends Controller
         return $this->render('me/new.html.twig', array(
             'mE' => $mE,
             'form' => $form->createView(),
+            'equipments' => $equipments->getResult(),
         ));
     }
 

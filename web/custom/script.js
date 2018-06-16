@@ -2,7 +2,11 @@ $(document).ready(function () {
 
     PNotify.prototype.options.styling = "bootstrap3";
 
+    //inicia todos los radios y checkbox
+    initiCheck();
+
     $('.link-tooltip').tooltip();
+
     //pasar el data-url para el enlace del modal
     $('.link-eliminar').click(function(){
         var description = 'Estas seguro de eliminar este registro',
@@ -13,6 +17,14 @@ $(document).ready(function () {
                 .end()
             .find('a.btn').attr('href',url);
         ;
+    });
+
+    $('[data-toggle="popover"]').mouseout(function () {
+        $(this).popover('hide');
+    });
+
+    $('[data-toggle="popover"]').mouseenter(function () {
+        $(this).popover('show');
     });
 
     $('#addEquipment').on('hidden.bs.modal',function (event) {
@@ -38,6 +50,10 @@ $(document).ready(function () {
         locale: 'es',
         showClear: true,
         maxDate : new Date(),
+    });
+
+    $('.radio_generate_ni').on('ifClicked',function(){
+        toogleInputs($(this).val());
     });
 
 });//end $(document).ready
@@ -110,7 +126,6 @@ function saveModel() {
     }
 }
 
-
 // //get all models by brand
 // function getAllModelsByBrand(elem) {
 //     $('div.sk-cube-grid').removeClass('hidden');
@@ -179,24 +194,26 @@ function toogleInputNiConsecutive(elem) {
     }
 }
 
-//fnc para guardar los datos  de la persona new
-function savePersonAjax() {
-
+//inicia todos los radios y checkbox
+function initiCheck() {
+    $('.icheck').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+    });
 }
 
 //fnc para una vez q seleccione la instalacion, seleccionar las personas correspondientes a la misma
 // y seleccionar los equipos q tengan en alguna disribucion
-function showPersonsByHotelAjax(elem) {
-    $('div.sk-cube-grid').removeClass('hidden');
-    $('div.block').addClass('modal');
-    var url = Routing.generate('me_new');
-    $.post( url, { hotel : elem }, function (response) {
-        $('div.show-persons').html(response).find('select').selectpicker('refresh');
-        $('div.block').removeClass('modal');
-        $('div.sk-cube-grid').addClass('hidden');
-    })/*.then(selectEquipmentsByHotelAjax())*/;
-    // $('div.show-persons select').promise().done(function () {
-    //     alert()
+function selectEquipmentByDistributionPerHotel(elem) {
+    // alert(elem)
+    // $('div.sk-cube-grid').removeClass('hidden');
+    // $('div.block').addClass('modal');
+    // var url = Routing.generate('me_new');
+    // $.post( url, { hotel : elem }, function (response) {
+    //     $('div.show-persons').html(response).find('select').selectpicker('refresh');
+    //     $('div.block').removeClass('modal');
+    //     $('div.sk-cube-grid').addClass('hidden');
     // })
 }
 // $.when(showPersonsByHotelAjax()).done(function selectEquipmentsByHotelAjax(elem) {

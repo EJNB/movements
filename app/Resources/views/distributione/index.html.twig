@@ -33,7 +33,7 @@
                                     <td>{{ distribution.hotel }}</td>
                                     <td>
                                         {% for equipment in distribution.equipments %}
-                                            {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>{{ equipment.ni }} {{ equipment.ns }}</b> <br>
+                                            {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>NI:</b>{{ equipment.ni }} <b>NS:</b> {{ equipment.ns }}<br>
                                         {% endfor %}
 
                                     </td>
@@ -45,7 +45,7 @@
                                         <a href="{{ path('distributione_edit',{ 'id' : distribution.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>
-                                        <a href="{#{{ path('type_edit',{ 'id' : type.id }) }}#}" class="link-tooltip" data-placement="top" title="Imprimir">
+                                        <a href="{#{{ path('type_edit',{ 'id' : type.id }) }}#}" class="link-tooltip" data-placement="top" title="Imprimir documentación">
                                             <span class="glyphicon glyphicon-print"></span>
                                         </a>
                                         <a href=""

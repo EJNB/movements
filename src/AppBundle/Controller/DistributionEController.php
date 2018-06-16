@@ -70,7 +70,7 @@ class DistributionEController extends Controller
                 'Sus datos han sido guardados satisfactoriamente'
             );
 
-            return $this->redirectToRoute('distributione_show', array('id' => $distributionE->getId()));
+            return $this->redirectToRoute('distributione_index');
         }
 
         return $this->render('distributione/new.html.twig', array(

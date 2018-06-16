@@ -1,47 +1,117 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Mes list</h1>
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header" style="margin-top: 5px">
+                        <h3 class="box-title">Movimientos externos</h3>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Ocupation</th>
-                <th>Ci</th>
-                <th>License</th>
-                <th>Numberplate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for mE in mEs %}
-            <tr>
-                <td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>
-                <td>{{ mE.name }}</td>
-                <td>{{ mE.ocupation }}</td>
-                <td>{{ mE.cI }}</td>
-                <td>{{ mE.license }}</td>
-                <td>{{ mE.numberPlate }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        <a href="{{ path('me_new') }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar movimiento </a>
+                        <div class="box-tools">
+                            <form class="form-inline" action="{{ path('me_index') }}" method="get" style="margin-bottom: 2px">
+                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                <button type="submit" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
+                        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('me_new') }}">Create a new mE</a>
-        </li>
-    </ul>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive {#no-padding#}">
+
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Hotel', column: 'h.name'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'm.date'} %}</th>
+                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>#}
+                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>#}
+                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>#}
+                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>#}
+                                <th>Acciones</th>
+                            </tr>
+                            {% for me in pagination %}
+                                <tr>
+                                    <td>{{ me.hotel.name }}</td>
+                                    {#<td>{{ equipment.model.brand }}</td>#}
+                                    {#<td>{{ equipment.model }}</td>#}
+                                    {#<td>{{ equipment.ni }}</td>#}
+                                    {#<td>{{ equipment.ns }}</td>#}
+                                    {#<td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>#}
+                                    {#<td>#}
+                                        {#<a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">#}
+                                            {#<span class="glyphicon glyphicon-edit"></span>#}
+                                        {#</a>#}
+                                        {#<a href="javascript:void(0)"#}
+                                           {#class="link-tooltip link-eliminar"#}
+                                           {#data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"#}
+                                           {#data-toggle="modal"#}
+                                           {#data-target="#modal-delete"#}
+                                           {#data-placement="top"#}
+                                           {#title="Eliminar"#}
+                                        {#>#}
+                                            {#<span class="glyphicon glyphicon-trash"></span>#}
+                                        {#</a>#}
+                                    {#</td>#}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+
+    {{ include('layouts/include/modals.html.twig') }}
+
+    {#<h1>Mes list</h1>#}
+
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Name</th>#}
+                {#<th>Ocupation</th>#}
+                {#<th>Ci</th>#}
+                {#<th>License</th>#}
+                {#<th>Numberplate</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for mE in mEs %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>#}
+                {#<td>{{ mE.name }}</td>#}
+                {#<td>{{ mE.ocupation }}</td>#}
+                {#<td>{{ mE.cI }}</td>#}
+                {#<td>{{ mE.license }}</td>#}
+                {#<td>{{ mE.numberPlate }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('me_new') }}">Create a new mE</a>#}
+        {#</li>#}
+    {#</ul>#}
+
 {% endblock %}

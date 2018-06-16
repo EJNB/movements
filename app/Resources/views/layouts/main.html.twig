@@ -28,6 +28,9 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+    {#icheck#}
+    <link href="{{ asset('plugins/iCheck/skins/square/_all.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('custom/style.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -108,10 +111,11 @@
     <!-- PNotify select -->
     <script src="{{ asset('plugins/pnotify/pnotify.custom.min.js') }}"></script>
 
+    <!-- iCheck -->
+    <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
+
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-
-
 
     <!-- Custom script -->
     <script src="{{ asset('custom/script.js') }}"></script>

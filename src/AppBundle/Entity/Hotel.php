@@ -10,8 +10,24 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="hotel")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\HotelRepository")
  */
-class Hotel extends Instalation
+class Hotel
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=70)
+     */
+    private $name;
+
     /**
      * @ORM\OneToMany(targetEntity="ME", mappedBy="hotel")
      **/
@@ -29,6 +45,17 @@ class Hotel extends Instalation
     public function __construct()
     {
         $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->distributionse = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -97,5 +124,34 @@ class Hotel extends Instalation
     public function getDistributionse()
     {
         return $this->distributionse;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Hotel
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

@@ -55,10 +55,12 @@ class BrandController extends Controller
                     );
 
                 }catch (UniqueConstraintViolationException $exception){
-                    $this->addFlash(
-                        'error',
-                        'La marca que intenta insertar, ya existe.'
-                    );
+                    if($exception){
+                        $this->addFlash(
+                            'error',
+                            'La marca que intenta insertar, ya existe.'
+                        );
+                    }
                 }
 
                 return $this->redirectToRoute('brand_index');

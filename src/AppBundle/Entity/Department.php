@@ -35,13 +35,6 @@ class Department
     private $persons;
 
     /**
-     * Many Department have One CM.
-     * @ORM\ManyToOne(targetEntity="CM", inversedBy="departments")
-     * @ORM\JoinColumn(name="cm_id", referencedColumnName="id")
-     */
-    private $cm;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -115,30 +108,6 @@ class Department
     public function getPersons()
     {
         return $this->persons;
-    }
-
-    /**
-     * Set cm
-     *
-     * @param \AppBundle\Entity\CM $cm
-     *
-     * @return Department
-     */
-    public function setCm(\AppBundle\Entity\CM $cm = null)
-    {
-        $this->cm = $cm;
-
-        return $this;
-    }
-
-    /**
-     * Get cm
-     *
-     * @return \AppBundle\Entity\CM
-     */
-    public function getCm()
-    {
-        return $this->cm;
     }
 
     public function __toString()

@@ -35,8 +35,6 @@ class DepartmentController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $cm = $em->getRepository('AppBundle:CM')->findOneByName('Cubanacan Nivel Central');
-            $department->setCm($cm);
             $em->persist($department);
             try{
                 $em->flush();
