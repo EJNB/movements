@@ -2,156 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04778ac9-640c-4f86-8984-7cf9aa1ed276" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/invoice/edit.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/invoice/index.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/invoice/new.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/invoice/show.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/InvoiceController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Invoice.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Form/InvoiceType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/InvoiceRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Tests/Controller/InvoiceControllerTest.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/CM.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Instalation.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/_all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/aero.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/aero.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/aero@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/blue.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/blue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/blue@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/flat.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/flat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/flat@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/green.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/green@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/grey.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/grey@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/orange.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/orange@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/pink.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/pink.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/pink@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/purple.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/purple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/purple@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/red.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/red@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/yellow.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/yellow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/flat/yellow@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/futurico/futurico.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/futurico/futurico.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/futurico/futurico@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/_all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/aero.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/blue.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/green.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/grey.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/line.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/line.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/line@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/orange.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/pink.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/purple.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/red.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/line/yellow.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/_all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/aero.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/aero.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/aero@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/blue.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/blue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/blue@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/green.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/green@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/grey.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/grey@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/minimal.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/minimal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/minimal@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/orange.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/orange@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/pink.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/pink.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/pink@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/purple.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/purple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/purple@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/red.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/red@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/yellow.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/yellow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/minimal/yellow@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/polaris/polaris.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/polaris/polaris.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/polaris/polaris@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/_all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/aero.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/aero.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/aero@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/blue.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/blue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/blue@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/green.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/green@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/grey.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/grey.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/grey@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/orange.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/orange@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/pink.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/pink.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/pink@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/purple.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/purple.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/purple@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/red.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/red.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/red@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/square.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/square.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/square@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/yellow.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/yellow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/plugins/iCheck/square/yellow@2x.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/movements.iml" afterPath="$PROJECT_DIR$/.idea/movements.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributione/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributione/edit.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/equipment/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/equipment/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/equipment/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/equipment/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/layouts/main.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/layouts/main.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/me/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/me/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/me/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/me/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movementdb.sql" afterPath="$PROJECT_DIR$/movementdb.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BrandController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BrandController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DepartmentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DepartmentController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/EquipmentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/EquipmentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/MEController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/MEController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ModelController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ModelController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/TypeController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/TypeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Department.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Department.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Hotel.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Hotel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/METype.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/METype.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/custom/script.js" afterPath="$PROJECT_DIR$/web/custom/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/plugins/iCheck/icheck.js" afterPath="$PROJECT_DIR$/web/plugins/iCheck/icheck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/plugins/iCheck/icheck.min.js" afterPath="$PROJECT_DIR$/web/plugins/iCheck/icheck.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/DistributionERepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/DistributionERepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -177,21 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="aside.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="66" lean-forward="false" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="71" lean-forward="false" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
+            <state relative-caret-position="433">
+              <caret line="63" column="32" lean-forward="false" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -200,9 +48,33 @@
       <file leaf-file-name="DistributionEController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="72" column="63" lean-forward="false" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
+            <state relative-caret-position="459">
+              <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+              <folding>
+                <element signature="e#2958#3354#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EquipmentRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="65" column="23" lean-forward="false" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,8 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>flush</find>
-      <find>chart</find>
       <find>Us</find>
       <find>pagin</find>
       <find>momen</find>
@@ -241,11 +111,13 @@
       <find>Usuarios</find>
       <find>equipos</find>
       <find>document</find>
+      <find>(form</find>
+      <find>order</find>
     </findStrings>
     <replaceStrings>
-      <replace>(edit_form</replace>
       <replace>Person</replace>
       <replace>person</replace>
+      <replace>(edit_form</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Apache24\htdocs\movements</dir>
@@ -289,14 +161,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/hotel/index.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/hotel/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/distributione/new.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/DistributionE.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Distribution.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/EquipmentType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/DistributionERepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/DistributionEType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/distributione/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/MERepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/personi/index.html.twig" />
@@ -321,8 +189,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/ME.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/equipment/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/me/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/METype.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/me/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/layouts/main.html.twig" />
@@ -338,8 +204,14 @@
         <option value="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Hotel.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/EquipmentController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/DistributionERepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/DistributionEType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/distributione/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig" />
       </list>
     </option>
   </component>
@@ -383,8 +255,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -439,6 +311,14 @@
             <path>
               <item name="movements" type="b2602c69:ProjectViewProjectNode" />
               <item name="movements" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="equipment" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="movements" type="b2602c69:ProjectViewProjectNode" />
+              <item name="movements" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -467,6 +347,13 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="movements" type="b2602c69:ProjectViewProjectNode" />
+              <item name="movements" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="movements" type="b2602c69:ProjectViewProjectNode" />
@@ -570,12 +457,12 @@
       <workItem from="1529118005964" duration="2603000" />
       <workItem from="1529159170027" duration="435000" />
       <workItem from="1529159650763" duration="67000" />
-      <workItem from="1529159741705" duration="3453000" />
+      <workItem from="1529159741705" duration="8842000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159428000" />
+    <option name="totallyTimeSpent" value="164817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -626,28 +513,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/custom/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="64" column="19" lean-forward="false" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/person/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Instalation.php" />
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-35">
@@ -701,24 +566,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/me/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="29" column="116" lean-forward="false" selection-start-line="29" selection-start-column="116" selection-end-line="29" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -868,7 +719,7 @@
         <state relative-caret-position="578">
           <caret line="40" column="29" lean-forward="false" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
           <folding>
-            <element signature="e#40#66#0#PHP" expanded="true" />
+            <element signature="e#40#66#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -908,14 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/HotelType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -932,14 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="66" lean-forward="false" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ModelController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -948,27 +783,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/EquipmentController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="83" column="93" lean-forward="false" selection-start-line="83" selection-start-column="93" selection-end-line="83" selection-end-column="93" />
+        <state relative-caret-position="442">
+          <caret line="26" column="68" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="72" column="63" lean-forward="false" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
+        <state relative-caret-position="731">
+          <caret line="43" column="66" lean-forward="false" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="71" lean-forward="false" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
+        <state relative-caret-position="433">
+          <caret line="63" column="32" lean-forward="false" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/DistributionERepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/EquipmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/DistributionEType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Equipment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="257" column="29" lean-forward="true" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="123" column="39" lean-forward="false" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+          <folding>
+            <element signature="e#2958#3354#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="65" column="23" lean-forward="false" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/equipment/equipments.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="49" lean-forward="false" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -53,6 +53,7 @@ class DistributionEController extends Controller
         $em = $this->getDoctrine()->getManager();
         $distributionE = new Distributione();
         $form = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
+        //seleccionamos los equipos q no han sido distribuidos y tampoco entregados
         $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
         $form->handleRequest($request);
 
@@ -104,8 +105,11 @@ class DistributionEController extends Controller
      */
     public function editAction(Request $request, DistributionE $distributionE)
     {
+        $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
         $editForm->handleRequest($request);
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentWithoutDistribution($distributionE->getId());
+        $equipments_by_distribution = $em->getRepository('AppBundle:Equipment')->getAllEquipmentsByDistribution($distributionE->getId());
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -116,6 +120,8 @@ class DistributionEController extends Controller
         return $this->render('distributione/edit.html.twig', array(
             'distributionE' => $distributionE,
             'edit_form' => $editForm->createView(),
+            'equipments_by_distribution' => $equipments_by_distribution,
+            'equipments' => $equipments,
         ));
     }
 

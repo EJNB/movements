@@ -33,9 +33,46 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ;
         }
 
-        $qb->andWhere('e.movement is null');
-        $qb->andWhere('e.distribution is null');
+        $qb
+            ->andWhere('e.movement is null')
+            ->andWhere('e.distribution is null')
+            ->orderBy('t.name','DESC');
         $result = $qb->getQuery()/*->getResult()*/;
+        return $result;
+    }
+
+    //retorna todos los equipos pertenecientes a una disribucion
+    public function getAllEquipmentsByDistribution($id){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+            ->andWhere('e.distribution =:id')
+            ->orderBy('t.name','DESC')
+            ->setParameter('id',$id);
+        $result = $qb->getQuery()->getResult();
+        return $result;
+    }
+
+    //obtiene todos los equipos q no han sido distribuidos y los de la propia distribucion
+    public function getAllEquipmentWithoutDistribution($id){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+            ->where('e.distribution is null')
+            ->orWhere('e.distribution =:id')
+            ->orderBy('t.name','DESC')
+            ->setParameter('id',$id);
+        $result = $qb->getQuery()->getResult();
         return $result;
     }
 }

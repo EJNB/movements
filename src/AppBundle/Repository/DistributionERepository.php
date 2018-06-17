@@ -17,7 +17,7 @@ class DistributionERepository extends \Doctrine\ORM\EntityRepository
             ->select('d')
             ->from('AppBundle:DistributionE','d')
             ->innerJoin('d.hotel','h')
-            ->leftJoin('d.equipments', 'e');
+            ->innerJoin('d.equipments', 'e');
             if($filter!=""){
                 $qb->where($qb->expr()->like('d.requestDate', '?1'))
                     ->orWhere($qb->expr()->like('h.name', '?1'))

@@ -1,21 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Distributione edit</h1>
+{% block content %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header" style="padding-top: 0; padding-bottom: 0">
+                    <h3 class="page-header">Editar distribucion </h3>
+                </div>
+                <div class="box-body" style="padding-top: 0">
+                    {{ form_start(edit_form) }}
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Hotel</label>
+                                    {{ form_row(edit_form.hotel) }}
+                                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('distributione_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                {#{{ dump(equipments_by_distribution) }}#}
+
+                                <div class="form-group">
+                                    {{ include('equipment/equipments.html.twig') }}
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                        Guardar
+                                    </button>
+                                    <a class="btn btn-default" href="{{ path('distributione_index') }}">
+                                        <span class="glyphicon glyphicon-list"></span>
+                                        Regresar al listado
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(edit_form) }}
+                </div> <!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col-md-12-->
+    </div><!-- /.row -->
+
+</div><!-- /.content -c->
 {% endblock %}
