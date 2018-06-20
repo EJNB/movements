@@ -21,6 +21,44 @@ class DistributionE extends Distribution
     private $hotel;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="consecutive_number", type="string")
+     */
+    private $consecutive_number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $state;
+
+    /**
+     * Set consecutiveNumber
+     *
+     * @param string $consecutiveNumber
+     *
+     * @return DistributionE
+     */
+    public function setConsecutiveNumber($consecutiveNumber)
+    {
+        $this->consecutive_number = $consecutiveNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get consecutiveNumber
+     *
+     * @return string
+     */
+    public function getConsecutiveNumber()
+    {
+        return $this->consecutive_number;
+    }
+
+    /**
      * Set hotel
      *
      * @param \AppBundle\Entity\Hotel $hotel
@@ -42,5 +80,29 @@ class DistributionE extends Distribution
     public function getHotel()
     {
         return $this->hotel;
+    }
+
+    /**
+     * Set state
+     *
+     * @param boolean $state
+     *
+     * @return DistributionE
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return boolean
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

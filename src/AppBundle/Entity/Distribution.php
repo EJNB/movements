@@ -100,6 +100,7 @@ abstract class Distribution
     public function removeEquipment(\AppBundle\Entity\Equipment $equipment)
     {
         $this->equipments->removeElement($equipment);
+//        $equipment->setDistribution($this);
     }
 
     /**

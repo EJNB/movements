@@ -139,29 +139,21 @@
     </div>
 </div>
 
-{#<!--Modal para cambiar las contraseñas-->#}
-{#<div class="modal fade" id="modal-change-password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">#}
-    {#<div class="modal-wrapper">#}
-        {#<div class="modal-dialog modal-sm">#}
-            {#<div class="modal-content">#}
-                {#<div class="modal-header">#}
-                    {#<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
-                    {#<h4 class="modal-title" id="myModalLabel12">Cambiar Contrase&ntildea</h4>#}
-                {#</div>#}
-                {#<div class="modal-body">#}
-                    {#<form action="#" method="post" role="form" class="form_change_password">#}
-                        {#<div class="form-group">#}
-                            {#<input type="password" required="required" placeholder="Contraseña" class="form-control" name="first-password">#}
-                        {#</div>#}
-                        {#<div class="form-group">#}
-                            {#<input type="password" required="required" placeholder="Repita la contraseña" class="form-control" name="second-password">#}
-                        {#</div>#}
-                        {#<input type="hidden" name="current-url" value="{{ app.request.uri }}">#}
-
-                        {#<button type="submit" class="btn btn-success">Cambiar</button>#}
-                    {#</form>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-{#</div>#}
+<!--Modal para eliminar varios registros a la vez-->
+<div class="modal fade" id="modal_delete_many_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+    <div class="modal-wrapper">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel12">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Estas seguro de eliminar esta cantidad de registros</p>
+                    <a href="javascript:void(0)" class="btn btn-info" onclick="deleteDistributionSeleccion()">Si</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

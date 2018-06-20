@@ -16,25 +16,27 @@ class DistributionERepository extends \Doctrine\ORM\EntityRepository
         $qb
             ->select('d')
             ->from('AppBundle:DistributionE','d')
-            ->innerJoin('d.hotel','h')
-            ->innerJoin('d.equipments', 'e');
+            ->innerJoin('d.hotel','h');
+
             if($filter!=""){
-                $qb->where($qb->expr()->like('d.requestDate', '?1'))
+                $qb
+                    ->innerJoin('d.equipments', 'e')
+                    ->innerJoin('e.model','m')
+                    ->innerJoin('m.brand','b')
+                    ->innerJoin('b.type','t')
+                    ->where($qb->expr()->like('d.requestDate', '?1'))
                     ->orWhere($qb->expr()->like('h.name', '?1'))
                     ->orWhere($qb->expr()->like('e.ni', '?1'))
                     ->orWhere($qb->expr()->like('e.ns', '?1'))
                     ->orWhere($qb->expr()->like('e.description', '?1'))
-                    ->innerJoin('e.model','m')
-                    ->innerJoin('m.brand','b')
-                    ->innerJoin('b.type','t')
                     ->orWhere($qb->expr()->like('m.name', '?1'))
                     ->orWhere($qb->expr()->like('b.name', '?1'))
                     ->orWhere($qb->expr()->like('t.name', '?1'))
-//                    ->orWhere($qb->expr()->like('e.ni', '?1'))
+    //                    ->orWhere($qb->expr()->like('e.ni', '?1'))
                     ->setParameter(1, '%' . $filter . '%');
             }
 
-        $qb->orderBy('d.requestDate','DESC');
+        $qb->orderBy('h.name','DESC');
 
         $result = $qb->getQuery()/*->getResult()*/;
         return $result;

@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @UniqueEntity(fields="username", message="Username already taken")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements AdvancedUserInterface
 {
     /**
      * @var int
@@ -39,12 +39,6 @@ class User
      * @Assert\NotBlank()
      */
     private $username;
-
-//    /**
-//     *
-//     * @Assert\Length(max=4096)
-//     */
-//    private $plainPassword;
 
     /**
      * The below length depends on the "algorithm" you use for encoding

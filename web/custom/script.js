@@ -5,6 +5,36 @@ $(document).ready(function () {
     //inicia todos los radios y checkbox
     initiCheck();
 
+    $('input.select_all_distribution').click(function () {
+        if (this.checked){
+            $('input.subcheckbox').prop('checked',true);
+            $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
+            $('.link-tooltip').tooltip('hide');
+        }else {
+            $('input.subcheckbox').prop('checked',false);
+            $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+        }
+    });
+
+    if($('.subcheckbox:checked').length>0){
+        $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
+        $('.link-tooltip').tooltip('hide');
+    }else{
+        $('.print_selection,.delete_selection').addClass('hide')
+    }
+
+    $('.subcheckbox').change(function (evet) {
+        if($('.subcheckbox:checked').length>0){
+            $('.print_selection,.delete_selection').removeClass('hide');
+        } else {
+            $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+        }
+    });
+
+    $('.toggle_equipments').click(function () {
+        $(this).next().next().slideToggle('slow');
+    });
+
     $('.link-tooltip').tooltip();
 
     //pasar el data-url para el enlace del modal
@@ -16,7 +46,6 @@ $(document).ready(function () {
                 .html(description)
                 .end()
             .find('a.btn').attr('href',url);
-        ;
     });
 
     $('[data-toggle="popover"]').mouseout(function () {
@@ -221,3 +250,34 @@ function selectEquipmentByDistributionPerHotel(elem) {
 // });
 
 
+//esta funcion es para eliminar todos las distribuciones seleccionadas
+function deleteDistributionSeleccion() {
+    $('#modal_delete_many_file').modal('hide');
+    $('div.block').addClass('modal');
+    $('div.sk-cube-grid').removeClass('hidden');
+    var distribution_ids_array = [],
+        url = Routing.generate('delete_distribution_selection');
+    $('input.subcheckbox:checked').each(function () {
+        distribution_ids_array.push(Number($(this).attr('data-id')));
+    });
+
+    $.post(url, { data : distribution_ids_array }, function(response) {
+        $('div.show-distributions-list').html(response);
+        $('div.block').removeClass('modal');
+        $('div.sk-cube-grid').addClass('hidden');
+    });
+}
+
+//esta funcion verificara q existan input seleccionados y disparara el modal
+function toogleModalConfimDeletedDistributions() {
+    //verificar q el dato q se va enviar no este vacio
+    if($('.subcheckbox:checked').length>0){
+        $('#modal_delete_many_file').modal('show');
+    }else {
+        new PNotify({
+            title: '!Error',
+            type : 'error',
+            text: 'Por favor seleccione alguna distribution'
+        });
+    }
+}

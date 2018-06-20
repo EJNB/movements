@@ -1,0 +1,21 @@
+<h1>{{ title }}</h1>
+<br>
+
+<table>
+    <thead>
+        <tr>
+            <th>Equipo</th>
+            <th>No. Inventario/Serie</th>
+            <th>Área de responsabilidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for equipment in equipments %}
+            <tr>
+                <td>{{ equipment.description }}</td>
+                <td>{{ equipment.ni }}</td>
+                <td>INFORMATICA</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
