@@ -110,7 +110,7 @@ class DistributionEController extends Controller
     /**
      * Displays a form to edit an existing distributionE entity.
      *
-     * @Route("/{id}/edit", name="distributione_edit")
+     * @Route("/edit/{id}", name="distributione_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, DistributionE $distributionE)
@@ -159,7 +159,7 @@ class DistributionEController extends Controller
     /**
      * Deletes a distributionE entity.
      *
-     * @Route("/{id}/delete", name="distributione_delete")
+     * @Route("/delete/{id}", name="distributione_delete")
      */
     public function deleteAction(DistributionE $distributionE)
     {
@@ -238,6 +238,35 @@ class DistributionEController extends Controller
 
             $paginator  = $this->get('knp_paginator');
 
+            $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE();
+            $pagination = $paginator->paginate(
+                $distributionEs, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                15/*limit per page*/
+            );
+
+            return $this->render('distributione/list-distributions.html.twig', array(
+                'pagination' => $pagination,
+            ));
+        }
+    }
+
+    /**
+     * Displays a form to edit an existing distributionE entity.
+     *
+     * @Route("/set_distribution_status", options={"expose"=true}, name="set_distribution_status")
+     * @Method("POST")
+     */
+    public function setStatusDistributionEAction(Request $request){
+        if($request->isXmlHttpRequest()){
+            $data_id = $request->request->get('data_id');
+            $data_status = $request->request->get('data_status')=='false' ? 0 : 1;
+            $em = $this->getDoctrine()->getManager();
+            $distribution_e = $em->getRepository('AppBundle:DistributionE')->findOneById(intval($data_id));
+            $distribution_e->setState($data_status);
+            $em->flush();
+
+            $paginator  = $this->get('knp_paginator');
             $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE();
             $pagination = $paginator->paginate(
                 $distributionEs, /* query NOT result */

@@ -1,13 +1,20 @@
-taks:
+﻿taks:
 User CRUD :
 	1. poner las validaciones del lado del servidor 
 	2. poner los errores de las validaciones en el lado del cliente dentro de los alerts
 	3. hacer el cambiar contraseña.
 	4. Hacer la funcionalidad de cambiar mi contraseña
 	5. poner los icheck en la parte de isActive and Roles
-	
+
+Distribuciones:
+	Distribuciones Externas
+		1. Imprimir un conjunto de distribuciones
+		2. terminar los estilos del documento q se le sube a mercedes
+		
+	Distribuciones Internas:
+		1. todas las cosas
 Genrales: 
 	1. Poner la animacion cada vez q se pueda
 	2. Traer la plantilla q me dio rainy con la cual yo hice el sistema de movements
 	3. hacer el sistema de notificaciones
-	4. Hacer 
+	4. Definir bien a donde puede entrar cada usuario dependiendo de su rol

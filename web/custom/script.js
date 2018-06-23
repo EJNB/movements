@@ -5,16 +5,18 @@ $(document).ready(function () {
     //inicia todos los radios y checkbox
     initiCheck();
 
-    $('input.select_all_distribution').click(function () {
-        if (this.checked){
-            $('input.subcheckbox').prop('checked',true);
-            $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
-            $('.link-tooltip').tooltip('hide');
-        }else {
-            $('input.subcheckbox').prop('checked',false);
-            $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
-        }
-    });
+//esto es pra cuando clicked en el boton de selectall selecctione todoas las distribuciones
+    // $('input.select_all_distribution').click(function () {
+    //     if (this.checked){
+    //         $('input.subcheckbox').prop('checked',true);
+    //         $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
+    //         $('.link-tooltip').tooltip('hide');
+    //     }else {
+    //         $('input.subcheckbox').prop('checked',false);
+    //         $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+    //     }
+    // });
+
 
     if($('.subcheckbox:checked').length>0){
         $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
@@ -23,13 +25,14 @@ $(document).ready(function () {
         $('.print_selection,.delete_selection').addClass('hide')
     }
 
-    $('.subcheckbox').change(function (evet) {
-        if($('.subcheckbox:checked').length>0){
-            $('.print_selection,.delete_selection').removeClass('hide');
-        } else {
-            $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
-        }
-    });
+    //cuand select algunos de los input:checbox mostrare los iconos de eliminar todo e imprimir
+    // $('.subcheckbox').change(function (evet) {
+    //     if($('.subcheckbox:checked').length>0){
+    //         $('.print_selection,.delete_selection').removeClass('hide');
+    //     } else {
+    //         $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+    //     }
+    // });
 
     $('.toggle_equipments').click(function () {
         $(this).next().next().slideToggle('slow');
@@ -83,6 +86,12 @@ $(document).ready(function () {
 
     $('.radio_generate_ni').on('ifClicked',function(){
         toogleInputs($(this).val());
+    });
+
+    //set color de los input de hecho, en proceso y abierto
+    $('.change_distribution_state').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        increaseArea: '20%' // optional
     });
 
 });//end $(document).ready
@@ -154,20 +163,6 @@ function saveModel() {
 
     }
 }
-
-// //get all models by brand
-// function getAllModelsByBrand(elem) {
-//     $('div.sk-cube-grid').removeClass('hidden');
-//     $('div.block').addClass('modal');
-//     var url_models_by_brand = Routing.generate('model_index');
-//     $.post( url_models_by_brand, { brand : elem }, function (response) {
-//         $('div.show_models').html(response);
-//         $('div.show_models').find('select').selectpicker('refresh');
-//         $('div.block').removeClass('modal');
-//         $('div.sk-cube-grid').addClass('hidden');
-//     });
-// }
-
 //genera todos los inputs para q se introduscan los numeros de inv dada una cantidad
 function toogleInputs(value){
     var inputnins = `
@@ -249,7 +244,6 @@ function selectEquipmentByDistributionPerHotel(elem) {
 //     alert()
 // });
 
-
 //esta funcion es para eliminar todos las distribuciones seleccionadas
 function deleteDistributionSeleccion() {
     $('#modal_delete_many_file').modal('hide');
@@ -280,4 +274,53 @@ function toogleModalConfimDeletedDistributions() {
             text: 'Por favor seleccione alguna distribution'
         });
     }
+}
+
+//esta funcion es para cuando clicked input:check se muestren ls btns de eliminar todo e imprimir selccion
+function selectAllDistribucion(elem) {
+    if (elem.checked){
+        $('input.subcheckbox').prop('checked',true);
+        $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
+        $('.link-tooltip').tooltip('hide');
+    }else {
+        $('input.subcheckbox').prop('checked',false);
+        $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+    }
+}
+//esta funcion es pra cuando seleccione distribuciones salteadas se activen los btn de aliminar todo y imprimir seleccion
+function showInputsPrintAndRemoveAll(){
+    if($('.subcheckbox:checked').length>0){
+        $('.print_selection,.delete_selection').removeClass('hide');
+    } else {
+        $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
+    }
+}
+
+function testAction(elem) {
+    //pongo la animacion pequeña de awesome
+    $('div.block').addClass('modal');
+    $('div.sk-cube-grid').removeClass('hidden');
+    var url = Routing.generate('set_distribution_status'),
+        id = Number($(elem).attr('data-id')),
+        status = $(elem).prop('checked');
+    $.post(url,{ data_id : id, data_status : status },function (response) {
+        $('.show-distributions-list').html(response);
+
+        //dentengo la animacion
+        $('div.block').removeClass('modal');
+        $('div.sk-cube-grid').addClass('hidden');
+
+        $('.change_distribution_state').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            increaseArea: '20%' // optional
+        });
+
+        PNotify.removeAll();//remove all notifications
+        //muestro la notificacion
+        new PNotify({
+            title: 'Exito',
+            type : 'success',
+            text: 'Sus cambios han sido guardados satisfactoriamente.'
+        });
+    });
 }

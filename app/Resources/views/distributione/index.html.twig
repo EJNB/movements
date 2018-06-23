@@ -7,14 +7,18 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header">
-                        <a href='{{ path('distributione_new') }}' class="btn btn-success btn-xs">Nueva distribucion</a>
+                        {% if is_granted('ROLE_DIRECTOR') %}
+                            <a href='{{ path('distributione_new') }}' class="btn btn-success btn-xs">Nueva distribucion</a>
+                        {% endif %}
                         <a href='javascript:void(0)' class="btn btn-info btn-xs link-tooltip hide print_selection" data-placement="top" title="Imprimir seleccion"><span class="glyphicon glyphicon-print"></span> </a>
-                        <a
-                            href='javascript:void(0)' class="btn btn-danger btn-xs link-tooltip hide delete_selection"
-                            data-placement="top" title="Eliminar distribuciones seleccionadas" onclick="toogleModalConfimDeletedDistributions()"
-                        >
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </a>
+                        {% if is_granted('ROLE_DIRECTOR') %}
+                            <a
+                                href='javascript:void(0)' class="btn btn-danger btn-xs link-tooltip hide delete_selection"
+                                data-placement="top" title="Eliminar distribuciones seleccionadas" onclick="toogleModalConfimDeletedDistributions()"
+                            >
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        {% endif %}
                         <h2 class="box-title no-padding" style="margin-left: 25%; ">Distribuciones externas</h2>
                         <div class="box-tools">
                             <form class="form-inline" action="{{ path('distributione_index') }}" method="get" style="margin-bottom: 2px">

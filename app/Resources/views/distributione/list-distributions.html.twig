@@ -1,10 +1,12 @@
 <table class="table table-hover table-condensed table-responsive">
     <thead>
     <tr>
-        <th style="width: 2%"><input class="link-tooltip select_all_distribution" dataplacement="top" title="Seleccionar todo" type="checkbox"></th>
+        <th style="width: 2%">
+            <input class="link-tooltip" dataplacement="top" title="Seleccionar todo" type="checkbox" onclick="selectAllDistribucion(this)">
+        </th>
         <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Instalación', column: 'h.name'} %}</th>
         <th style="width: 10%">{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'd.requestDate'} %}</th>
-        <th style="width: 10%">Estado</th>
+        <th style="width: 12%">Estado</th>
         <th style="width: 40%">N&uacute;mero consecutivo</th>
         <th>Acciones</th>
     </tr>
@@ -12,15 +14,23 @@
     <tbody>
     {% for distribution in pagination %}
         <tr>
-            <td>{% if distribution.state != true %}<input class="subcheckbox" type="checkbox" data-id="{{ distribution.id }}">{% endif %}</td>
+            <td>
+                {% if distribution.state != true %}<!-- si el la distribucion no ha sido cerrada muestro el input-->
+                    <input class="subcheckbox" type="checkbox" data-id="{{ distribution.id }}" onclick="showInputsPrintAndRemoveAll()">
+                {% endif %}
+            </td>
             <td>{{ distribution.hotel }}</td>
             <td>{{ distribution.requestDate | date('Y-m-d')}}</td>
             <td>
+                {% if is_granted('ROLE_DIRECTOR') %}
+                    <input type="checkbox" onchange="testAction(this)" {% if distribution.state == true %}checked{% endif %} data-id="{{ distribution.id }}" style="position: relative;top: 3px; margin-right: 3px">
+                {% endif %}
                 {% if distribution.state == true %}
                     <span class="label label-success">Ejecutada</span>
                 {% else %}
                     <span class="label label-warning">En proceso</span>
                 {% endif %}
+
             </td>
 
             <td>
@@ -35,22 +45,26 @@
                 </div>
             </td>
             <td>
-                <a href="{{ path('distributione_edit',{ 'id' : distribution.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
                 <a href="{{ path('print_documentation_by_distribution',{ 'id' : distribution.id }) }}" class="link-tooltip" data-placement="top" title="Imprimir documentación" target="_blank">
                     <span class="glyphicon glyphicon-print"></span>
                 </a>
-                <a href="javascript:void(0);"
-                   class="link-tooltip link-eliminar"
-                   data-url="{{ path('distributione_delete',{ 'id':distribution.id }) }}"
-                   data-toggle="modal"
-                   data-target="#modal-delete"
-                   data-placement="top"
-                   title="Eliminar"
-                >
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a>
+                {% if(is_granted('ROLE_DIRECTOR')) %}
+                    {% if distribution.state==0 %}
+                        <a href="{{ path('distributione_edit',{ 'id' : distribution.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="javascript:void(0);"
+                           class="link-tooltip link-eliminar"
+                           data-url="{{ path('distributione_delete',{ 'id':distribution.id }) }}"
+                           data-toggle="modal"
+                           data-target="#modal-delete"
+                           data-placement="top"
+                           title="Eliminar"
+                        >
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    {% endif %}
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
