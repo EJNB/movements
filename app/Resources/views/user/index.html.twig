@@ -1,49 +1,69 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Users list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Name</th>
-                <th>Occupation</th>
-                <th>Isactive</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.occupation }}</td>
-                <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
-        </li>
-    </ul>
+{% block content %}
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h2 class="box-title no-padding">Usuarios</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive show-distributions-list">
+                        <table class="table table">
+                            <thead class="table-hover table-condensed table-responsive">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nombre y apellidos</th>
+                                    <th>Correo</th>
+                                    <th>Usuario</th>
+                                    <th>Cargo</th>
+                                    <th>Activo</th>
+                                    <th>Roles</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.occupation }}</td>
+                                    <td>{% if user.isActive %}<span class="label label-info">Si</span> {% else %}<span class="label label-danger">No</span> {% endif %}</td>
+                                    <td>
+                                        {% for role in user.roles %}
+                                            {{ role }}<br>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('user_edit',{ 'id' : user.id }) }}" class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="{#{{ path('user_edit',{ 'id' : user.id }) }}#}" class="link-tooltip" data-placement="top" title="Cambiar contraseña">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('user_delete',{ 'id':user.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="{{ path('user_new') }}" class="btn btn-primary">Agregar</a>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- ./row-->
+    </section>
 {% endblock %}

@@ -4,6 +4,10 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        db:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
         in_memory:
             memory: ~
 
@@ -15,6 +19,17 @@ security:
 
         main:
             anonymous: ~
+            provider: db
+            pattern: ^/
+
+            form_login:
+                login_path: login
+                check_path: login
+#                default_target_path: movement_index
+
+            logout:
+                path:   /logout
+                target: login
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -22,3 +37,13 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/*, roles: [ROLE_ADMIN]}

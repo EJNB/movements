@@ -44,32 +44,27 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $password = $this->container->get('security.password_encoder')
+                ->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+            $this->addFlash(
+                'notice',
+                'El usuario ha sido guardada satisfactoriamente'
+            );
+
+
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a user entity.
-     *
-     * @Route("/{id}", name="user_show")
-     * @Method("GET")
-     */
-    public function showAction(User $user)
-    {
-        $deleteForm = $this->createDeleteForm($user);
-
-        return $this->render('user/show.html.twig', array(
-            'user' => $user,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -81,56 +76,44 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $deleteForm = $this->createDeleteForm($user);
+//        $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+            $this->addFlash(
+                'notice',
+                'Sus cambios han sido guardados satisfactoriamente'
+            );
+
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/edit.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="user_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="user_delete")
      */
-    public function deleteAction(Request $request, User $user)
+    public function deleteAction(User $user)
     {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-        }
+        $this->addFlash(
+            'notice',
+            'El usuario ha sido eliminado satisfactoriamente'
+        );
 
         return $this->redirectToRoute('user_index');
-    }
-
-    /**
-     * Creates a form to delete a user entity.
-     *
-     * @param User $user The user entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(User $user)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

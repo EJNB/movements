@@ -1,21 +1,103 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>User edit</h1>
+{% block content %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="content">
+        {#<div class="row">#}
+        {#<div class="col-md-12">#}
+        <div class="box box-primary">
+            <div class="box-header" style="padding-top: 0; padding-bottom: 0">
+                <h3 class="page-header">Crear usuario </h3>
+            </div>
+            <div class="box-body" style="padding-top: 0">
+                <div class="container-fluid">
+                    <div class="row">
+                        {{ form_start(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                        <div class="col-md-5">
+                            <div class="form-horizontal">
+
+                                <!--Name field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.name,'Nombre', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.name) }}
+                                        {{ form_widget(edit_form.name) }}
+                                    </div>
+                                </div>
+
+                                <!--email field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.email,'Correo', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.email) }}
+                                        {{ form_widget(edit_form.email) }}
+                                    </div>
+                                </div>
+
+                                <!--username field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.username,'Usuario', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.username) }}
+                                        {{ form_widget(edit_form.username) }}
+                                    </div>
+                                </div>
+
+                                <!--ocupation field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.occupation,'Cargo', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.occupation) }}
+                                        {{ form_widget(edit_form.occupation) }}
+                                    </div>
+                                </div>
+
+                            </div><!--end .form-horizontal-->
+                        </div><!--end .col-md-5-->
+
+                        <div class="col-md-5">
+                            <div class="form-horizontal">
+
+                                <!--active field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.isActive,'Activo', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.isActive) }}
+                                        {{ form_widget(edit_form.isActive) }}
+                                    </div>
+                                </div>
+
+                                <!--roles field-->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.roles,'Roles', { 'label_attr':{ 'class':'col-sm-5 control-label' } }) }}
+                                    <div class="col-sm-7">
+                                        {{ form_errors(edit_form.roles) }}
+                                        {{ form_widget(edit_form.roles) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" style="margin-left: 8px" ></label>
+                                    <div class="col-sm-5">
+                                        <input type="submit" value="Guardar" class="btn btn-primary"/>
+                                        <a href="{{ path('user_index') }}" class="btn btn-default">Regresar al listado</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(edit_form) }}
+                    </div><!-- /.row -->
+                </div><!--/.container-fluid-->
+
+            </div> <!-- /.box-body -->
+        </div><!-- /.box -->
+        {#</div><!-- /.col-md-12-->#}
+        {#</div><!-- /.row -->#}
+
+    </div><!-- /.content -->
 {% endblock %}

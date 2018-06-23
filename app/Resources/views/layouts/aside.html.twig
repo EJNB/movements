@@ -21,7 +21,7 @@
                     <li><a href="{{ path('department_index') }}"><i class="fa fa-circle-o"></i> <span>Departamentos</span></a></li>
                     <li><a href="{{ path('hotel_index') }}"><i class="fa fa-circle-o"></i> <span>Hoteles</span></a></li>
                     <li><a href="{{ path('person_index') }}"><i class="fa fa-circle-o"></i> <span>Personas</span></a></li>
-                    <li><a href=""><i class="fa fa-user-circle"></i> <span>Usuarios</span></a></li>
+                    <li><a href="{{ path('user_index') }}"><i class="fa fa-user-circle"></i> <span>Usuarios</span></a></li>
                 </ul>
             </li>
 
@@ -47,13 +47,10 @@
                             </a>
                         </li>
                     </ul>
-
-                    {#<span class="pull-right-container">#}
-                    {#<small class="label pull-right bg-green">new</small>#}
-                    {#</span>#}
                 </a>
             </li>
 
+            <!--Invoices-->
             <li>
                 <a href="{{ path('equipment_index') }}">
                     <i class="fa fa-tv"></i> <span>Facturas</span>
@@ -94,16 +91,8 @@
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Reportes</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                </ul>
             </li>
         </ul>
     </section>
