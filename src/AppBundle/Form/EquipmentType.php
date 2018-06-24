@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -30,6 +31,14 @@ class EquipmentType extends AbstractType
                 'input' => 'datetime',
                 'attr' => array('class' => 'form-control')
             ))
+            ->add('invoice',EntityType::class,array(
+                'class' => 'AppBundle\Entity\Invoice',
+                'attr' => array(
+                    'class' => 'form-control selectpicker',
+                    'data-live-search' => true,
+                ),
+                'placeholder' => 'Seleccione la factura'
+            ))
         ;
 //            ->add('ni',TextType::class,array(
 //                'attr' => array( 'class' => 'form-control')
@@ -41,6 +50,7 @@ class EquipmentType extends AbstractType
 //            ->add('model')
 //            ->add('distribution')
 //            ->add('movement')
+        //esto lo hice para q no se mostrara el campo de ns y ni en el new
         $builder->addEventListener(FormEvents::PRE_SET_DATA,function (FormEvent $event){
             $equipment = $event->getData();//Returns the data associated with this event.
             $form = $event->getForm();//Returns the form at the source of the event.

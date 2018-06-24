@@ -74,6 +74,15 @@ $(document).ready(function () {
         maxDate : new Date(),
     });
 
+    //configuracion del campo de las facturas
+    $('#appbundle_invoice_date').datetimepicker({
+        // useCurrent: false,
+        format: 'YYYY-MM-DD',
+        locale: 'es',
+        showClear: true,
+        maxDate : new Date(),
+    });
+
     //configuracion del campo date de las incidencias
     $('#appbundle_me_date').datetimepicker({
         defaultDate : new Date(),

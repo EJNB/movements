@@ -58,6 +58,12 @@ class Equipment
     private $model;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Invoice", inversedBy="equipments")
+     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     **/
+    private $invoice;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Distribution", inversedBy="equipments")
      * @ORM\JoinColumn(name="distribution_id", referencedColumnName="id")
      **/
@@ -256,5 +262,29 @@ class Equipment
             $this->getModel()/*.' '.
             $this->getNi().' '.
             $this->getNs()*/;
+    }
+
+    /**
+     * Set invoice
+     *
+     * @param \AppBundle\Entity\Invoice $invoice
+     *
+     * @return Equipment
+     */
+    public function setInvoice(\AppBundle\Entity\Invoice $invoice = null)
+    {
+        $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Get invoice
+     *
+     * @return \AppBundle\Entity\Invoice
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
     }
 }

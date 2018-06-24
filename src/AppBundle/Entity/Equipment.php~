@@ -58,6 +58,12 @@ class Equipment
     private $model;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Invoice", inversedBy="equipments")
+     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     **/
+    private $invoice;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Distribution", inversedBy="equipments")
      * @ORM\JoinColumn(name="distribution_id", referencedColumnName="id")
      **/
@@ -246,5 +252,15 @@ class Equipment
     public function getMovement()
     {
         return $this->movement;
+    }
+
+    public function __toString()
+    {
+        return
+            $this->getModel()->getBrand()->getType().' '.
+            $this->getModel()->getBrand().' '.
+            $this->getModel()/*.' '.
+            $this->getNi().' '.
+            $this->getNs()*/;
     }
 }

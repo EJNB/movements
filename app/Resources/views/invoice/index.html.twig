@@ -1,41 +1,79 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Invoices list</h1>
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Listado de Facturas</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <tr>
+                                <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'i.date'} %}</th>
+                                <th style="width: 20%">No. Factura</th>
+                                <th style="width: 20%">PDF</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for invoice in pagination %}
+                                <tr>
+                                    <td>{{ invoice.date | date('Y-m-d') }}</td>
+                                    <td>{{ invoice.invoiceId }}</td>
+                                    <td>
+                                        {% if invoice.document %}<!--si tiene algun documento adjunto-->
+                                            <a href="{{ asset('uploads/invoices/' ~ invoice.document) }}" target="_blank" class="link-tooltip" data-placement="top" title="Ver achivo">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                            </a>
+                                        {% else %}
+                                            <a href="javascript:void(0);" class="link-tooltip" data-toggle="modal" data-target="#modal_upload_file" data-placement="top" title="Subir archivo">
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('invoice_edit',{ 'id' : invoice.id }) }}"class="link-tooltip" data-placement="top" title="Editar">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('invoice_delete',{ 'id':invoice.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {{ form_start(form) }}
+                                <tr>
+                                    <td>
+                                        {{ form_row(form.date)}}
+                                    </td>
+                                    <td>
+                                        {{ form_row(form.invoiceId)}}
+                                    </td>
+                                    <td>
+                                        {{ form_row(form.document)}}
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" type="submit">Guardar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{ form_end(form) }}
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- ./col -->
+        </div><!-- ./row -->
+    </section>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Document</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for invoice in invoices %}
-            <tr>
-                <td><a href="{{ path('invoice_show', { 'id': invoice.id }) }}">{{ invoice.id }}</a></td>
-                <td>{{ invoice.date }}</td>
-                <td>{{ invoice.document }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('invoice_show', { 'id': invoice.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('invoice_edit', { 'id': invoice.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('invoice_new') }}">Create a new invoice</a>
-        </li>
-    </ul>
 {% endblock %}

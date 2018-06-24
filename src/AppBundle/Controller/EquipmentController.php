@@ -19,7 +19,7 @@ class EquipmentController extends Controller
     /**
      * Lists all equipment entities.
      *
-     * @Route("/", name="equipment_index")
+     * @Route("/all", name="equipment_index")
      * @Method("GET")
      */
     public function indexAction(Request $request)
@@ -66,6 +66,7 @@ class EquipmentController extends Controller
                 $equip->setCreateAt($equipment->getCreateAt());
                 $equip->setNi($request->request->get('ni')[$i]);
                 $equip->setNs($request->request->get('ns')[$i]);
+                $equip->setInvoice($form->get('invoice')->getData());
                 $em->persist($equip);
             }
 

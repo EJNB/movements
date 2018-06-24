@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllInvoicesOrderedByDate(){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('i')
+            ->from('AppBundle:Invoice','i')
+            ->orderBy('i.date','ASC');
+        return $qb->getQuery()/*->getResult()*/;
+    }
 }

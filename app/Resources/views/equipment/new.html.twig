@@ -12,26 +12,23 @@
                     <div class="box-body">
                         <div class="container-fluid">
                             {{ form_start(form) }}
-                            {#<div class="col-md-12">#}
                                 <div class="form-horizontal">
-
-                                    <!--types-->
-                                    {#<div class="show_types">#}
-                                        {#{{ include('layouts/include/types.html.twig') }}#}
-                                    {#</div>#}
-
-                                    {#<!--Marca-->#}
-                                    {#<div class="show_brands">#}
-                                        {#{{ include('layouts/include/brands.html.twig') }}#}
-                                    {#</div>#}
 
                                     <!--Modelo -->
                                     <div class="show_models">
-
                                         {{ include('layouts/include/models.html.twig') }}
                                     </div>
 
-                                   <!-- Description -->
+                                   <!-- Factura -->
+                                    <div class="form-group">
+                                        {{ form_label(form.invoice,'Factura :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                        <div class="col-sm-4">
+                                            {{ form_errors(form.invoice) }}
+                                            {{ form_widget(form.invoice) }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Description -->
                                     <div class="form-group">
                                         {{ form_label(form.description,'Descripción :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
                                         <div class="col-sm-4">
@@ -81,7 +78,6 @@
                                     </div>
 
                                 </div>
-                            {#</div><!-- /.col-md-5 -->#}
                             {{ form_end(form) }}
                         </div><!-- /.container-fluid -->
                     </div> <!-- /.box-body -->

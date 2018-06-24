@@ -21,38 +21,22 @@
                     <li><a href="{{ path('department_index') }}"><i class="fa fa-circle-o"></i> <span>Departamentos</span></a></li>
                     <li><a href="{{ path('hotel_index') }}"><i class="fa fa-circle-o"></i> <span>Hoteles</span></a></li>
                     <li><a href="{{ path('person_index') }}"><i class="fa fa-circle-o"></i> <span>Personas</span></a></li>
-                    <li><a href="{{ path('user_index') }}"><i class="fa fa-user-circle"></i> <span>Usuarios</span></a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('user_index') }}"><i class="fa fa-user-circle"></i> <span>Usuarios</span></a></li>
+                    {% endif %}
                 </ul>
             </li>
 
             <!-- Equipos en almacen -->
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-university"></i> <span>Almacen</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="" data-container="body" data-toggle="popover" data-placement="right"
-                               data-content="Equipos que estan almacen sin distribuir">
-                                <i class="fa fa-circle-o"></i>
-                                Equipos disponibles
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('equipment_index') }}"  data-container="body" data-toggle="popover" data-placement="right"
-                               data-content="Todos los equipos que estan en el almacen">
-                                <i class="fa fa-circle-o"></i> Todos
-                            </a>
-                        </li>
-                    </ul>
+            <li class="">
+                <a href="{{ path('equipment_index') }}">
+                    <i class="fa fa-university"></i> <span>Equipos en almacen</span>
                 </a>
             </li>
 
             <!--Invoices-->
             <li>
-                <a href="{{ path('equipment_index') }}">
+                <a href="{{ path('invoice_index') }}">
                     <i class="fa fa-tv"></i> <span>Facturas</span>
                 </a>
             </li>

@@ -8,18 +8,38 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header" style="margin-top: 5px">
-                        <h3 class="box-title">Equipos</h3>
+                        <center><h2 class="box-title">Equipos disponibles en almacen</h2></center>
 
-                        <a href="{{ path('equipment_new') }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar equipos </a>
-                        <div class="box-tools">
-                            <form class="form-inline" action="{{ path('equipment_index') }}" method="get" style="margin-bottom: 2px">
-                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
-                                <button type="submit" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </form>
+                        {#<div class="box-tools">#}
+
+                        {#</div>#}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="container-fluid">
+                                <a href="{{ path('equipment_new') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Agregar equipos </a>
+                            </div>
                         </div>
 
+                        <div class="col-md-3">
+                            <div class="container-fluid">
+                                <div class="count">
+                                    Total de equipos: <span class="badge"> {{ pagination.getTotalItemCount }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <div class="container-fluid">
+                                <form class="form-inline" action="{{ path('equipment_index') }}" method="get" style="margin-bottom: 2px">
+                                    <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive {#no-padding#}">
@@ -29,8 +49,8 @@
                                 <th>{% include 'layouts/include/order.html.twig' with {name:' Tipo', column: 't.name'} %}</th>
                                 <th>{% include 'layouts/include/order.html.twig' with {name:' Marca', column: 'b.name'} %}</th>
                                 <th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>
-                                <th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>
-                                <th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' NI', column: 'e.ni'} %}</th>
+                                <th>{% include 'layouts/include/order.html.twig' with {name:' NS', column: 'e.ns'} %}</th>
                                 <th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>
                                 <th>Acciones</th>
                             </tr>

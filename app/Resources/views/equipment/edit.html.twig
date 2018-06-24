@@ -30,6 +30,15 @@
                                     </div>
                                 </div>
 
+                                <!-- Factura -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.invoice,'Factura :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.invoice) }}
+                                        {{ form_widget(edit_form.invoice) }}
+                                    </div>
+                                </div>
+
                                 <!--NI -->
                                 <div class="form-group">
                                     {{ form_label(edit_form.ni,'Número de inventario :', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
