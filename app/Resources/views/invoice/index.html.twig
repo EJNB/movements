@@ -14,9 +14,10 @@
                     <div class="box-body table-responsive">
                         <table class="table table-hover table-condensed">
                             <tr>
-                                <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'i.date'} %}</th>
+                                <th style="width: 15%">{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'i.date'} %}</th>
                                 <th style="width: 20%">No. Factura</th>
-                                <th style="width: 20%">PDF</th>
+                                <th style="width: 45%">Factura escaneada</th>
+                                {#<th style="width: 20%">Equipos</th>#}
                                 <th>Acciones</th>
                             </tr>
                             {% for invoice in pagination %}
@@ -25,16 +26,33 @@
                                     <td>{{ invoice.invoiceId }}</td>
                                     <td>
                                         {% if invoice.document %}<!--si tiene algun documento adjunto-->
-                                            <a href="{{ asset('uploads/invoices/' ~ invoice.document) }}" target="_blank" class="link-tooltip" data-placement="top" title="Ver achivo">
-                                                <span class="glyphicon glyphicon-file"></span>
+                                            <a href="{{ asset('uploads/invoices/' ~ invoice.document) }}" target="_blank" class="link-tooltip" data-placement="top" title="Ver achivo escaneado">
+                                                <span class="glyphicon glyphicon-file"></span> {{ invoice.document }}
                                             </a>
                                         {% else %}
-                                            <a href="javascript:void(0);" class="link-tooltip" data-toggle="modal" data-target="#modal_upload_file" data-placement="top" title="Subir archivo">
+                                            <a href="javascript:void(0);"
+                                               class="link-tooltip attachment_invoice"
+                                               data-toggle="modal" data-target="#modal_upload_file"
+                                               data-placement="top"
+                                               title="Subir archivo"
+                                               upload-data-url="{{ path('upload_scan_invoice',{'id': invoice.id }) }}"
+                                               onclick="setActionFormUrlUploadFile(this)"
+                                            >
                                                 <span class="glyphicon glyphicon-upload"></span>
                                             </a>
                                         {% endif %}
+
+                                        <div class="equipments_collapse" style="display: none">
+                                            {#<span class="label label-info">Equipos pertenecientes a la factura</span><br>#}
+                                            {% for equipment in invoice.equipments %}
+                                                {{ loop.index }}. {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>NI:</b>{{ equipment.ni }} <b>NS:</b> {{ equipment.ns }}<br>
+                                            {% endfor %}
+                                        </div>
                                     </td>
                                     <td>
+                                        <a href="javascript:void(0);" class="link-tooltip" data-placement="top" title="Ver detalles" onclick="showInvoiceDetails(event)">
+                                            <span class="glyphicon glyphicon-option-horizontal"></span>
+                                        </a>
                                         <a href="{{ path('invoice_edit',{ 'id' : invoice.id }) }}"class="link-tooltip" data-placement="top" title="Editar">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>

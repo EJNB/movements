@@ -10,8 +10,15 @@ Distribuciones:
 	1. Imprimir un conjunto de distribuciones
 	2. terminar los estilos del documento q se le sube a mercedes
 	
+Distribuciones Internas
+	1. todo
+	
+MI: 
+	1. poner en el select de personas el cargo y unavez q se select la  persona q se ponga en algun div.alert el el department y el cargo de la persona
+
+
 Invoices:
-	1. hacer el subir factura
+	1. arreglar a la hora de editar la factura, sino se adjunta una dejar la anterior
 	2. poner todos los equipos en el index de las facturas 
 	3. hacer el filtrado de las facturas
 	

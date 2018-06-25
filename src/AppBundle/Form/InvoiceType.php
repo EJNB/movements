@@ -41,7 +41,7 @@ class InvoiceType extends AbstractType
             ))
             ->add('document',FileType::class,array(
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'data_class' => null,//ver esto mañana,
             ));
     }/**

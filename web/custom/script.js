@@ -35,7 +35,7 @@ $(document).ready(function () {
     // });
 
     $('.toggle_equipments').click(function () {
-        $(this).next().next().slideToggle('slow');
+        $(this).next().next().slideToggle('fast');
     });
 
     $('.link-tooltip').tooltip();
@@ -332,4 +332,35 @@ function testAction(elem) {
             text: 'Sus cambios han sido guardados satisfactoriamente.'
         });
     });
+}
+
+//enviar el fichero de la factura adjunto
+function sendFileAndShowAnimationLoading(event) {
+    event.preventDefault();
+    if ($('form#form_upload_file').find('input[type="file"]').val()==''){//si no hay nada el formulario muestro el alert
+        PNotify.removeAll();
+
+        new PNotify({
+            title: 'Alerta',
+            text: 'Por favor seleccione el archivo',
+            type: 'warning',
+            delay : 2000,
+        });
+    }else {
+        $('form#form_upload_file').submit();
+        $('#modal_upload_file').modal('hide');
+        //pongo la animacion
+        $('div.block').addClass('modal');
+        $('div.sk-cube-grid').removeClass('hidden');
+    }
+}
+
+//setear el action del formulario para el envio del documento
+function setActionFormUrlUploadFile(elem){
+    $('form#form_upload_file').attr('action',$(elem).attr('upload-data-url'));
+}
+
+//show invoice's equipment
+function showInvoiceDetails(elem) {
+    $(elem.target).parent().parent().prev().find('.equipments_collapse').slideToggle('fast');
 }

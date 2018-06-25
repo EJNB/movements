@@ -158,19 +158,27 @@
     </div>
 </div>
 
-<!--Modal para eliminar varios registros a la vez-->
+<!--Modal para subir la factura escaneada-->
 <div class="modal fade" id="modal_upload_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
     <div class="modal-wrapper">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel12">Adjuntar factura escaneada</h4>
                 </div>
                 <div class="modal-body">
-                    {#<p>Estas seguro de eliminar esta cantidad de registros</p>#}
-                    <a href="javascript:void(0)" class="btn btn-info" onclick="/*deleteDistributionSeleccion()*/">Enviar</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <form action="#" method="post" enctype="multipart/form-data" id="form_upload_file">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="file" name="invoice_attachment"/>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="javascript:void(0)" class="btn btn-info" onclick="sendFileAndShowAnimationLoading(event)">Enviar</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

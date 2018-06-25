@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <h1>Mis list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mI in mIs %}
+            <tr>
+                <td><a href="{{ path('mi_show', { 'id': mI.id }) }}">{{ mI.id }}</a></td>
+                <td>{{ mI.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('mi_show', { 'id': mI.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('mi_edit', { 'id': mI.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mi_new') }}">Create a new mI</a>
+        </li>
+    </ul>
+{% endblock %}

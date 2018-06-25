@@ -2,14 +2,13 @@
 
 namespace AppBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class METype extends AbstractType
+class MIType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -23,25 +22,20 @@ class METype extends AbstractType
                 'input' => 'datetime',
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('hotel',EntityType::class,array(
-                'class' => 'AppBundle\Entity\Hotel',
+            ->add('description')
+            ->add('person',EntityType::class,array(
+                'class' => 'AppBundle\Entity\Person',
                 'attr' => array(
                     'class' => 'form-control selectpicker',
                     'data-live-search' => true,
                     'data-size' => 10,
-                    'onchange' => 'selectEquipmentByDistributionPerHotel(this.value)'
+                    //poner el cargo en subtext
+                    //esto es una funcion pra cuando seleccione la persona se seleccionen los equipos asignados previamente
+        //            'onchange' => 'selectEquipmentByDistributionPerHotel(this.value)'
                 ),
-                'placeholder' => 'Seleccione el botel'
+                'placeholder' => 'Seleccione la persona'
             ))
-            ->add('name', TextType::class,array(
-                'attr' => array(
-                    'class' => 'form-control',
-                ),
-            ))
-            ->add('ocupation',TextType::class,array('attr' => array('class' => 'form-control')))
-            ->add('cI',TextType::class,array('attr' => array('class' => 'form-control')))
-            ->add('license',TextType::class,array('attr' => array('class' => 'form-control'),))
-            ->add('numberPlate',TextType::class,array('attr' => array('class' => 'form-control')))
+//            ->add('equipments',Entity)//ver si puedo ya poner los equipos seleccionados a la hora de editarlos
         ;
     }/**
      * {@inheritdoc}
@@ -49,7 +43,7 @@ class METype extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ME'
+            'data_class' => 'AppBundle\Entity\MI'
         ));
     }
 
@@ -58,7 +52,7 @@ class METype extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_me';
+        return 'appbundle_mi';
     }
 
 

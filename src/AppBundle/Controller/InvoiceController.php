@@ -139,4 +139,34 @@ class InvoiceController extends Controller
 
         return $this->redirectToRoute('invoice_index');
     }
+
+    /**
+     * Upload scan invoice entity.
+     *
+     * @Route("/upload_scan_invoice/{id}", name="upload_scan_invoice")
+     */
+    public function uploadFileAction(Request $request, Invoice $invoice){
+
+        $em = $this->getDoctrine()->getManager();
+        $file = $request->files->get('invoice_attachment');//obtengo el archivo
+
+        if($file){//si viene algun documento (pdf,doc o jpg o png)
+            $fileName = $file->getClientOriginalName()/*.'.'.$file->guessExtension()*/;
+            $file->move(
+                $this->getParameter('file_directory_scan_invoices'),
+                $fileName
+            );
+            $invoice->setDocument($fileName);
+        }
+
+        $em->persist($invoice);
+        $em->flush();
+
+        $this->addFlash(
+            'notice',
+            'La factura ha sido guardada satisfactoriamente'
+        );
+
+        return $this->redirectToRoute('invoice_index');
+    }
 }
