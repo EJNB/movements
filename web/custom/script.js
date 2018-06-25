@@ -25,19 +25,6 @@ $(document).ready(function () {
         $('.print_selection,.delete_selection').addClass('hide')
     }
 
-    //cuand select algunos de los input:checbox mostrare los iconos de eliminar todo e imprimir
-    // $('.subcheckbox').change(function (evet) {
-    //     if($('.subcheckbox:checked').length>0){
-    //         $('.print_selection,.delete_selection').removeClass('hide');
-    //     } else {
-    //         $('.print_selection,.delete_selection').addClass('hide')//desabilitar el boton de imprimir todos
-    //     }
-    // });
-
-    $('.toggle_equipments').click(function () {
-        $(this).next().next().slideToggle('fast');
-    });
-
     $('.link-tooltip').tooltip();
 
     //pasar el data-url para el enlace del modal
@@ -363,4 +350,8 @@ function setActionFormUrlUploadFile(elem){
 //show invoice's equipment
 function showInvoiceDetails(elem) {
     $(elem.target).parent().parent().prev().find('.equipments_collapse').slideToggle('fast');
+}
+
+function toogleEquipmentByDistribution(elem) {
+    $(elem).next().next().slideToggle('fast');
 }
