@@ -44,10 +44,15 @@ class Person
     private $department;
 
     /**
-     * One Product has Many Features.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="persons")
      */
-    private $distributionsi;
+    private $distributions;
+
+//    /**
+//     * One Product has Many Features.
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+//     */
+//    private $distributionsi;
 
     /**
      * One Person has Many MI.
@@ -55,66 +60,8 @@ class Person
      */
     private $movements;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Person
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set cargo
-     *
-     * @param string $cargo
-     *
-     * @return Person
-     */
-    public function setCargo($cargo)
-    {
-        $this->cargo = $cargo;
-
-        return $this;
-    }
-
-    /**
-     * Get cargo
-     *
-     * @return string
-     */
-    public function getCargo()
-    {
-        return $this->cargo;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
-    }
+//    public function __toString()
+//    {
+//        return $this->getName();
+//    }
 }

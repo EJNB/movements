@@ -17,6 +17,17 @@ $(document).ready(function () {
     //     }
     // });
 
+    // $('span.show-cant').html(0);
+    // let cant = $('select.equipments').find('[value="' + $('select.equipments').val() +'"]').attr('data-subtext');
+    // $('span.show-cant').html(cant);//muestro la cantidad de equipos
+    // if(cant== 0){
+    //     $('#appbundle_distributioni_persons').prop('disabled',true);
+    //     $('#appbundle_distributioni_persons').selectpicker('refresh');
+    // }else{
+    //     $('#appbundle_distributioni_persons').prop('disabled',false);
+    //     $('#appbundle_distributioni_persons').selectpicker('refresh');
+    // }
+
 
     if($('.subcheckbox:checked').length>0){
         $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
@@ -89,6 +100,37 @@ $(document).ready(function () {
         checkboxClass: 'icheckbox_square-green',
         increaseArea: '20%' // optional
     });
+
+    $('select.equipments').on('changed.bs.select', function (e) {
+        let cant = $('select.equipments').find('[value="' + $(this).val() +'"]').attr('data-subtext'),
+            select_persons = $('#appbundle_distributioni_persons');
+        $('span.show-cant').html(cant);//ponga la cantidad de equipos en el span
+
+        if(cant== 0){
+            select_persons.prop('disabled',true);
+            select_persons.selectpicker('refresh');
+        }else{
+            select_persons.prop('disabled',false);
+            select_persons.selectpicker('refresh');
+        }
+
+        select_persons.selectpicker({
+            maxOptions : cant,
+        });
+        select_persons.selectpicker('refresh');
+    });
+
+    $('#appbundle_distributioni_persons').selectpicker({
+        // actionsBox : true, //activar los botones deselectAll y selectAll
+        // selectAllText : 'Seleccionar todo', //cambia el mesage del boton selectAll
+        // deselectAllText : 'Deseleccionar todo', //cambia el mensage del boton deselectAll
+        liveSearch : true, //activar la buscqueda
+        liveSearchPlaceholder : 'Buscar',
+        // maxOptions : 0,
+        maxOptionsText : 'No quedan mas equipos para distribuir',
+        noneSelectedText : 'No hay personas seleccionadas',
+        title : 'Seleccione las personas',
+    })
 
 });//end $(document).ready
 
@@ -354,4 +396,25 @@ function showInvoiceDetails(elem) {
 
 function toogleEquipmentByDistribution(elem) {
     $(elem).next().next().slideToggle('fast');
+}
+
+//funcion para evitar q se seleccionen mas personas q equipos
+function addPersonToDistribution(elem) {
+    alert()
+
+    // console.log($(elem).val().pop());
+    // console.log($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]'))
+    // alert($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]').prop('selected'))
+    // let cantidad = Number($('span.show-cant').html());//cantidad de equipos
+    // if ( cantidad > 0 ){
+    //     if ($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]').prop('selected')===true){
+    //         cantidad = cantidad - 1;
+    //     }else {
+    //         cantidad = cantidad + 1;
+    //     }
+    //     $('span.show-cant').html(cantidad);
+    // }
+    // $('span.show-cant').html(cantidad);
+    // alert(cant)
+    // $('#appbundle_distributioni_persons option:selected').length;
 }

@@ -18,7 +18,7 @@ MI:
 
 
 Invoices:
-	1. arreglar a la hora de editar la factura, sino se adjunta una dejar la anterior
+	1. si la factura tiene un pdf adjunto poner una identificacion
 	2. poner todos los equipos en el index de las facturas 
 	3. hacer el filtrado de las facturas
 	
@@ -27,3 +27,6 @@ Genrales:
 	2. Traer la plantilla q me dio rainy con la cual yo hice el sistema de movements
 	3. hacer el sistema de notificaciones
 	4. Definir bien a donde puede entrar cada usuario dependiendo de su rol
+	
+Equipments 
+	1. Agregar q se pueda quitar el los input genrados en el add equioment y tambien se puedan agregar mas input

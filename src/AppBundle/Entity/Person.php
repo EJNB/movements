@@ -44,16 +44,35 @@ class Person
     private $department;
 
     /**
-     * One Product has Many Features.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="persons")
      */
-    private $distributionsi;
+    private $distributions;
+
+//    /**
+//     * One Product has Many Features.
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DistributionI", mappedBy="person")
+//     */
+//    private $distributionsi;
 
     /**
      * One Person has Many MI.
      * @ORM\OneToMany(targetEntity="MI", mappedBy="person")
      */
     private $movements;
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->distributions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -113,19 +132,6 @@ class Person
         return $this->cargo;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->distributionsi = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->movements = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Set department
      *
@@ -151,37 +157,37 @@ class Person
     }
 
     /**
-     * Add distributionsi
+     * Add distribution
      *
-     * @param \AppBundle\Entity\DistributionI $distributionsi
+     * @param \AppBundle\Entity\DistributionI $distribution
      *
      * @return Person
      */
-    public function addDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    public function addDistribution(\AppBundle\Entity\DistributionI $distribution)
     {
-        $this->distributionsi[] = $distributionsi;
+        $this->distributions[] = $distribution;
 
         return $this;
     }
 
     /**
-     * Remove distributionsi
+     * Remove distribution
      *
-     * @param \AppBundle\Entity\DistributionI $distributionsi
+     * @param \AppBundle\Entity\DistributionI $distribution
      */
-    public function removeDistributionsi(\AppBundle\Entity\DistributionI $distributionsi)
+    public function removeDistribution(\AppBundle\Entity\DistributionI $distribution)
     {
-        $this->distributionsi->removeElement($distributionsi);
+        $this->distributions->removeElement($distribution);
     }
 
     /**
-     * Get distributionsi
+     * Get distributions
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDistributionsi()
+    public function getDistributions()
     {
-        return $this->distributionsi;
+        return $this->distributions;
     }
 
     /**

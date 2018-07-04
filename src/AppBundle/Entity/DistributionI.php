@@ -13,33 +13,43 @@ use Doctrine\ORM\Mapping as ORM;
 class DistributionI extends Distribution
 {
     /**
-     * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Person", inversedBy="distributionsi")
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     * Many distributions internals have Many persons.
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Person", inversedBy="distributions")
+     * @ORM\JoinTable(name="distributioni_persons")
      */
-    private $person;
+    private $persons;
 
     /**
-     * Set person
+     * Add person
      *
      * @param \AppBundle\Entity\Person $person
      *
      * @return DistributionI
      */
-    public function setPerson(\AppBundle\Entity\Person $person = null)
+    public function addPerson(\AppBundle\Entity\Person $person)
     {
-        $this->person = $person;
+        $this->persons[] = $person;
 
         return $this;
     }
 
     /**
-     * Get person
+     * Remove person
      *
-     * @return \AppBundle\Entity\Person
+     * @param \AppBundle\Entity\Person $person
      */
-    public function getPerson()
+    public function removePerson(\AppBundle\Entity\Person $person)
     {
-        return $this->person;
+        $this->persons->removeElement($person);
+    }
+
+    /**
+     * Get persons
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersons()
+    {
+        return $this->persons;
     }
 }

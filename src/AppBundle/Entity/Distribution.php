@@ -33,6 +33,13 @@ abstract class Distribution
     private $requestDate;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $state;
+
+    /**
      * @ORM\OneToMany(targetEntity="Equipment", mappedBy="distribution")
      **/
     private $equipments;
@@ -111,5 +118,29 @@ abstract class Distribution
     public function getEquipments()
     {
         return $this->equipments;
+    }
+
+    /**
+     * Set state
+     *
+     * @param boolean $state
+     *
+     * @return Distribution
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return boolean
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

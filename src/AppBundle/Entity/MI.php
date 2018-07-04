@@ -99,7 +99,7 @@ class MI extends Movement
      *
      * @return MI
      */
-    public function setPerson(\AppBundle\Entity\PersonI $person = null)
+    public function setPerson(\AppBundle\Entity\Person $person = null)
     {
         $this->person = $person;
 

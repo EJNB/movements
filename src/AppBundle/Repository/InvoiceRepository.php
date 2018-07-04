@@ -15,7 +15,7 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
         $qb = $em->createQueryBuilder();
         $qb->select('i')
             ->from('AppBundle:Invoice','i')
-            ->orderBy('i.date','ASC');
+            ->orderBy('i.date','DESC');
         return $qb->getQuery()/*->getResult()*/;
     }
 }

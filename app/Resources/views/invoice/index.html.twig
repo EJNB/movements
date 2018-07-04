@@ -45,7 +45,16 @@
                                         <div class="equipments_collapse" style="display: none">
                                             {#<span class="label label-info">Equipos pertenecientes a la factura</span><br>#}
                                             {% for equipment in invoice.equipments %}
-                                                {{ loop.index }}. {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>NI:</b>{{ equipment.ni }} <b>NS:</b> {{ equipment.ns }}<br>
+                                                <p>{{ loop.index }}. {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} <b>NI:</b>{{ equipment.ni }} <b>NS:</b> {{ equipment.ns }}
+                                                    {#{% if equipment.distribution is null %}#}
+                                                        {#<a href="" >#}
+                                                            {#<span class="label label-warning">sin distribuir</span>#}
+                                                        {#</a>#}
+                                                    {#{% else %}#}
+                                                        {#<span class="label label-info">distribuido</span>#}
+                                                    {#{% endif %}#}
+                                                </p>
+                                                {#<br>#}
                                             {% endfor %}
                                         </div>
                                     </td>

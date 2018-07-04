@@ -12,34 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DistributionI extends Distribution
 {
-    /**
-     * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PersonI", inversedBy="distributionsi")
-     * @ORM\JoinColumn(name="personi_id", referencedColumnName="id")
-     */
-    private $person;
+//    /**
+//     * Many Features have One Product.
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Person", inversedBy="distributionsi")
+//     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+//     */
+//    private $person;
 
     /**
-     * Set person
-     *
-     * @param \AppBundle\Entity\Person $person
-     *
-     * @return DistributionI
+     * Many distributions internals have Many persons.
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Person", inversedBy="distributions")
+     * @ORM\JoinTable(name="distributioni_persons")
      */
-    public function setPerson(\AppBundle\Entity\Person $person = null)
-    {
-        $this->person = $person;
-
-        return $this;
-    }
-
-    /**
-     * Get person
-     *
-     * @return \AppBundle\Entity\Person
-     */
-    public function getPerson()
-    {
-        return $this->person;
-    }
+    private $persons;
 }

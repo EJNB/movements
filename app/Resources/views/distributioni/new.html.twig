@@ -1,16 +1,77 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Distributioni creation</h1>
+{% block content %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="content">
 
-    <ul>
-        <li>
-            <a href="{{ path('distributioni_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="page-header">Agregar distribuci&oacute;n interna</h3>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-horizontal">
+
+                                    <!-- Equipments -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Equipos:</label>
+                                        <div class="col-sm-8">
+                                            <select required class="form-control selectpicker equipments" data-live-search="true" title="Seleccione el tipo de equipo" name="equipments">
+                                                {% for equipment in equipments %}
+                                                    <option value="{{ equipment[0].name }}" data-subtext="{{ equipment.cantidad }}">
+                                                        {{ equipment[0].brand.type.name }} {{ equipment[0].brand }} {{ equipment[0].name }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <!--una vez q haga onchage aqui se mostraran la cantidad de equipos q tiene en el almacen-->
+                                        <div class="col-sm-1">
+                                            <h4 style="font-size: 16px; margin-top: 30%">
+                                                <span class="label label-info show-cant">0</span>
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- Personas -->
+                                    <div class="form-group">
+                                        {{ form_label(form.persons,'Personas:', { 'label_attr':{ 'class':'col-sm-2 control-label' } }) }}
+                                        <div class="col-sm-8">
+                                            {{ form_errors(form.persons) }}
+                                            {{ form_widget(form.persons) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2"></label>
+                                        <div class="col-sm-8">
+                                            <button type="submit" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-floppy-save"></span>   Guardar
+                                            </button>
+                                            <a href="{{ path('distributioni_index') }}" class="btn btn-default">Regresar al listado</a>
+                                        </div>
+                                    </div>
+                                </div><!-- /.form-horizontal-->
+                            </div><!-- /.col-md-6 -->
+
+                            <div class="col-md-6">
+                                <div class="form-horizontal">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <button type="button" class="close link-tooltip" data-dismiss="alert" data-placement="top" title="Eliminar">
+                                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                    </div>
+                                </div><!-- /.form-horizontal-->
+                            </div><!-- /.col-md-6 -->
+                        </div><!-- /.row -->
+
+                    {{ form_end(form) }}
+                </div><!-- /.container-fluid -->
+            </div> <!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.content -->
+
 {% endblock %}

@@ -37,7 +37,12 @@ class EquipmentType extends AbstractType
                     'class' => 'form-control selectpicker',
                     'data-live-search' => true,
                 ),
-                'placeholder' => 'Seleccione la factura'
+                'placeholder' => 'Seleccione la factura',
+                'choice_attr' => function($val, $key, $index){
+                    return [
+                        'data-subtext' => strtolower($val->getDocument())
+                    ];
+                },
             ))
         ;
 //            ->add('ni',TextType::class,array(

@@ -10,4 +10,51 @@ namespace AppBundle\Repository;
  */
 class DistributionIRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getEquipmentsModels(){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('m, count(e) as cantidad')
+            ->from('AppBundle:Model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+            ->leftJoin('m.equipments','e')
+            ->where('e.distribution is null')
+            ->andWhere('e.movement is null')
+            ->groupBy('m.name')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getAllDistributionsI($filter=null){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('d')
+            ->from('AppBundle:DistributionI','d')
+            ->innerJoin('d.persons','p');
+
+        if($filter!=""){
+            $qb
+                ->innerJoin('d.equipments', 'e')
+                ->innerJoin('e.model','m')
+                ->innerJoin('m.brand','b')
+                ->innerJoin('b.type','t')
+                ->where($qb->expr()->like('d.requestDate', '?1'))
+                ->orWhere($qb->expr()->like('p.name', '?1'))
+                ->orWhere($qb->expr()->like('e.ni', '?1'))
+                ->orWhere($qb->expr()->like('e.ns', '?1'))
+                ->orWhere($qb->expr()->like('e.description', '?1'))
+                ->orWhere($qb->expr()->like('m.name', '?1'))
+                ->orWhere($qb->expr()->like('b.name', '?1'))
+                ->orWhere($qb->expr()->like('t.name', '?1'))
+                ->setParameter(1, '%' . $filter . '%');
+        }
+
+        $qb->orderBy('d.requestDate','DESC');
+
+        $result = $qb->getQuery()/*->getResult()*/;
+        return $result;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +14,19 @@ class DistributionIType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('requestDate')
-            ->add('person');
+        $builder->add('persons',EntityType::class,array(
+            'class' => 'AppBundle\Entity\Person',
+            'attr' => array(
+                'class' => 'form-control selectpicker',
+                'data-live-search' => true,
+//                'data-max-options' => 2,
+//                'data-max-options-text' => 'No quedan mas equipos para distribuir',
+                'title' => 'Seleccione las personas'
+//                'onchange' => 'addPersonToDistribution(this)',
+            ),
+            'placeholder' => 'Seleccione las personas',
+            'multiple' => true,
+        ));
     }/**
      * {@inheritdoc}
      */

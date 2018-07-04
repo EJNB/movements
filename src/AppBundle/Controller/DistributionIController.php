@@ -20,14 +20,23 @@ class DistributionIController extends Controller
      * @Route("/", name="distributioni_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $distributionIs = $em->getRepository('AppBundle:DistributionI')->findAll();
+        $filter = $request->query->get('filter');
+        $distributionEs = $em->getRepository('AppBundle:DistributionI')->getAllDistributionsI($filter);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $distributionEs, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            15/*limit per page*/
+        );
 
         return $this->render('distributioni/index.html.twig', array(
-            'distributions' => $distributionIs,
+            'pagination' => $pagination,
         ));
     }
 
@@ -39,21 +48,38 @@ class DistributionIController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $distributionI = new Distributioni();
         $form = $this->createForm('AppBundle\Form\DistributionIType', $distributionI);
         $form->handleRequest($request);
+        $equipments = $em->getRepository('AppBundle:DistributionI')->getEquipmentsModels();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $limit = $form->get('persons')->getData()->count();
+            $model = $request->request->get('equipments');
+            $equipments_sent = $em->getRepository('AppBundle:Equipment')->getEquipments($limit,$model);//busco el modelo de los equipos
+
+            foreach ($equipments_sent as $equipment){
+                $distributionI->addEquipment($equipment);
+            }
+
+            $distributionI->setRequestDate(new \DateTime('now'));
+            $distributionI->setState(0);
             $em->persist($distributionI);
             $em->flush();
 
-            return $this->redirectToRoute('distributioni_show', array('id' => $distributionI->getId()));
+            $this->addFlash(
+                'notice',
+                'Su distribución ha sido guardada satisafactoriamete.'
+            );
+
+            return $this->redirectToRoute('distributioni_index');
         }
 
         return $this->render('distributioni/new.html.twig', array(
             'distributionI' => $distributionI,
             'form' => $form->createView(),
+            'equipments' => $equipments
         ));
     }
 

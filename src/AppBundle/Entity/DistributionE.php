@@ -28,13 +28,6 @@ class DistributionE extends Distribution
     private $consecutive_number;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $state;
-
-    /**
      * Set consecutiveNumber
      *
      * @param string $consecutiveNumber
@@ -80,29 +73,5 @@ class DistributionE extends Distribution
     public function getHotel()
     {
         return $this->hotel;
-    }
-
-    /**
-     * Set state
-     *
-     * @param boolean $state
-     *
-     * @return DistributionE
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get state
-     *
-     * @return boolean
-     */
-    public function getState()
-    {
-        return $this->state;
     }
 }

@@ -18,8 +18,7 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ->from('AppBundle:Equipment','e')
             ->innerJoin('e.model','m')
             ->innerJoin('m.brand','b')
-            ->innerJoin('b.type','t')
-        ;
+            ->innerJoin('b.type','t');
         if($filter!="") {
             $qb
                 ->where($qb->expr()->like('e.createAt', '?1'))
@@ -29,8 +28,7 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
                 ->orWhere($qb->expr()->like('m.name', '?1'))
                 ->orWhere($qb->expr()->like('b.name', '?1'))
                 ->orWhere($qb->expr()->like('t.name', '?1'))
-                ->setParameter(1, '%' . $filter . '%')
-            ;
+                ->setParameter(1, '%' . $filter . '%');
         }
 
         $qb
@@ -74,5 +72,21 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('id',$id);
         $result = $qb->getQuery()->getResult();
         return $result;
+    }
+
+    //obtiene todos los equipos de un modelo especifico sin distribuir, sin mover
+    public function getEquipments($limit,$model){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->where('m.name =:model')
+            ->andWhere('e.movement is null')
+            ->andWhere('e.distribution is null')
+            ->setParameter('model',$model)
+            ->setMaxResults($limit);
+        return $qb->getQuery()->getResult();
     }
 }

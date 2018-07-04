@@ -94,10 +94,29 @@ class InvoiceController extends Controller
      */
     public function editAction(Request $request, Invoice $invoice)
     {
+        $document = $invoice->getDocument();
         $editForm = $this->createForm('AppBundle\Form\InvoiceType', $invoice);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+//            dump($document);
+
+            if ($editForm->get('document')->getData()!= null){
+                //save invoice scan
+                $file = $invoice->getDocument();
+                if($file){//si viene algun documento (pdf,doc o jpg o png)
+                    $fileName = $file->getClientOriginalName()/*.'.'.$file->guessExtension()*/;
+                    $file->move(
+                        $this->getParameter('file_directory_scan_invoices'),
+                        $fileName
+                    );
+                    $invoice->setDocument($fileName);
+                }
+            }else{
+                $invoice->setDocument($document);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
 

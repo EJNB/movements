@@ -1,3 +1,0 @@
-actualizar la version de symfony
-actualizar la version de awesome
-	- buscar dos iconos lo mas exactos posibles para almacen y para factura
