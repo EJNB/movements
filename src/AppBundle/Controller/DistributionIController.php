@@ -6,6 +6,7 @@ use AppBundle\Entity\DistributionI;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Distributioni controller.
@@ -25,14 +26,14 @@ class DistributionIController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $filter = $request->query->get('filter');
-        $distributionEs = $em->getRepository('AppBundle:DistributionI')->getAllDistributionsI($filter);
+        $distributionIs = $em->getRepository('AppBundle:DistributionI')->getAllDistributionsI($filter);
 
         $paginator  = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate(
-            $distributionEs, /* query NOT result */
+            $distributionIs, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            15/*limit per page*/
+            30/*limit per page*/
         );
 
         return $this->render('distributioni/index.html.twig', array(
@@ -142,6 +143,48 @@ class DistributionIController extends Controller
         }
 
         return $this->redirectToRoute('distributioni_index');
+    }
+
+    /**
+     * Delete many distributions interns
+     *
+     * @Route("/delete_many_distribution_i_selection", options={"expose"=true}, name="delete_many_distribution_i_selection")
+     * @Method("POST")
+     */
+    public function deleteDistributionISelectionAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $distribution_ids = $request->request->get('data');
+            if ($distribution_ids) {
+                foreach ($distribution_ids as $distribution) {
+                    $distribution = $em->getRepository('AppBundle:DistributionI')->find(intval($distribution));
+                    if ($distribution) {
+                        foreach ($distribution->getEquipments() as $equipment) {
+                            $equipment->setDistribution(null);
+                            $em->persist($equipment);
+                            $em->flush();
+                        }
+                        $em->remove($distribution);
+                        $em->flush();
+                    }
+                }
+            }
+
+            $paginator = $this->get('knp_paginator');
+
+            $distributionIs = $em->getRepository('AppBundle:DistributionI')->getAllDistributionsI();
+            $pagination = $paginator->paginate(
+                $distributionIs, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                15/*limit per page*/
+            );
+
+            return $this->render('distributioni/list-distributions.html.twig', array(
+                'pagination' => $pagination,
+            ));
+        }
     }
 
     /**

@@ -2,23 +2,22 @@
     <thead>
     <tr>
         <th style="width: 2%">
-            <input class="link-tooltip" dataplacement="top" title="Seleccionar todo" type="checkbox" {#onclick="selectAllDistribucion(this)"#}>
+            <input class="link-tooltip" dataplacement="top" title="Seleccionar todo" type="checkbox" onclick="selectAllDistribucion(this)">
         </th>
-        <th style="width: 10%">{% include 'layouts/include/order.html.twig' with {name:'Fecha', column: 'h.name'} %}</th>
-        <th style="width: 50%">Equipos</th>
-        <th style="width: 30%">Personas</th>
-        {#<th style="width: 12%">Estado</th>#}
+        <th style="width: 7%">{% include 'layouts/include/order.html.twig' with {name:'Fecha', column: 'h.name'} %}</th>
+        <th style="width: 45%">Equipos</th>
+        <th style="width: 20%">Personas</th>
+        <th style="width: 15%">Estado</th>
         {#<th style="width: 40%">N&uacute;mero consecutivo</th>#}
         <th>Acciones</th>
     </tr>
     </thead>
     <tbody>
     {% for distribution in pagination %}
-    {#{% for distribution in distributionIs %}#}
         <tr>
             <td>
                 {% if distribution.state != true %}<!-- si el la distribucion no ha sido cerrada muestro el input-->
-                <input class="subcheckbox" type="checkbox" data-id="{{ distribution.id }}" {#onclick="showInputsPrintAndRemoveAll()"#}>
+                <input class="subcheckbox" type="checkbox" data-id="{{ distribution.id }}" onclick="showInputsPrintAndRemoveAll()">
                 {% endif %}
             </td>
             <td>{{ distribution.requestDate | date('d-m-y') }}</td>
@@ -32,17 +31,17 @@
                     {{ person.name }}<br>
                 {% endfor %}
             </td>
-            {#<td>#}
+            <td>
                 {#{% if is_granted('ROLE_DIRECTOR') %}#}
-                    {#<input type="checkbox" onchange="testAction(this)" {% if distribution.state == true %}checked{% endif %} data-id="{{ distribution.id }}" style="position: relative;top: 3px; margin-right: 3px">#}
+                    <input type="checkbox" onchange="testAction(this)" {% if distribution.state == true %}checked{% endif %} data-id="{{ distribution.id }}" style="position: relative;top: 3px; margin-right: 3px">
                 {#{% endif %}#}
-                {#{% if distribution.state == true %}#}
-                    {#<span class="label label-success">Ejecutada</span>#}
-                {#{% else %}#}
-                    {#<span class="label label-warning">En proceso</span>#}
-                {#{% endif %}#}
+                {% if distribution.state == true %}
+                    <span class="label label-success">Ejecutada</span>
+                {% else %}
+                    <span class="label label-warning">En proceso</span>
+                {% endif %}
 
-            {#</td>#}
+            </td>
 
             {#<td>#}
                 {#<a onclick="toogleEquipmentByDistribution(this)" href="javascript:void(0);">#}

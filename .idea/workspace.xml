@@ -2,38 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04778ac9-640c-4f86-8984-7cf9aa1ed276" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/equipment/equipments2.html.twig" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Resources/views/distributioni/intern_distributions.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/movementdb 15-05-2018.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/movementdb 18-06-2018.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/new 2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/invoices/27b1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/invoices/documents test aggregate.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/uploads/invoices/nuevo-iphone-x.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Taks importants.txt" afterPath="$PROJECT_DIR$/Taks importants.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributioni/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributioni/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/equipment/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/equipment/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/invoice/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/invoice/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/mi/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/mi/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movementdb.sql" afterPath="$PROJECT_DIR$/movementdb.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/InvoiceController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/InvoiceController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Distribution.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Distribution.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/DistributionE.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/DistributionE.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/DistributionI.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/DistributionI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/MI.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/MI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Person.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Person.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/DistributionIType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/DistributionIType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/EquipmentType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EquipmentType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/DistributionIRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/DistributionIRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/InvoiceRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/InvoiceRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/custom/script.js" afterPath="$PROJECT_DIR$/web/custom/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/fos_js_routes.js" afterPath="$PROJECT_DIR$/web/js/fos_js_routes.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,27 +34,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig">
+      <file leaf-file-name="list-distributions.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="28" column="35" lean-forward="false" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+            <state relative-caret-position="51">
+              <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="e#315#346#0#Twig" expanded="true" />
+                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/custom/script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="295" column="0" lean-forward="false" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#getAllBrandsByType#0" expanded="false" />
+                <element signature="n#!!block;n#saveModel#0" expanded="false" />
+                <element signature="n#!!block;n#toogleInputs#0" expanded="false" />
+                <element signature="n#!!block;n#toogleInputNiConsecutive#0" expanded="false" />
+                <element signature="n#!!block;n#initiCheck#0" expanded="false" />
+                <element signature="n#!!block;n#selectEquipmentByDistributionPerHotel#0" expanded="false" />
+                <element signature="n#!!block;n#sendFileAndShowAnimationLoading#0" expanded="false" />
+                <element signature="n#!!block;n#setActionFormUrlUploadFile#0" expanded="false" />
+                <element signature="n#!!block;n#showInvoiceDetails#0" expanded="false" />
+                <marker date="1530748933516" expanded="true" signature="7507:7918" ph="..." />
+                <marker date="1530748933516" expanded="true" signature="7601:7734" ph="..." />
+                <marker date="1530748933516" expanded="true" signature="7769:7903" ph="..." />
+                <marker date="1530748933516" expanded="true" signature="8977:9461" ph="..." />
+                <marker date="1530748933516" expanded="true" signature="9079:9250" ph="..." />
+                <marker date="1530748933516" expanded="true" signature="9289:9442" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modals.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="152" column="97" lean-forward="false" selection-start-line="152" selection-start-column="97" selection-end-line="152" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list-distributions.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig">
+      <file leaf-file-name="DistributionIController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+            <state relative-caret-position="374">
+              <caret line="176" column="98" lean-forward="false" selection-start-line="176" selection-start-column="98" selection-end-line="176" selection-end-column="98" />
               <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="e#320#351#0#Twig" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="e#801#826#1#PHP" expanded="true" />
+                <element signature="e#1146#1177#0#PHP" expanded="true" />
+                <element signature="e#1991#2012#1#PHP" expanded="true" />
+                <element signature="e#5411#5436#1#PHP" expanded="true" />
+                <element signature="e#6024#6049#1#PHP" expanded="true" />
+                <element signature="e#6333#6377#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistributionEController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1003">
+              <caret line="164" column="5" lean-forward="false" selection-start-line="164" selection-start-column="5" selection-end-line="164" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,23 +120,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="229">
               <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#h4#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistributionIController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-              <folding>
-                <element signature="e#754#779#1#PHP" expanded="true" />
-                <element signature="e#1099#1130#0#PHP" expanded="true" />
-                <element signature="e#1944#1965#1#PHP" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,9 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>175</find>
-      <find>258</find>
-      <find>en pr</find>
       <find>Pno</find>
       <find>change_distribution_state</find>
       <find>select_all_distribution</find>
@@ -144,6 +156,9 @@
       <find>ho</find>
       <find>hotel</find>
       <find>adde</find>
+      <find>deleteAction</find>
+      <find>internas</find>
+      <find>Externas</find>
     </findStrings>
     <replaceStrings>
       <replace>Person</replace>
@@ -156,7 +171,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="s doctrine:schema:update --force" />
       <command text="s doctrine:generate:entities AppBundle:Invoice" />
       <command text="git add -A" />
       <command text="git commit -m &quot;adelantada la gestion de las facturas hasta el 9%, solo  falta el upload invoice, poner todos los equipos de la factura en el invoice_index y el filter de factura&quot;" />
@@ -181,6 +195,7 @@
       <command text="s doctrine:generate:crud AppBundle:DistributionI" />
       <command text="s doctrine:schema:update --force" />
       <command text="s doctrine:generate:entities AppBundle:Distribution" />
+      <command text="s fos:js-routing:dump" />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -215,8 +230,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/mi/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/InvoiceType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Invoice.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/distributione/list-distributions.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/layouts/layout_login.html.twig" />
@@ -234,14 +247,16 @@
         <option value="$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/equipment/new.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/DistributionIType.php" />
-        <option value="$PROJECT_DIR$/web/custom/script.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/DistributionE.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Distribution.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/DistributionIRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/distributioni/new.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/EquipmentRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig" />
+        <option value="$PROJECT_DIR$/web/custom/script.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php" />
       </list>
     </option>
@@ -501,18 +516,18 @@
       <workItem from="1530471929327" duration="6256000" />
       <workItem from="1530485134324" duration="14749000" />
       <workItem from="1530626258490" duration="5408000" />
-      <workItem from="1530711540954" duration="11682000" />
+      <workItem from="1530711540954" duration="16042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313977000" />
+    <option name="totallyTimeSpent" value="318337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2408492" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2408492" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -560,18 +575,31 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/web/custom/script.js</url>
+          <line>337</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/web/custom/script.js</url>
+          <line>329</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/web/custom/script.js</url>
+          <line>285</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/invoice/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BrandController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -586,13 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="43" column="35" lean-forward="false" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="173" column="75" lean-forward="false" selection-start-line="173" selection-start-column="57" selection-end-line="173" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -769,14 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="68" lean-forward="false" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/aside.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -788,35 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1334">
           <caret line="81" column="12" lean-forward="false" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/custom/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="129" column="52" lean-forward="false" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!block;n#getAllBrandsByType#0" expanded="false" />
-            <element signature="n#!!block;n#saveModel#0" expanded="false" />
-            <element signature="n#!!block;n#toogleInputs#0" expanded="false" />
-            <element signature="n#!!block;n#toogleInputNiConsecutive#0" expanded="false" />
-            <element signature="n#!!block;n#initiCheck#0" expanded="false" />
-            <element signature="n#!!block;n#selectEquipmentByDistributionPerHotel#0" expanded="false" />
-            <element signature="n#!!block;n#deleteDistributionSeleccion#0" expanded="false" />
-            <element signature="n#!!block;n#toogleModalConfimDeletedDistributions#0" expanded="false" />
-            <element signature="n#!!block;n#selectAllDistribucion#0" expanded="false" />
-            <element signature="n#!!block;n#showInputsPrintAndRemoveAll#0" expanded="false" />
-            <element signature="n#!!block;n#testAction#0" expanded="false" />
-            <element signature="n#!!block;n#sendFileAndShowAnimationLoading#0" expanded="false" />
-            <element signature="n#!!block;n#setActionFormUrlUploadFile#0" expanded="false" />
-            <element signature="n#!!block;n#showInvoiceDetails#0" expanded="false" />
-            <marker date="1530720182731" expanded="true" signature="7507:7918" ph="..." />
-            <marker date="1530720182731" expanded="true" signature="7601:7734" ph="..." />
-            <marker date="1530720182731" expanded="true" signature="7769:7903" ph="..." />
-            <marker date="1530720182731" expanded="true" signature="8977:9461" ph="..." />
-            <marker date="1530720182731" expanded="true" signature="9079:9250" ph="..." />
-            <marker date="1530720182731" expanded="true" signature="9289:9442" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,14 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="28" column="35" lean-forward="false" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/list-distributions.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -910,37 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="e#320#351#0#Twig" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#h4#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/DistributionIRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -961,14 +906,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/include/models.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layouts/include/modals.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="152" column="97" lean-forward="false" selection-start-line="152" selection-start-column="97" selection-end-line="152" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="21" column="56" lean-forward="false" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributione/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="21" column="74" lean-forward="false" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/distributioni/list-distributions.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="e#315#346#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/custom/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="295" column="0" lean-forward="false" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#getAllBrandsByType#0" expanded="false" />
+            <element signature="n#!!block;n#saveModel#0" expanded="false" />
+            <element signature="n#!!block;n#toogleInputs#0" expanded="false" />
+            <element signature="n#!!block;n#toogleInputNiConsecutive#0" expanded="false" />
+            <element signature="n#!!block;n#initiCheck#0" expanded="false" />
+            <element signature="n#!!block;n#selectEquipmentByDistributionPerHotel#0" expanded="false" />
+            <element signature="n#!!block;n#sendFileAndShowAnimationLoading#0" expanded="false" />
+            <element signature="n#!!block;n#setActionFormUrlUploadFile#0" expanded="false" />
+            <element signature="n#!!block;n#showInvoiceDetails#0" expanded="false" />
+            <marker date="1530748933516" expanded="true" signature="7507:7918" ph="..." />
+            <marker date="1530748933516" expanded="true" signature="7601:7734" ph="..." />
+            <marker date="1530748933516" expanded="true" signature="7769:7903" ph="..." />
+            <marker date="1530748933516" expanded="true" signature="8977:9461" ph="..." />
+            <marker date="1530748933516" expanded="true" signature="9079:9250" ph="..." />
+            <marker date="1530748933516" expanded="true" signature="9289:9442" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionEController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1003">
+          <caret line="164" column="5" lean-forward="false" selection-start-line="164" selection-start-column="5" selection-end-line="164" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DistributionIController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="176" column="98" lean-forward="false" selection-start-line="176" selection-start-column="98" selection-end-line="176" selection-end-column="98" />
           <folding>
-            <element signature="e#754#779#1#PHP" expanded="true" />
-            <element signature="e#1099#1130#0#PHP" expanded="true" />
-            <element signature="e#1944#1965#1#PHP" expanded="true" />
+            <element signature="e#801#826#1#PHP" expanded="true" />
+            <element signature="e#1146#1177#0#PHP" expanded="true" />
+            <element signature="e#1991#2012#1#PHP" expanded="true" />
+            <element signature="e#5411#5436#1#PHP" expanded="true" />
+            <element signature="e#6024#6049#1#PHP" expanded="true" />
+            <element signature="e#6333#6377#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

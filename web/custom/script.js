@@ -282,13 +282,14 @@ function selectEquipmentByDistributionPerHotel(elem) {
 //     alert()
 // });
 
-//esta funcion es para eliminar todos las distribuciones seleccionadas
+//esta funcion es para eliminar todas las distribuciones externas seleccionadas
 function deleteDistributionSeleccion() {
     $('#modal_delete_many_file').modal('hide');
     $('div.block').addClass('modal');
     $('div.sk-cube-grid').removeClass('hidden');
     var distribution_ids_array = [],
-        url = Routing.generate('delete_distribution_selection');
+        distribution = $('h2.distribution-title').text().indexOf('externas'),
+        url = (distribution==-1) ? Routing.generate('delete_many_distribution_i_selection') : Routing.generate('delete_distribution_selection');
     $('input.subcheckbox:checked').each(function () {
         distribution_ids_array.push(Number($(this).attr('data-id')));
     });
@@ -318,7 +319,7 @@ function toogleModalConfimDeletedDistributions() {
 function selectAllDistribucion(elem) {
     if (elem.checked){
         $('input.subcheckbox').prop('checked',true);
-        $('.print_selection,.delete_selection').removeClass('hide')//habilitar el boton de imprimir todos
+        $('.print_selection,.delete_selection').removeClass('hide');//habilitar el boton de imprimir todos
         $('.link-tooltip').tooltip('hide');
     }else {
         $('input.subcheckbox').prop('checked',false);
