@@ -202,4 +202,33 @@ class DistributionIController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Displays a form to edit an existing distributionE entity.
+     *
+     * @Route("/set_distribution_i_status", options={"expose"=true}, name="set_distribution_i_status")
+     * @Method("POST")
+     */
+    public function setStatusDistributionIAction(Request $request){
+        if($request->isXmlHttpRequest()){
+            $data_id = $request->request->get('data_id');
+            $data_status = $request->request->get('data_status')=='false' ? 0 : 1;
+            $em = $this->getDoctrine()->getManager();
+            $distribution_i = $em->getRepository('AppBundle:DistributionI')->findOneById(intval($data_id));
+            $distribution_i->setState($data_status);
+            $em->flush();
+
+            $paginator  = $this->get('knp_paginator');
+            $distributionIs = $em->getRepository('AppBundle:DistributionI')->getAllDistributionsI();
+            $pagination = $paginator->paginate(
+                $distributionIs, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                15/*limit per page*/
+            );
+
+            return $this->render('distributioni/list-distributions.html.twig', array(
+                'pagination' => $pagination,
+            ));
+        }
+    }
 }

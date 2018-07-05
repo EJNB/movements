@@ -335,24 +335,22 @@ function showInputsPrintAndRemoveAll(){
     }
 }
 
-function testAction(elem) {
+//cambiar el estado de las distribuciones
+function setDistributionStatus(elem) {
     //pongo la animacion pequeña de awesome
     $('div.block').addClass('modal');
     $('div.sk-cube-grid').removeClass('hidden');
-    var url = Routing.generate('set_distribution_status'),
+    var distribution = $('h2.distribution-title').text().indexOf('externas'),
+        url = (distribution==-1) ? Routing.generate('set_distribution_i_status') : Routing.generate('set_distribution_status'),
         id = Number($(elem).attr('data-id')),
         status = $(elem).prop('checked');
+
     $.post(url,{ data_id : id, data_status : status },function (response) {
         $('.show-distributions-list').html(response);
 
         //dentengo la animacion
         $('div.block').removeClass('modal');
         $('div.sk-cube-grid').addClass('hidden');
-
-        $('.change_distribution_state').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            increaseArea: '20%' // optional
-        });
 
         PNotify.removeAll();//remove all notifications
         //muestro la notificacion
@@ -385,7 +383,7 @@ function sendFileAndShowAnimationLoading(event) {
     }
 }
 
-//setear el action del formulario para el envio del documento
+//setear el action del formu`lario para el envio del documento
 function setActionFormUrlUploadFile(elem){
     $('form#form_upload_file').attr('action',$(elem).attr('upload-data-url'));
 }
