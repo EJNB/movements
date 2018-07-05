@@ -397,23 +397,7 @@ function toogleEquipmentByDistribution(elem) {
     $(elem).next().next().slideToggle('fast');
 }
 
-//funcion para evitar q se seleccionen mas personas q equipos
-function addPersonToDistribution(elem) {
-    alert()
-
-    // console.log($(elem).val().pop());
-    // console.log($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]'))
-    // alert($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]').prop('selected'))
-    // let cantidad = Number($('span.show-cant').html());//cantidad de equipos
-    // if ( cantidad > 0 ){
-    //     if ($('select#appbundle_distributioni_persons').find('[value="' + $(elem).val().pop() +'"]').prop('selected')===true){
-    //         cantidad = cantidad - 1;
-    //     }else {
-    //         cantidad = cantidad + 1;
-    //     }
-    //     $('span.show-cant').html(cantidad);
-    // }
-    // $('span.show-cant').html(cantidad);
-    // alert(cant)
-    // $('#appbundle_distributioni_persons option:selected').length;
+function putAnimation() {
+    $('div.block').addClass('modal');
+    $('div.sk-cube-grid').removeClass('hidden');
 }

@@ -7,7 +7,7 @@
         <th style="width: 7%">{% include 'layouts/include/order.html.twig' with {name:'Fecha', column: 'h.name'} %}</th>
         <th style="width: 45%">Equipos</th>
         <th style="width: 20%">Personas</th>
-        <th style="width: 15%">Estado</th>
+        <th style="width: 15%">{% include 'layouts/include/order.html.twig' with {name:'Estado', column: 'd.state'} %}</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -54,7 +54,7 @@
                 {#</div>#}
             {#</td>#}
             <td><!--Acciones-->
-                <a href="{#{{ path('print_documentation_by_distribution',{ 'id' : distribution.id }) }}#}" class="link-tooltip" data-placement="top" title="Imprimir documentación" target="_blank">
+                <a href="{#{{ path('print_documentation_by_distribution',{ 'id' : distribution.id }) }}#}" class="link-tooltip" data-placement="top" title="Imprimir vale" target="_blank">
                     <span class="glyphicon glyphicon-print"></span>
                 </a>
                 {#{% if(is_granted('ROLE_DIRECTOR')) %}#}

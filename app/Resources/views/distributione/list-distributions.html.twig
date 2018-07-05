@@ -6,7 +6,7 @@
         </th>
         <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Instalación', column: 'h.name'} %}</th>
         <th style="width: 10%">{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'd.requestDate'} %}</th>
-        <th style="width: 12%">Estado</th>
+        <th style="width: 12%">{% include 'layouts/include/order.html.twig' with {name:'Estado', column: 'd.state'} %}</th>
         <th style="width: 40%">N&uacute;mero consecutivo</th>
         <th>Acciones</th>
     </tr>
