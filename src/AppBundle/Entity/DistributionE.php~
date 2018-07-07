@@ -28,13 +28,6 @@ class DistributionE extends Distribution
     private $consecutive_number;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $state;
-
-    /**
      * Set consecutiveNumber
      *
      * @param string $consecutiveNumber

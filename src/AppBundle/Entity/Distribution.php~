@@ -119,4 +119,28 @@ abstract class Distribution
     {
         return $this->equipments;
     }
+
+    /**
+     * Set state
+     *
+     * @param boolean $state
+     *
+     * @return Distribution
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return boolean
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
 }

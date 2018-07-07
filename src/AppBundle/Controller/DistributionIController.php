@@ -84,21 +84,21 @@ class DistributionIController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a distributionI entity.
-     *
-     * @Route("/{id}", name="distributioni_show")
-     * @Method("GET")
-     */
-    public function showAction(DistributionI $distributionI)
-    {
-        $deleteForm = $this->createDeleteForm($distributionI);
-
-        return $this->render('distributioni/show.html.twig', array(
-            'distributionI' => $distributionI,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a distributionI entity.
+//     *
+//     * @Route("/{id}", name="distributioni_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(DistributionI $distributionI)
+//    {
+//        $deleteForm = $this->createDeleteForm($distributionI);
+//
+//        return $this->render('distributioni/show.html.twig', array(
+//            'distributionI' => $distributionI,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing distributionI entity.
@@ -128,7 +128,7 @@ class DistributionIController extends Controller
     /**
      * Deletes a distributionI entity.
      *
-     * @Route("/{id}", name="distributioni_delete")
+     * @Route("/delete/{id}", name="distributioni_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, DistributionI $distributionI)
@@ -185,22 +185,6 @@ class DistributionIController extends Controller
                 'pagination' => $pagination,
             ));
         }
-    }
-
-    /**
-     * Creates a form to delete a distributionI entity.
-     *
-     * @param DistributionI $distributionI The distributionI entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(DistributionI $distributionI)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('distributioni_delete', array('id' => $distributionI->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 
     /**

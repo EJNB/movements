@@ -1,0 +1,35 @@
+{% extends 'layouts/main.html.twig' %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Error 404</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="error-page">
+            <h2 class="headline text-yellow"> 404</h2>
+
+            <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> Oops! Recurso no encontrado.</h3>
+
+                <p>
+                    Lo sentimos, no podemos encontrar el recurso solicitado.
+                    Mientras tanto, usted puede <a href="">regresar a la pagina anterior</a> o usar el formulario de busqueda.
+                </p>
+
+                <form class="search-form">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Buscar">
+
+                        <div class="input-group-btn">
+                            <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div><!-- /.input-group -->
+                </form>
+            </div><!-- /.error-content -->
+        </div><!-- /.error-page -->
+    </section><!-- /.content -->
+{% endblock %}

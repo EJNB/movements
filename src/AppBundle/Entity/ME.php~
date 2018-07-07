@@ -76,4 +76,124 @@ class ME extends Movement
     {
         return $this->hotel;
     }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ME
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set ocupation
+     *
+     * @param string $ocupation
+     *
+     * @return ME
+     */
+    public function setOcupation($ocupation)
+    {
+        $this->ocupation = $ocupation;
+
+        return $this;
+    }
+
+    /**
+     * Get ocupation
+     *
+     * @return string
+     */
+    public function getOcupation()
+    {
+        return $this->ocupation;
+    }
+
+    /**
+     * Set cI
+     *
+     * @param integer $cI
+     *
+     * @return ME
+     */
+    public function setCI($cI)
+    {
+        $this->cI = $cI;
+
+        return $this;
+    }
+
+    /**
+     * Get cI
+     *
+     * @return integer
+     */
+    public function getCI()
+    {
+        return $this->cI;
+    }
+
+    /**
+     * Set license
+     *
+     * @param integer $license
+     *
+     * @return ME
+     */
+    public function setLicense($license)
+    {
+        $this->license = $license;
+
+        return $this;
+    }
+
+    /**
+     * Get license
+     *
+     * @return integer
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    /**
+     * Set numberPlate
+     *
+     * @param string $numberPlate
+     *
+     * @return ME
+     */
+    public function setNumberPlate($numberPlate)
+    {
+        $this->numberPlate = $numberPlate;
+
+        return $this;
+    }
+
+    /**
+     * Get numberPlate
+     *
+     * @return string
+     */
+    public function getNumberPlate()
+    {
+        return $this->numberPlate;
+    }
 }
