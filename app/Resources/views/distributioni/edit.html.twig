@@ -1,21 +1,73 @@
 {% extends 'layouts/main.html.twig' %}
 
 {% block content %}
-    <h1>Distributioni edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="content">
 
-    <ul>
-        <li>
-            <a href="{{ path('distributioni_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="page-header">
+                    <p style="margin-left: 28%; margin-bottom: 0">Agregar distribuci&oacute;n interna</p>
+                </h3>
+            </div>
+            <div class="box-body">
+                <div class="container-fluid">
+                    {{ form_start(edit_form) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal">
+                                <!-- Equipments -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Equipos:</label>
+                                    <div class="col-sm-4">
+                                        <select required class="form-control selectpicker equipments" data-live-search="true" title="Seleccione el tipo de equipo" name="equipments">
+                                            {% for equipment in equipments if equipments != 0 %}
+                                                <option
+                                                    value="{{ equipment[0].name }}"
+                                                    data-subtext="{{ equipment.cantidad }}"
+                                                    {% if distributionI.equipments | length %}
+                                                        {% if distributionI.equipments[0].model.name == equipment[0].name %}selected{% endif %}
+                                                    {% endif %}
+                                                >
+                                                    {{ equipment[0].brand.type.name }} {{ equipment[0].brand }} {{ equipment[0].name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        {#{{ dump(distributionI.equipments | length) }}#}
+                                    </div>
+                                    <!--una vez q haga onchage aqui se mostraran la cantidad de equipos q tiene en el almacen-->
+                                    <div class="col-sm-1">
+                                        <h4 style="font-size: 16px; margin-top: 10%">
+                                            <span class="label label-info show-cant">0</span>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <!-- Personas -->
+                                <div class="form-group">
+                                    {{ form_label(edit_form.persons,'Personas:', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.persons) }}
+                                        {{ form_widget(edit_form.persons) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3"></label>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary" onclick="checkFormAndPutAnimation(event)">
+                                            <span class="glyphicon glyphicon-floppy-save"></span>   Guardar
+                                        </button>
+                                        <a href="{{ path('distributioni_index') }}" class="btn btn-default">Regresar al listado</a>
+                                    </div>
+                                </div>
+                            </div><!-- /.form-horizontal-->
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+
+                    {{ form_end(edit_form) }}
+                </div><!-- /.container-fluid -->
+            </div> <!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.content -->
 {% endblock %}

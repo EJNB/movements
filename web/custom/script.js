@@ -401,3 +401,39 @@ function putAnimation() {
     $('div.block').addClass('modal');
     $('div.sk-cube-grid').removeClass('hidden');
 }
+
+function checkFormAndPutAnimation(event) {
+    //verifcar los inputs requeridos
+    var select_equipments = $('select.equipments');
+    if (select_equipments.val()==null || $('#appbundle_distributioni_persons').val()!=null){
+        // alert('No hay valores en el inpt')
+        $('div.block').addClass('modal');
+        $('div.sk-cube-grid').removeClass('hidden');
+    }
+}
+
+// function checkEquipments() {
+//
+//     var select_equipments = $('select.equipments');
+//     if (select_equipments.val()!=null){
+// //
+//         select_equipments.prev().prev().focus().css({
+//             'border-color': '#e91815',
+//             'box-shadow': '0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(233, 24, 21, 0.60)',
+//             'outline': '0 none',
+//         }).popover('show');
+//
+//         return false;
+//
+//     }else {
+//         select_equipments.focus().css({
+//             'border-color' : '#d2d6de',
+//             'border' : '1px solid #ccc',
+//             'box-shadow': 'none',
+//             'outline': '0 none'
+//         }).popover('hide');
+//
+//         return true;
+//     }
+// }
+

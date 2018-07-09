@@ -19,13 +19,14 @@ class DistributionIType extends AbstractType
             'attr' => array(
                 'class' => 'form-control selectpicker',
                 'data-live-search' => true,
-//                'data-max-options' => 2,
-//                'data-max-options-text' => 'No quedan mas equipos para distribuir',
-                'title' => 'Seleccione las personas'
-//                'onchange' => 'addPersonToDistribution(this)',
+                'title' => 'Seleccione las personas',
+                'data-container' => 'body',
+                'data-placement' => 'right',
+                'data-content' => 'Por seleccione los equipos'
             ),
             'placeholder' => 'Seleccione las personas',
             'multiple' => true,
+            'required' => true
         ));
     }/**
      * {@inheritdoc}

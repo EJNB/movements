@@ -108,20 +108,45 @@ class DistributionIController extends Controller
      */
     public function editAction(Request $request, DistributionI $distributionI)
     {
-        $deleteForm = $this->createDeleteForm($distributionI);
+        $em = $this->getDoctrine()->getManager();
+        $equipments = $em->getRepository('AppBundle:DistributionI')->getEquipmentsModels();
         $editForm = $this->createForm('AppBundle\Form\DistributionIType', $distributionI);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('distributioni_edit', array('id' => $distributionI->getId()));
+            //set equipment to null
+            foreach ($distributionI->getEquipments() as $equipment){
+                $equipment->setDistribution(null);
+                $em->persist($equipment);
+                $em->flush();
+            }
+
+            //add the news equipments
+            $limit = $editForm->get('persons')->getData()->count();
+            $model = $request->request->get('equipments');
+            $equipments_sent = $em->getRepository('AppBundle:Equipment')->getEquipments($limit,$model);//busco el modelo de los equipos
+
+            foreach ($equipments_sent as $equipment){
+                $equipment->setDistribution($distributionI);
+                $em->persist($equipment);
+                $em->flush();
+            }
+
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Su distribución ha sido actualizada satisafactoriamete.'
+            );
+
+            return $this->redirectToRoute('distributioni_index');
         }
 
         return $this->render('distributioni/edit.html.twig', array(
             'distributionI' => $distributionI,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'equipments' => $equipments,
         ));
     }
 

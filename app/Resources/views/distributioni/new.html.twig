@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-primary" onclick="putAnimation()">
+                                            <button type="submit" class="btn btn-primary" onclick="checkFormAndPutAnimation()">
                                                 <span class="glyphicon glyphicon-floppy-save"></span>   Guardar
                                             </button>
                                             <a href="{{ path('distributioni_index') }}" class="btn btn-default">Regresar al listado</a>
@@ -57,17 +57,6 @@
                                     </div>
                                 </div><!-- /.form-horizontal-->
                             </div><!-- /.col-md-6 -->
-
-                            {#<div class="col-md-6">#}
-                                {#<div class="form-horizontal">#}
-                                    {#<div class="alert alert-success alert-dismissible" role="alert">#}
-                                        {#<button type="button" class="close link-tooltip" data-dismiss="alert" data-placement="top" title="Eliminar">#}
-                                            {#<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>#}
-                                        {#</button>#}
-                                        {#<strong>Warning!</strong> Better check yourself, you're not looking too good.#}
-                                    {#</div>#}
-                                {#</div><!-- /.form-horizontal-->#}
-                            {#</div><!-- /.col-md-6 -->#}
                         </div><!-- /.row -->
 
                     {{ form_end(form) }}
