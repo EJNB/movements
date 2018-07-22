@@ -42,9 +42,7 @@ $(document).ready(function () {
     $('.link-eliminar').click(function(){
         var description = 'Estas seguro de eliminar este registro',
             url = $(this).attr('data-url');
-        $('.modal-body')
-                .children('p')
-                .html(description)
+        $('.modal-body').children('p').html(description)
                 .end()
             .find('a.btn').attr('href',url);
     });
@@ -398,6 +396,8 @@ function toogleEquipmentByDistribution(elem) {
 }
 
 function putAnimation() {
+    //ocultar el modal
+    $(document).find('div.modal').modal('hide');
     $('div.block').addClass('modal');
     $('div.sk-cube-grid').removeClass('hidden');
 }

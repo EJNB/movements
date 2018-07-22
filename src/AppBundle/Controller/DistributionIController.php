@@ -154,18 +154,23 @@ class DistributionIController extends Controller
      * Deletes a distributionI entity.
      *
      * @Route("/delete/{id}", name="distributioni_delete")
-     * @Method("DELETE")
      */
-    public function deleteAction(Request $request, DistributionI $distributionI)
+    public function deleteAction(DistributionI $distributionI)
     {
-        $form = $this->createDeleteForm($distributionI);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($distributionI);
+        $em = $this->getDoctrine()->getManager();
+        foreach ($distributionI->getEquipments() as $equipment) {//seteo todos los equipos a null
+            $equipment->setDistribution(null);
+            $em->persist($equipment);
             $em->flush();
         }
+
+        $em->remove($distributionI);
+        $em->flush();
+
+        $this->addFlash(
+            'notice',
+            'La distribución fue eliminada satisfactoriamente.'
+        );
 
         return $this->redirectToRoute('distributioni_index');
     }
@@ -186,7 +191,7 @@ class DistributionIController extends Controller
                 foreach ($distribution_ids as $distribution) {
                     $distribution = $em->getRepository('AppBundle:DistributionI')->find(intval($distribution));
                     if ($distribution) {
-                        foreach ($distribution->getEquipments() as $equipment) {
+                        foreach ($distribution->getEquipments() as $equipment) {//seteo todos los equipos a null
                             $equipment->setDistribution(null);
                             $em->persist($equipment);
                             $em->flush();
