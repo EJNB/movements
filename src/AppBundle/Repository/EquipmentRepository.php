@@ -28,6 +28,7 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
                 ->orWhere($qb->expr()->like('m.name', '?1'))
                 ->orWhere($qb->expr()->like('b.name', '?1'))
                 ->orWhere($qb->expr()->like('t.name', '?1'))
+                ->orWhere($qb->expr()->like('e.consecutive_number', '?1'))
                 ->setParameter(1, '%' . $filter . '%');
         }
 
@@ -35,6 +36,35 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('e.movement is null')
             ->andWhere('e.distribution is null')
             ->orderBy('t.name','DESC');
+        $result = $qb->getQuery()/*->getResult()*/;
+        return $result;
+    }
+
+    public function getAllEquipmentOrderByNI($filter=null){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t');
+        if($filter!="") {
+            $qb
+                ->where($qb->expr()->like('e.createAt', '?1'))
+                ->orWhere($qb->expr()->like('e.description', '?1'))
+                ->orWhere($qb->expr()->like('e.ni', '?1'))
+                ->orWhere($qb->expr()->like('e.ns', '?1'))
+                ->orWhere($qb->expr()->like('m.name', '?1'))
+                ->orWhere($qb->expr()->like('b.name', '?1'))
+                ->orWhere($qb->expr()->like('t.name', '?1'))
+                ->setParameter(1, '%' . $filter . '%');
+        }
+
+        $qb
+            ->andWhere('e.movement is null')
+            ->andWhere('e.distribution is null')
+            ->orderBy('e.ni','ASC');
         $result = $qb->getQuery()/*->getResult()*/;
         return $result;
     }
@@ -87,6 +117,43 @@ class EquipmentRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('e.distribution is null')
             ->setParameter('model',$model)
             ->setMaxResults($limit);
+        return $qb->getQuery()->getResult();
+    }
+
+    //get equipment by movement e
+    public function findEquipmentByMovement($movement){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+            ->where('e.movement=:movement')
+            ->setParameter('movement',$movement)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    //get all equipments without movement and equipment
+    public function getAllEquipmentsByME($movement){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+//            ->innerJoin('e.movement','me')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t')
+            ->where('e.movement is null')
+            ->andWhere('e.distribution is null')
+            ->orWhere('e.movement=:movement')
+            ->orderBy('e.ni','ASC')
+            ->setParameter('movement',$movement);
+
         return $qb->getQuery()->getResult();
     }
 }

@@ -58,10 +58,6 @@
                     </div>
                 </div>
             </div>
-            {#<div class="modal-footer">#}
-                {#<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
-                {#<button type="button" class="btn btn-primary">Save changes</button>#}
-            {#</div>#}
         </div>
     </div>
 </div>
@@ -159,7 +155,7 @@
 </div>
 
 <!--Modal para subir la factura escaneada-->
-<div class="modal fade" id="modal_upload_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+<div class="modal fade" id="modal_upload_invoice_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
     <div class="modal-wrapper">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -184,3 +180,51 @@
         </div>
     </div>
 </div>
+
+<!--Upload document me scan-->
+<div class="modal fade" id="upload_scan_document_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+    <div class="modal-wrapper">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel12">Adjuntar documentaci&oacute;n escaneada</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" enctype="multipart/form-data" id="form_upload_scan_me_file">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="file" name="scan_document_attachment_me" required/>
+                                <input type="hidden" name="url" value="{{ app.request.uri }}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="javascript:void(0)" class="btn btn-info" onclick="uploadScanMeDocuement()">Enviar</a>
+                                <button id="submit_form" type="submit" class="btn btn-info" style="display:none">Enviar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<!--Este modal es para cuando vallamos hacer algun movimiento y tenga mas de dos distribuciones-->#}
+{#<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">#}
+    {#<div class="modal-wrapper">#}
+        {#<div class="modal-dialog modal-sm">#}
+            {#<div class="modal-content">#}
+                {#<div class="modal-header">#}
+                    {#<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
+                    {#<h4 class="modal-title" id="myModalLabel12">Seleccione la distribucion</h4>#}
+                {#</div>#}
+                {#<div class="modal-body">#}
+                    {#<p></p>#}
+                    {#<a href="" class="btn btn-info" onclick="putAnimation()">Si</a>#}
+                    {#<button type="button" class="btn btn-default" data-dismiss="modal">No</button>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#</div>#}

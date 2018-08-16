@@ -26,9 +26,12 @@ class DistributionEType extends AbstractType
                 ),
                 'placeholder' => 'Seleccione la entidad'
             ))
-//            ->add('requestDate',DateTimeType::class,array(
-//                'label' => false
-//            ))
+            ->add('requestDate',DateTimeType::class,array(
+                'widget' => 'single_text',
+                'required' => true,
+                'input' => 'datetime',
+                'attr' => array('class' => 'form-control')
+            ))
         ;
     }/**
      * {@inheritdoc}

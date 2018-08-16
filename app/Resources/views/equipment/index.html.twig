@@ -9,10 +9,6 @@
                 <div class="box box-info">
                     <div class="box-header" style="margin-top: 5px">
                         <center><h2 class="box-title">Equipos disponibles en almacen</h2></center>
-
-                        {#<div class="box-tools">#}
-
-                        {#</div>#}
                     </div>
 
                     <div class="row">
@@ -29,11 +25,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
                             <div class="container-fluid">
                                 <form class="form-inline" action="{{ path('equipment_index') }}" method="get" style="margin-bottom: 2px">
-                                    <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                    <input type="text" class="form-control" placeholder="Buscar" name="filter" {% if filter!='' %}value="{{ filter }}"{% endif %} style="width: 72%">
+                                    {% if filter!='' %}
+                                        <button class="btn btn-info">
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                        </button>
+                                    {% endif %}
                                     <button type="submit" class="btn btn-success">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
@@ -61,7 +62,7 @@
                                     <td>{{ equipment.model }}</td>
                                     <td>{{ equipment.ni }}</td>
                                     <td>{{ equipment.ns }}</td>
-                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y') }}{% endif %}</td>
                                     <td>
                                         <a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">
                                             <span class="glyphicon glyphicon-edit"></span>
@@ -80,6 +81,10 @@
                                 </tr>
                             {% endfor %}
                         </table>
+                        {# display navigation #}
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
                     </div>
                 </div>
                 <!-- /.box -->

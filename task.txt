@@ -1,0 +1,29 @@
+
+
+
+
+ver en personal los titulos q tiene mi expediente
+buscar ejemplos de CV y terminar la parte de los skills
+quemar los curso q no usare por ahora en los discos dvd
+buscar algun curso profecional de SQL(ver q significa el with en las uniones)
+
+
+
+virtualenvs
+investigar sobre los distintos modulos de nodejs
+buscar otros cursos de python avanzados
+como montar una bd sqlite3 en navicat11
+
+como retornar a url q estabamos la pagina en q estabamos 
+cousera.org
+
+En cuanto al sistema de movimientos informaticos:
+Seguridad:
+     1. definir los roles de roles en la vista de las distribuciones internas
+Movimientos Externos: 
+     1. q se verifique q los equipos distribuidos correspondan con los equipos q se trasladaron o ver con yudy quien cierra la distribucion
+la busqueda desde el index
+poner en el index de me en la parte de trasladado por solo el nomber ede la persona y algun caret q me indiquever los detalles, y del lado de los equipos poner los typos de equipos q se llevo con la cantidad enre parentesis
+cuando le de ver detalles poner esta clase en el span glyphicon-chevron-up
+Edit
+delete(poner los equipments en null)

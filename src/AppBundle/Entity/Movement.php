@@ -181,6 +181,7 @@ abstract class Movement
     public function addEquipment(\AppBundle\Entity\Equipment $equipment)
     {
         $this->equipments[] = $equipment;
+        $equipment->setMovement($this);
 
         return $this;
     }

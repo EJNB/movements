@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMapping;
+
 /**
  * MERepository
  *
@@ -10,14 +12,121 @@ namespace AppBundle\Repository;
  */
 class MERepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAllMovementsOrderByDate(){
+    public function getAllMovementsOrderByDate($filter){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb
-            ->select('m')
+            ->select('m,h,e,mo,b,t')
             ->from('AppBundle:ME','m')
             ->innerJoin('m.hotel','h')
+            ->innerJoin('m.equipments','e')
+            ->innerJoin('e.model','mo')
+            ->innerJoin('mo.brand','b')
+            ->innerJoin('b.type','t');
+
+            if($filter!=""){
+                $qb
+                    ->orWhere($qb->expr()->like('h.name', '?1'))
+                    ->orWhere($qb->expr()->like('m.date', '?1'))
+                    ->orWhere($qb->expr()->like('m.cI', '?1'))
+                    ->orWhere($qb->expr()->like('m.ocupation', '?1'))
+                    ->orWhere($qb->expr()->like('m.numberPlate', '?1'))
+                    ->orWhere($qb->expr()->like('m.license', '?1'))
+                    ->setParameter(1, '%' . $filter . '%');
+            };
+        dump($qb->getQuery());
+        return $qb->getQuery()/*->getResult()*/;
+
+    }
+
+    //experimento tratando de entender las native query de doctrine
+//    public function getEquipmentsByDistributionEByHotelWithStatusFalse($hotel){
+//        $em = $this->getEntityManager();
+//        $rsm = new ResultSetMapping();
+//        $sql = "
+//            SELECT equipment.id,equipment.ni,equipment.ns,model.name as model,brand.name as brand,type.name as type
+//            FROM equipment
+//            INNER JOIN distribution_e ON distribution_e.id=equipment.distribution_id
+//            INNER JOIN distribution ON distribution.id=equipment.distribution_id
+//            INNER JOIN hotel ON distribution_e.hotel_id=hotel.id
+//            INNER JOIN model ON equipment.model_id=model.id
+//            INNER JOIN brand ON model.brand_id=brand.id
+//            INNER JOIN type ON brand.type_id=type.id
+//            WHERE distribution.state=? AND hotel.id=6 AND equipment.movement_id IS NULL
+//        ";
+//
+//        $query = $em->createNativeQuery($sql,$rsm);
+//        $query->setParameter(1,0);
+////        $query->setParameter(2,$hotel);
+//        return $query->getResult();
+//    }
+
+    public function getEquipmentsByDistributionEByHotelWithStatusFalse($hotel){
+        $em = $this->getEntityManager();
+        $sql = "
+            SELECT equipment.id,equipment.ni,equipment.ns,model.name as model,brand.name as brand,type.name as type
+            FROM equipment
+            INNER JOIN distribution_e ON distribution_e.id=equipment.distribution_id
+            INNER JOIN distribution ON distribution.id=equipment.distribution_id
+            INNER JOIN hotel ON distribution_e.hotel_id=hotel.id
+            INNER JOIN model ON equipment.model_id=model.id
+            INNER JOIN brand ON model.brand_id=brand.id
+            INNER JOIN type ON brand.type_id=type.id
+            WHERE distribution.state=? AND hotel.id=? AND equipment.movement_id IS NULL
+        ";
+
+        $var = $em->getConnection()->prepare($sql);
+        $var->bindValue(1,0);
+        $var->bindValue(2,$hotel);
+        $var->execute();
+        return $var->fetchAll();
+    }
+
+    public function getAllEquipments($filter=null){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t');
+        if($filter!="") {
+            $qb
+                ->where($qb->expr()->like('e.createAt', '?1'))
+                ->orWhere($qb->expr()->like('e.description', '?1'))
+                ->orWhere($qb->expr()->like('e.ni', '?1'))
+                ->orWhere($qb->expr()->like('e.ns', '?1'))
+                ->orWhere($qb->expr()->like('m.name', '?1'))
+                ->orWhere($qb->expr()->like('b.name', '?1'))
+                ->orWhere($qb->expr()->like('t.name', '?1'))
+                ->setParameter(1, '%' . $filter . '%');
+        }
+
+        $qb
+            ->andWhere('e.movement is null')
+            //esto en la parte de los mov no se hace falta solo necesito los equipos q no se han trasladado
+//            ->andWhere('e.distribution is null')
+            ->orderBy('t.name','DESC')
+            ->orderBy('e.ni','ASC')
         ;
-        return $qb->getQuery();
+        $result = $qb->getQuery()/*->getResult()*/;
+        return $result;
+    }
+
+    public function getMeDetails($id){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('AppBundle:Equipment','e')
+            ->innerJoin('e.movement','m','with','m instance of AppBundle:ME')
+            ->innerJoin('e.model','mo')
+            ->innerJoin('mo.brand','b')
+            ->innerJoin('b.type','t')
+            ->where('m.id=:id')
+            ->setParameter('id',$id)
+        ;
+        return $qb->getQuery()->getResult();
     }
 }

@@ -13,8 +13,8 @@
                         <a href="{{ path('me_new') }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Agregar movimiento </a>
                         <div class="box-tools">
                             <form class="form-inline" action="{{ path('me_index') }}" method="get" style="margin-bottom: 2px">
-                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
-                                <button type="submit" class="btn btn-success">
+                                <input type="text" class="form-control" placeholder="Buscar" name="filter" {% if filter is defined %}value="{{ filter }}" {% endif %}>
+                                <button type="submit" class="btn btn-success" onclick="putAnimation()">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </form>
@@ -26,37 +26,81 @@
 
                         <table class="table table-hover table-condensed">
                             <tr>
-                                <th>{% include 'layouts/include/order.html.twig' with {name:' Hotel', column: 'h.name'} %}</th>
+                                <th>No</th>
+                                {#<th>{% include 'layouts/include/order.html.twig' with {name:'Id', column: 'm.movementId'} %}</th>#}
+                                <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Hotel', column: 'h.name'} %}</th>
                                 <th>{% include 'layouts/include/order.html.twig' with {name:' Fecha', column: 'm.date'} %}</th>
-                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Modelo', column: 'm.name'} %}</th>#}
-                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Número de inventario', column: 'e.ni'} %}</th>#}
-                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Número de serie', column: 'e.ns'} %}</th>#}
-                                {#<th>{% include 'layouts/include/order.html.twig' with {name:' Introducido en', column: 'e.createAt'} %}</th>#}
-                                <th>Acciones</th>
+                                <th style="width: 20%">{% include 'layouts/include/order.html.twig' with {name:' Trasladado por', column: 'm.name'} %}</th>
+                                <th style="width: 40%">Equipos</th>
+                                <th style="width: 5%">Doc. Esc</th>
+                                <th style="width: 10%">Acciones</th>
                             </tr>
+                            {#{% for me in mes %}#}
                             {% for me in pagination %}
                                 <tr>
+                                    <td>{{ loop.index }}</td>
+                                    {#<td>{{ me.movementId }}</td>#}
                                     <td>{{ me.hotel.name }}</td>
-                                    {#<td>{{ equipment.model.brand }}</td>#}
-                                    {#<td>{{ equipment.model }}</td>#}
-                                    {#<td>{{ equipment.ni }}</td>#}
-                                    {#<td>{{ equipment.ns }}</td>#}
-                                    {#<td>{% if equipment.createAt %}{{ equipment.createAt|date('d-m-Y H:i:s') }}{% endif %}</td>#}
-                                    {#<td>#}
-                                        {#<a href="{{ path('equipment_edit', { 'id': equipment.id }) }}" data-placement="top" title="Editar" class="link-tooltip">#}
-                                            {#<span class="glyphicon glyphicon-edit"></span>#}
+                                    <td>{% if me.date %}{{ me.date|date('d-m-Y') }}{% endif %}</td>
+                                    <td>
+                                        <div class="hide_details">{{ me.name }}</div>
+                                        <div class="show_details">
+                                            <b>Nombre :</b> {{ me.name }}<br>
+                                            <b>CI :</b> {{ me.cI }}<br>
+                                            <b>Cargo :</b> {{ me.ocupation }}<br>
+                                            <b>Licencia :</b> {{ me.license }}<br>
+                                            <b>Chapa :</b> {{ me.numberPlate }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="hide_details"></div>
+                                        <div class="show_details">
+                                            {% for equipment in me.equipments %}
+                                                {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} {{ equipment.ni }}/{{ equipment.ns }}<br>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                    <!--documentacion escaneada-->
+                                    <td>
+                                        {% if( me.documentFile != null) %}
+                                            <a href="{{ asset('uploads/me/' ~ me.documentFile) }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Ver documentación escaneada">
+                                                <span class="glyphicon glyphicon-book"></span>
+                                            </a>
+                                        {% else %}
+                                            <a href="javascript:void(0)"
+                                               data-toggle="modal"
+                                               data-target="#upload_scan_document_file"
+                                               data-placement="top"
+                                               title="Adjuntar documentacion escaneada"
+                                               class="link-tooltip link-upload-file"
+                                               upload-data-url="{{ path('upload_scan_document_me',{'id':me.id}) }}"
+                                               onclick="setActionFormUrlMeUploadFile(this)"
+                                            >
+                                                <span class="glyphicon glyphicon-paperclip"></span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" data-placement="top" title="Ver detalles" class="link-tooltip" onclick="toogleDetails(this)">
+                                            <span class="glyphicon glyphicon-chevron-down"></span>
+                                        </a>
+                                        {#<a href="javascript:void(0);" data-placement="top" title="Imprimir" class="link-tooltip">#}
+                                            {#<span class="glyphicon glyphicon-print"></span>#}
                                         {#</a>#}
-                                        {#<a href="javascript:void(0)"#}
-                                           {#class="link-tooltip link-eliminar"#}
-                                           {#data-url="{{ path('equipment_delete',{ 'id':equipment.id }) }}"#}
-                                           {#data-toggle="modal"#}
-                                           {#data-target="#modal-delete"#}
-                                           {#data-placement="top"#}
-                                           {#title="Eliminar"#}
-                                        {#>#}
-                                            {#<span class="glyphicon glyphicon-trash"></span>#}
-                                        {#</a>#}
-                                    {#</td>#}
+                                        <a href="{{ path('me_edit', { 'id':me.id }) }}" data-placement="top" title="Editar" class="link-tooltip">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                           class="link-tooltip link-eliminar"
+                                           data-url="{{ path('me_delete',{ 'id':me.id }) }}"
+                                           data-toggle="modal"
+                                           data-target="#modal-delete"
+                                           data-placement="top"
+                                           title="Eliminar"
+                                        >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </table>
@@ -69,49 +113,5 @@
     </section>
 
     {{ include('layouts/include/modals.html.twig') }}
-
-    {#<h1>Mes list</h1>#}
-
-    {#<table>#}
-        {#<thead>#}
-            {#<tr>#}
-                {#<th>Id</th>#}
-                {#<th>Name</th>#}
-                {#<th>Ocupation</th>#}
-                {#<th>Ci</th>#}
-                {#<th>License</th>#}
-                {#<th>Numberplate</th>#}
-                {#<th>Actions</th>#}
-            {#</tr>#}
-        {#</thead>#}
-        {#<tbody>#}
-        {#{% for mE in mEs %}#}
-            {#<tr>#}
-                {#<td><a href="{{ path('me_show', { 'id': mE.id }) }}">{{ mE.id }}</a></td>#}
-                {#<td>{{ mE.name }}</td>#}
-                {#<td>{{ mE.ocupation }}</td>#}
-                {#<td>{{ mE.cI }}</td>#}
-                {#<td>{{ mE.license }}</td>#}
-                {#<td>{{ mE.numberPlate }}</td>#}
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('me_show', { 'id': mE.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('me_edit', { 'id': mE.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
-        {#</tbody>#}
-    {#</table>#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('me_new') }}">Create a new mE</a>#}
-        {#</li>#}
-    {#</ul>#}
 
 {% endblock %}

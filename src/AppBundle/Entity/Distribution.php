@@ -127,7 +127,7 @@ abstract class Distribution
      *
      * @return Distribution
      */
-    public function setState($state)
+    public function setState($state=0)
     {
         $this->state = $state;
 

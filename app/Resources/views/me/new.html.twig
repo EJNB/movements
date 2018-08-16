@@ -14,7 +14,7 @@
                         <div class="container-fluid">
                             {{ form_start(form) }}
                             {#<div class="col-md-12">#}
-                            <div class="form-horizontal">
+                                <div class="form-horizontal">
 
                                 <!--date-->
                                 <div class="form-group">
@@ -37,8 +37,12 @@
                                 <!-- Equipos -->
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label">Equipos</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 show_equipments_list">
+                                        {#en este caso en particular saldran los equipos q se distribuyeron y los q no se movieron#}
                                         {{ include('equipment/equipments.html.twig') }}
+                                    </div>
+                                    <div class="col-sm-1 hide show_animation" style="padding-left: 0; padding-top: 6px;">
+                                        <i class="fa fa-circle-o-notch fa-spin fa-1x" aria-hidden="true"></i>
                                     </div>
                                 </div>
 
@@ -91,11 +95,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"></label>
                                     <div class="col-sm-3">
-                                       <button type="submit" class="btn btn-primary">Guardar</button>
+                                       <button type="submit" class="btn btn-primary" onclick="checkFormEditMovementME(event)">Guardar</button>
                                        <a href="{{ path('me_index') }}" class="btn btn-default">Regresar el listado</a>
                                     </div>
                                 </div>
                             </div>
+                            {{ form_end(form) }}
                         </div>
                     </div>
                 </div>

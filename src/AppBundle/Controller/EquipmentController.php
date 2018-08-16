@@ -38,6 +38,7 @@ class EquipmentController extends Controller
 
         return $this->render('equipment/index.html.twig', array(
             'pagination' => $pagination,
+            'filter' => $filter
         ));
     }
 

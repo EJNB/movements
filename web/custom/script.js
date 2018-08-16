@@ -89,6 +89,16 @@ $(document).ready(function () {
         maxDate : new Date(),
     });
 
+    //configuracion del campo date de las incidencias
+    $('#appbundle_distributione_requestDate').datetimepicker({
+        defaultDate : new Date(),
+        useCurrent: false,
+        format: 'YYYY-MM-DD',
+        locale: 'es',
+        showClear: true,
+        maxDate : new Date(),
+    });
+
     $('.radio_generate_ni').on('ifClicked',function(){
         toogleInputs($(this).val());
     });
@@ -118,6 +128,16 @@ $(document).ready(function () {
         select_persons.selectpicker('refresh');
     });
 
+    //verifico si la cantidad de equipos no exede la cantidad de personas
+    $('.equipments').on('loaded.bs.select',function (event) {
+        var cantidad = $(this).find('option:selected').attr('data-subtext');
+        $('.show-cant').html(cantidad)
+    });
+    //oculto el popover
+    $('.equipments').on('changed.bs.select',function (event) {
+        $(this).popover('hide')
+    });
+
     $('#appbundle_distributioni_persons').selectpicker({
         // actionsBox : true, //activar los botones deselectAll y selectAll
         // selectAllText : 'Seleccionar todo', //cambia el mesage del boton selectAll
@@ -128,6 +148,14 @@ $(document).ready(function () {
         maxOptionsText : 'No quedan mas equipos para distribuir',
         noneSelectedText : 'No hay personas seleccionadas',
         title : 'Seleccione las personas',
+    })
+
+    $('.generate_consecutivo').on('ifClicked',function () {
+        if (this.checked==false){//checked
+            $('input.consecutive_number').prop('disabled',true);
+        }else{//unchecked
+            $('input.consecutive_number').prop('disabled',false);
+        }
     })
 
 });//end $(document).ready
@@ -266,16 +294,17 @@ function initiCheck() {
 //fnc para una vez q seleccione la instalacion, seleccionar las personas correspondientes a la misma
 // y seleccionar los equipos q tengan en alguna disribucion
 function selectEquipmentByDistributionPerHotel(elem) {
-    // alert(elem)
-    // $('div.sk-cube-grid').removeClass('hidden');
-    // $('div.block').addClass('modal');
-    // var url = Routing.generate('me_new');
-    // $.post( url, { hotel : elem }, function (response) {
-    //     $('div.show-persons').html(response).find('select').selectpicker('refresh');
-    //     $('div.block').removeClass('modal');
-    //     $('div.sk-cube-grid').addClass('hidden');
-    // })
+    //pongo la animacion y desabito el select
+    $('div.show_animation').removeClass('hide');
+    $('#equipment_list').prop('disabled',true).selectpicker('refresh');
+    var url = Routing.generate('me_new');
+    $.post( url, { hotel : elem }, function (response) {
+        $('.show_equipments_list').html(response).find('select').selectpicker('refresh');
+        $('div.show_animation').addClass('hide');//quito la animacion y habilito el select el select
+    })
 }
+
+//esto es trate de hacer algo con las promesas de javascript y no lo termine
 // $.when(showPersonsByHotelAjax()).done(function selectEquipmentsByHotelAjax(elem) {
 //     alert()
 // });
@@ -341,9 +370,10 @@ function setDistributionStatus(elem) {
     var distribution = $('h2.distribution-title').text().indexOf('externas'),
         url = (distribution==-1) ? Routing.generate('set_distribution_i_status') : Routing.generate('set_distribution_status'),
         id = Number($(elem).attr('data-id')),
-        status = $(elem).prop('checked');
+        status = $(elem).prop('checked'),
+        filter = $('input.distributions_filter').val();
 
-    $.post(url,{ data_id : id, data_status : status },function (response) {
+    $.post(url,{ data_id : id, data_status : status, filter : filter },function (response) {
         $('.show-distributions-list').html(response);
 
         //dentengo la animacion
@@ -374,16 +404,39 @@ function sendFileAndShowAnimationLoading(event) {
         });
     }else {
         $('form#form_upload_file').submit();
-        $('#modal_upload_file').modal('hide');
+        $('#modal_upload_invoice_file').modal('hide');
         //pongo la animacion
         $('div.block').addClass('modal');
         $('div.sk-cube-grid').removeClass('hidden');
     }
 }
 
+function uploadScanMeDocuement() {
+    if ($('form#form_upload_scan_me_file').find('input[type="file"]').val()==''){
+
+        PNotify.removeAll();
+        new PNotify({
+            title: 'Alerta',
+            text: 'Por favor seleccione el archivo',
+            type: 'warning',
+            delay : 2000,
+        });
+    }else{
+        $('#upload_scan_document_file').modal('hide');//hide modal
+        $('div.block').addClass('modal');//put animation
+        $('div.sk-cube-grid').removeClass('hidden');
+        $('button#submit_form').click();//submit form
+    }
+}
+
 //setear el action del formu`lario para el envio del documento
 function setActionFormUrlUploadFile(elem){
     $('form#form_upload_file').attr('action',$(elem).attr('upload-data-url'));
+}
+
+//setear el action del formulario para el envio del documento me scan
+function setActionFormUrlMeUploadFile(elem){
+    $('form#form_upload_scan_me_file').attr('action',$(elem).attr('upload-data-url'));
 }
 
 //show invoice's equipment
@@ -403,12 +456,25 @@ function putAnimation() {
 }
 
 function checkFormAndPutAnimation(event) {
-    //verifcar los inputs requeridos
-    var select_equipments = $('select.equipments');
-    if (select_equipments.val()==null || $('#appbundle_distributioni_persons').val()!=null){
-        // alert('No hay valores en el inpt')
-        $('div.block').addClass('modal');
-        $('div.sk-cube-grid').removeClass('hidden');
+    event.preventDefault();
+    //verificar q la cantidad de equipos no sean mayor a la cantidad de personas seleccionadas
+    var cantidad_equipments = Number($('.show-cant').html());
+    var person_selected = $('#appbundle_distributioni_persons option:selected').length;
+    if (cantidad_equipments<person_selected){
+        event.preventDefault();
+        $('.equipments').popover('show')
+    }else {
+        //verifcar los inputs requeridos
+        var select_equipments = $('select.equipments');
+        if (select_equipments.val()==null || $('#appbundle_distributioni_persons').val()!=null){
+            // console.log()
+            $(event.target).closest('form').submit();
+            //poner la animacion
+            $('div.block').addClass('modal');
+            $('div.sk-cube-grid').removeClass('hidden');
+        }else{
+            event.preventDefault();
+        }
     }
 }
 
@@ -437,3 +503,47 @@ function checkFormAndPutAnimation(event) {
 //     }
 // }
 
+//ocultar o mostrar los detalles del mov
+function toogleDetails(elem) {
+    $(elem).toggleClass('showed');//toggle class showed
+    $(elem).parent().siblings().find('.hide_details').slideToggle('fast');//oculto los encabezados
+    $(elem).parent().siblings().find('.show_details').slideToggle('slow');//muestro o oculto los datalles
+
+    if($(elem).hasClass('showed')){//si <a> esta abierto entonces pongo la flecha hacia arriba
+        $('span',elem).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');//poner el caret hacia arriba
+        $(elem).tooltip('hide');//oculto el msg para q no se quede pegado
+        $(elem).attr('data-original-title','Ocultar detalles');//cambiar el text del tooltip
+    }else {
+        $('span',elem).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+        $(elem).tooltip('hide');//oculto el msg para q no se quede pegado
+        $(elem).attr('data-original-title','Ver detalles');
+    }
+}
+
+function checkFormEditMovementME(event) {
+    var form = $($(event.target).closest('form[name=appbundle_me]')),//get form context
+        areValid =
+            checkInputsRequired(form) &&
+            $('select#appbundle_me_hotel',form).find('option:selected').val().length > 0 &&
+            $('select#equipment_list',form).find('option:selected').length > 0;
+
+    if(areValid){//todos los campos estan bien
+        $('div.block').addClass('modal');
+        $('div.sk-cube-grid').removeClass('hidden');
+    }else {//existen campos vacios
+        event.preventDefault();
+        //focus input require empty
+    }
+}
+
+//fnc para validar los campos requeridos de un formulario
+function checkInputsRequired(form) {
+    var flat=true;
+    $('input:required',form).each(function (index,element) {
+        if ($(element).val()==''){
+            flat = false;
+            return false;//de esta manera rompo la iteracion del each
+        }
+    });//end .each
+    return flat;
+}

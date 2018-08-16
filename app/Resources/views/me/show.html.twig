@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Me</h1>
 
     <table>
         <tbody>
+        {#{{ dump(mE[0].hotel.name) }}#}
             <tr>
                 <th>Id</th>
                 <td>{{ mE.id }}</td>
@@ -29,20 +30,28 @@
                 <th>Numberplate</th>
                 <td>{{ mE.numberPlate }}</td>
             </tr>
+            <tr>
+                <th>Equipos</th>
+                <td>
+                    {% for equipment in mE.equipments %}
+                       {{ equipment.model.brand.type }} {{ equipment.model.brand }} {{ equipment.model }} {{ equipment.ni }} {{ equipment.ns }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('me_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('me_edit', { 'id': mE.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('me_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('me_edit', { 'id': mE.id }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

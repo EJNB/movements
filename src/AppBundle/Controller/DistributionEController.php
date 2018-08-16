@@ -27,19 +27,18 @@ class DistributionEController extends Controller
 
         $filter = $request->query->get('filter');
         $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE($filter);
-//        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
 
         $paginator  = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate(
             $distributionEs, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            15/*limit per page*/
+            60/*limit per page*/
         );
 
         return $this->render('distributione/index.html.twig', array(
             'pagination' => $pagination,
-//            'equipments' => $equipments,
+            'filter' => $filter
         ));
     }
 
@@ -55,7 +54,7 @@ class DistributionEController extends Controller
         $distributionE = new Distributione();
         $form = $this->createForm('AppBundle\Form\DistributionEType', $distributionE);
         //seleccionamos los equipos q no han sido distribuidos y tampoco entregados
-        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByType();
+        $equipments = $em->getRepository('AppBundle:Equipment')->getAllEquipmentOrderByNI();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,14 +62,20 @@ class DistributionEController extends Controller
                 $equipment = $em->getRepository('AppBundle:Equipment')->find($equipment);
                 $distributionE->addEquipment($equipment);
             }
-            $equipments = count($em->getRepository('AppBundle:DistributionE')->findAll());
-            $count = $equipments<10 ? '0'.$equipments : $equipments;
-            $distributionE->setRequestDate(new \DateTime('now'));
+
+            $cant_distributions_e = count($em->getRepository('AppBundle:DistributionE')->findAll())+1;
+            $count = $cant_distributions_e<10 ? '0'.$cant_distributions_e : $cant_distributions_e;
+            //set consecutive_number
+            if ($request->request->get('automatic_consecutive_number')==true){
+                //esto es para garantizar q me quede 01,02,03....09
+                $distributionE->setConsecutiveNumber('TR'.$count.'/'.date('Y'));
+            }else{
+                $distributionE->setConsecutiveNumber($request->request->get('manual_consecutive_number'));
+            }
+
+//            $distributionE->setRequestDate(new \DateTime('now'));
             $distributionE->setState(0);
-            $distributionE->setConsecutiveNumber('TR'.$count.date('Y'));
-//            dump(count($em->getRepository('AppBundle:DistributionE')->findAll()));
-//            dump(date('m'));
-//            dump($count);
+
             $em->persist($distributionE);
             $em->flush();
 
@@ -242,7 +247,7 @@ class DistributionEController extends Controller
             $pagination = $paginator->paginate(
                 $distributionEs, /* query NOT result */
                 $request->query->getInt('page', 1)/*page number*/,
-                15/*limit per page*/
+                60/*limit per page*/
             );
 
             return $this->render('distributione/list-distributions.html.twig', array(
@@ -266,12 +271,14 @@ class DistributionEController extends Controller
             $distribution_e->setState($data_status);
             $em->flush();
 
+            $filter = $request->request->get('filter');
+
             $paginator  = $this->get('knp_paginator');
-            $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE();
+            $distributionEs = $em->getRepository('AppBundle:DistributionE')->getAllDistributionsE($filter);
             $pagination = $paginator->paginate(
                 $distributionEs, /* query NOT result */
                 $request->query->getInt('page', 1)/*page number*/,
-                15/*limit per page*/
+                60/*limit per page*/
             );
 
             return $this->render('distributione/list-distributions.html.twig', array(

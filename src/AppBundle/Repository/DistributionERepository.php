@@ -14,16 +14,16 @@ class DistributionERepository extends \Doctrine\ORM\EntityRepository
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb
-            ->select('d')
+            ->select('d,h,e,m,b,t')//,e,m,b,t
             ->from('AppBundle:DistributionE','d')
-            ->innerJoin('d.hotel','h');
+            ->innerJoin('d.hotel','h')
+            ->innerJoin('d.equipments','e')
+            ->innerJoin('e.model','m')
+            ->innerJoin('m.brand','b')
+            ->innerJoin('b.type','t');
 
             if($filter!=""){
                 $qb
-                    ->innerJoin('d.equipments', 'e')
-                    ->innerJoin('e.model','m')
-                    ->innerJoin('m.brand','b')
-                    ->innerJoin('b.type','t')
                     ->where($qb->expr()->like('d.requestDate', '?1'))
                     ->orWhere($qb->expr()->like('h.name', '?1'))
                     ->orWhere($qb->expr()->like('e.ni', '?1'))
@@ -35,10 +35,40 @@ class DistributionERepository extends \Doctrine\ORM\EntityRepository
     //                    ->orWhere($qb->expr()->like('e.ni', '?1'))
                     ->setParameter(1, '%' . $filter . '%');
             }
-
-        $qb->orderBy('h.name','DESC');
+        $qb->orderBy('d.consecutive_number','ASC');
+//        $qb->orderBy('h.name','DESC');
 
         $result = $qb->getQuery()/*->getResult()*/;
         return $result;
+    }
+
+    public function findDistributionsByHotel($hotel){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('d')
+            ->from('AppBundle:DistributionE','d')
+            ->innerJoin('d.hotel','h')
+            ->where('h.id:=hotel')
+            ->setParameter('hotel',$hotel)
+        ;
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findDisributionEByHotelWithStatusFalse($hotel){
+        $em = $this->getEntityManager();
+        $sql = "
+            SELECT distribution_e.id,distribution.requestDate,distribution_e.consecutive_number
+            FROM distribution_e
+            INNER JOIN distribution ON distribution_e.id=distribution.id
+            INNER JOIN hotel ON distribution_e.hotel_id=hotel.id
+            WHERE distribution.state=? AND hotel.id=?
+        ";
+
+        $var = $em->getConnection()->prepare($sql);
+        $var->bindValue(1,0);
+        $var->bindValue(2,$hotel);
+        $var->execute();
+        return $var->fetchAll();
     }
 }

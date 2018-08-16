@@ -10,27 +10,68 @@
                         <h3 class="page-header">Nueva distribuci&oacute;n </h3>
                     </div>
                     <div class="box-body" style="padding-top: 0">
-                        {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-md-3">
-                                    {{ form_row(form.hotel) }}
-                                </div>
-                                <div class="col-md-5">
-                                    {{ include('equipment/equipments.html.twig') }}
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary" onclick="putAnimation()">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                        Guardar
-                                    </button>
-                                    <a class="btn btn-default" href="{{ path('distributione_index') }}">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                        Regresar al listado
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="container-fluid">
+                            {{ form_start(form) }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-horizontal">
 
-                        {{ form_end(form) }}
+                                            <!-- Fecha -->
+                                            <div class="form-group">
+                                                {{ form_label(form.requestDate,'Fecha:', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                                <div class="col-sm-4">
+                                                    {{ form_errors(form.requestDate) }}
+                                                    {{ form_widget(form.requestDate) }}
+                                                </div>
+                                            </div>
+
+                                            <!-- Hoteles -->
+                                            <div class="form-group">
+                                                {{ form_label(form.hotel,'Hoteles:', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                                <div class="col-sm-4">
+                                                    {{ form_errors(form.hotel) }}
+                                                    {{ form_widget(form.hotel) }}
+                                                </div>
+                                            </div>
+
+                                            <!-- Equipos -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Equipos</label>
+                                                <div class="col-sm-4">
+                                                    {{ include('equipment/equipments.html.twig') }}
+                                                </div>
+                                            </div>
+
+                                            <!-- Numero consecutivo de carta -->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">N&uacute;mero consecutivo</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="manual_consecutive_number" class="form-control consecutive_number" placeholder="Introdusca el numero de consecutivo" required disabled>
+                                                </div>
+                                            </div>
+
+                                            <!--Generar el consecutivo-->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Generar n&uacute;mero consecutivo</label>
+                                                <div class="col-sm-4">
+                                                    <input type="checkbox" value="1" name="automatic_consecutive_number" class="icheck generate_consecutivo" checked>
+                                                </div>
+                                            </div>
+
+                                            <!--Generar el consecutivo-->
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"></label>
+                                                <div class="col-sm-4">
+                                                    <input type="submit" class="btn btn-primary" value="Enviar">
+                                                    <a href="{{ path('distributione_index') }}" class="btn btn-default">Regresar al listado</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div><!--/.container-fluid-->
                     </div> <!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- /.col-md-12-->

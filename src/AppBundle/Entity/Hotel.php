@@ -24,7 +24,7 @@ class Hotel
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=70)
+     * @ORM\Column(type="string", length=70, unique=true)
      */
     private $name;
 

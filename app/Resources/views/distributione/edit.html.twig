@@ -11,29 +11,64 @@
                 </div>
                 <div class="box-body" style="padding-top: 0">
                     {{ form_start(edit_form) }}
-                        <div class="row">
-                            <div class="col-md-5 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal">
+
+                                <!-- Fecha -->
                                 <div class="form-group">
-                                    <label>Hotel</label>
-                                    {{ form_row(edit_form.hotel) }}
+                                    {{ form_label(edit_form.requestDate,'Fecha:', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.requestDate) }}
+                                        {{ form_widget(edit_form.requestDate) }}
+                                    </div>
                                 </div>
 
+                                <!-- Hoteles -->
                                 <div class="form-group">
-                                    {{ include('equipment/equipments.html.twig') }}
+                                    {{ form_label(edit_form.hotel,'Hoteles:', { 'label_attr':{ 'class':'col-sm-3 control-label' } }) }}
+                                    <div class="col-sm-4">
+                                        {{ form_errors(edit_form.hotel) }}
+                                        {{ form_widget(edit_form.hotel) }}
+                                    </div>
                                 </div>
 
+                                <!-- Equipos -->
                                 <div class="form-group">
-                                    <button class="btn btn-primary" onclick="putAnimation()">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                        Guardar
-                                    </button>
-                                    <a class="btn btn-default" href="{{ path('distributione_index') }}">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                        Regresar al listado
-                                    </a>
+                                    <label class="col-sm-3 control-label">Equipos</label>
+                                    <div class="col-sm-4">
+                                        {{ include('equipment/equipments.html.twig') }}
+                                    </div>
                                 </div>
+
+                                <!-- Numero consecutivo de carta -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">N&uacute;mero consecutivo</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="manual_consecutive_number" class="form-control" placeholder="Introdusca el numero de consecutivo" required value="{{ distributionE.consecutiveNumber }}">
+                                    </div>
+                                </div>
+
+                                {#<!--Generar el consecutivo-->#}
+                                {#<div class="form-group">#}
+                                    {#<label class="col-sm-3 control-label">Generar n&uacute;mero consecutivo</label>#}
+                                    {#<div class="col-sm-4">#}
+                                        {#<input type="checkbox" value="1" name="automatic_consecutive_number" class="icheck generate_consecutivo" checked>#}
+                                    {#</div>#}
+                                {#</div>#}
+
+                                <!--Generar el consecutivo-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-4">
+                                        <input type="submit" class="btn btn-primary" value="Enviar">
+                                        <a href="{{ path('distributione_index') }}" class="btn btn-default">Regresar al listado</a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+                    </div>
                     {{ form_end(edit_form) }}
                 </div> <!-- /.box-body -->
             </div><!-- /.box -->

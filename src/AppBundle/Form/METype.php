@@ -31,7 +31,7 @@ class METype extends AbstractType
                     'data-size' => 10,
                     'onchange' => 'selectEquipmentByDistributionPerHotel(this.value)'
                 ),
-                'placeholder' => 'Seleccione el botel'
+                'placeholder' => 'Seleccione el botel',
             ))
             ->add('name', TextType::class,array(
                 'attr' => array(
@@ -40,8 +40,8 @@ class METype extends AbstractType
             ))
             ->add('ocupation',TextType::class,array('attr' => array('class' => 'form-control')))
             ->add('cI',TextType::class,array('attr' => array('class' => 'form-control')))
-            ->add('license',TextType::class,array('attr' => array('class' => 'form-control'),))
-            ->add('numberPlate',TextType::class,array('attr' => array('class' => 'form-control')))
+            ->add('license',TextType::class,array('attr' => array('class' => 'form-control'),'required'=>false))
+            ->add('numberPlate',TextType::class,array('attr' => array('class' => 'form-control'),'required'=>false))
         ;
     }/**
      * {@inheritdoc}

@@ -22,7 +22,7 @@
                         <h2 class="box-title no-padding distribution-title" style="margin-left: 25%; ">Distribuciones externas</h2>
                         <div class="box-tools">
                             <form class="form-inline" action="{{ path('distributione_index') }}" method="get" style="margin-bottom: 2px">
-                                <input type="text" class="form-control" placeholder="Buscar" name="filter">
+                                <input type="text" class="form-control distributions_filter" placeholder="Buscar" name="filter" {% if filter is defined %}value="{{ filter }}" {% endif %}>
                                 <button type="submit" class="btn btn-success" onclick="putAnimation()">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>

@@ -28,7 +28,7 @@ class ME extends Movement
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=100)
      */
     private $ocupation;
 
@@ -49,7 +49,7 @@ class ME extends Movement
     /**
      * @var string
      *
-     * @ORM\Column(name="number_plate", type="string", length=7, nullable=true)
+     * @ORM\Column(name="number_plate", type="string", length=8, nullable=true)
      */
     private $numberPlate;
 

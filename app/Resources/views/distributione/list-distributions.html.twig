@@ -20,7 +20,7 @@
                 {% endif %}
             </td>
             <td>{{ distribution.hotel }}</td>
-            <td>{{ distribution.requestDate | date('Y-m-d')}}</td>
+            <td>{{ distribution.requestDate | date('d-m-Y')}}</td>
             <td>
                 {% if is_granted('ROLE_DIRECTOR') %}
                     <input type="checkbox" onchange="setDistributionStatus(this)" {% if distribution.state == true %}checked{% endif %} data-id="{{ distribution.id }}" style="position: relative;top: 3px; margin-right: 3px">

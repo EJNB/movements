@@ -20,7 +20,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Equipos:</label>
                                     <div class="col-sm-4">
-                                        <select required class="form-control selectpicker equipments" data-live-search="true" title="Seleccione el tipo de equipo" name="equipments">
+                                        <select data-placement="top" data-toggle="popover" title="Cantidad de equipos indevida" data-content="Por favor, la cantidad de equipos no debe exceder las cantidad de personas selecciondas"
+                                                required class="form-control selectpicker equipments" data-live-search="true" title="Seleccione el tipo de equipo" name="equipments">
                                             {% for equipment in equipments if equipments != 0 %}
                                                 <option
                                                     value="{{ equipment[0].name }}"
@@ -38,7 +39,7 @@
                                     <!--una vez q haga onchage aqui se mostraran la cantidad de equipos q tiene en el almacen-->
                                     <div class="col-sm-1">
                                         <h4 style="font-size: 16px; margin-top: 10%">
-                                            <span class="label label-info show-cant">0</span>
+                                            <span class="label label-info show-cant"></span>
                                         </h4>
                                     </div>
                                 </div>

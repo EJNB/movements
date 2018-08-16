@@ -1,17 +1,25 @@
 {% if equipments is defined %}
-    <select name="equipments[]" class="selectpicker form-control" multiple data-live-search="true" data-size="10" required>
+    <select id="equipment_list" name="equipments[]" class="selectpicker form-control" multiple data-live-search="true" data-size="10" required>
         {% for equipment in equipments %}
             <option
-                    value="{{ equipment.id }}"
-                    data-subtext="{{ equipment.ni }}/{{ equipment.ns }}"
-                    {% if equipments_by_distribution is defined %}
-                        {% for e in equipments_by_distribution if e.id==equipment.id %}
+                value="{{ equipment.id }}"
+                data-subtext="{{ equipment.ni }}/{{ equipment.ns }}"
+                {% if equipments_by_distribution is defined and equipments_by_distribution | length !=0 %}
+                    {% for e in equipments_by_distribution %}
+                        {% if equipment.id == e.id %}
                             selected="selected"
-                        {% endfor %}
-                    {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             >
                 {{ equipment }}
             </option>
         {% endfor %}
     </select>
+        {#{% if equipments_by_distribution is defined and equipments_by_distribution | length !=0 %}#}
+            {#{% for e in equipments_by_distribution %}#}
+                {#{{ dump(e.id) }}#}
+            {#{% endfor %}#}
+            {#{{ dump(equipments_by_distribution) }}#}
+        {#{% endif %}#}
 {% endif %}

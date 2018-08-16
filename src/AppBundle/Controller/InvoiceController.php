@@ -30,8 +30,6 @@ class InvoiceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $paginator  = $this->get('knp_paginator');
 
-//        $invoices = $em->getRepository('AppBundle:Invoice')->findAll();
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             //save invoice scan

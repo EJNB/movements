@@ -1,21 +1,108 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/main.html.twig' %}
 
-{% block body %}
-    <h1>Me edit</h1>
+{% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title" style="margin-left: 35%">Editar movimiento</h3>
+                        <div class="page-header no-margin"></div>
+                    </div>
+                    <div class="box-body">
+                        <div class="container-fluid">
+                            {{ form_start(edit_form) }}
+                                <div class="form-horizontal">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                                    <!--date-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.date,'Fecha :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-2">
+                                            {{ form_errors(edit_form.date) }}
+                                            {{ form_widget(edit_form.date) }}
+                                        </div>
+                                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('me_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                    <!--Hotel-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.hotel,'Hotel :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-3">
+                                            {{ form_errors(edit_form.hotel) }}
+                                            {{ form_widget(edit_form.hotel) }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Equipos -->
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Equipos</label>
+                                        <div class="col-sm-3 show_equipments_list">
+                                            {#en este caso en particular saldran los equipos q se distribuyeron y los q no se movieron#}
+                                            {{ include('equipment/equipments.html.twig') }}
+                                        </div>
+                                        <div class="col-sm-1 hide show_animation" style="padding-left: 0; padding-top: 6px;">
+                                            <i class="fa fa-circle-o-notch fa-spin fa-1x" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Nombre-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.name,'Nombre :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-3">
+                                            {{ form_errors(edit_form.name) }}
+                                            {{ form_widget(edit_form.name) }}
+                                        </div>
+                                    </div>
+
+                                    <!--Cargo-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.ocupation,'Cargo:', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-3">
+                                            {{ form_errors(edit_form.ocupation) }}
+                                            {{ form_widget(edit_form.ocupation) }}
+                                        </div>
+                                    </div>
+
+                                    <!--CI-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.cI,'Carnet de identidad :', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-2">
+                                            {{ form_errors(edit_form.cI) }}
+                                            {{ form_widget(edit_form.cI) }}
+                                        </div>
+                                    </div>
+
+                                    <!--Licencia-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.license,'Licencia:', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-2">
+                                            {{ form_errors(edit_form.license) }}
+                                            {{ form_widget(edit_form.license) }}
+                                        </div>
+                                    </div>
+
+                                    <!--Chapa-->
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.numberPlate,'Chapa:', { 'label_attr':{ 'class':'col-sm-4 control-label' } }) }}
+                                        <div class="col-sm-2">
+                                            {{ form_errors(edit_form.numberPlate) }}
+                                            {{ form_widget(edit_form.numberPlate) }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Equipos -->
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label"></label>
+                                        <div class="col-sm-3">
+                                            <button type="submit" onclick="checkFormEditMovementME(event)" class="btn btn-primary">Guardar</button>
+                                            <a href="{{ path('me_index') }}" class="btn btn-default">Regresar el listado</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

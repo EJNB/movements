@@ -21,10 +21,10 @@ Invoices:
 	1. si la factura tiene un pdf adjunto poner una identificacion
 	2. poner todos los equipos en el index de las facturas 
 	3. hacer el filtrado de las facturas
+	4. Poner una descripcion de la factura
 	
 Genrales: 
 	1. Poner la animacion cada vez q se pueda
-	2. Traer la plantilla q me dio rainy con la cual yo hice el sistema de movements
 	3. hacer el sistema de notificaciones
 	4. Definir bien a donde puede entrar cada usuario dependiendo de su rol
 	
